@@ -1,0 +1,12 @@
+.logos
+{
+  max-width: 70%;
+  height: auto;
+}
+body{
+  height: 100vh;
+}
+.carousel{
+  bottom: 0;
+  width: 100%;
+}

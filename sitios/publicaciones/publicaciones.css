@@ -1,0 +1,21 @@
+.card-img-top
+{
+  display: block;
+  max-width: 40%;
+  height: auto;
+}
+
+.logos
+{
+  max-width: 70%;
+  height: auto;
+}
+
+.list-group{
+  padding: 1%;
+}
+
+.list-group>a:hover{
+  background-color: #00497C;
+  color: white
+}
