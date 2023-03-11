@@ -4,6 +4,14 @@
   height: auto;
 }
 
-/* .col-4{
-  outline: 1px solid black;
-} */
+.accordion{
+  padding: 1%;
+}
+
+.row{
+  margin-bottom: 1%;
+}
+
+.card{
+  cursor: pointer;
+}

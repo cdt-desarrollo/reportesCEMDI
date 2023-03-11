@@ -5,15 +5,21 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon">
+  <!-- SweetAlert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+  <!-- Documentos propios -->
   <link rel="stylesheet" href="reportes.css">
+  <script src="reportes.js"></script>
   </body>
   <title>Reportes | CEMDI</title>
 </head>
 <body>
+  <!-- Header -->
   <nav class="navbar navbar-expand-lg bg-body-tertiary shadow p-3 mb-5 bg-body-tertiary rounded sticky-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="https://cdt-desarrollo.github.io/reportesCEMDI/">
@@ -44,37 +50,202 @@
     </div>
   </nav>
 
-  <div class="container text-center">
-    <div class="row align-items-start">
-      <div class="col-4 d-flex justify-content-center">
-        <div class="card" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <a href="#" class="btn btn-primary">Ver el reporte</a>
+<!-- Contenido -->
+  <div class="accordion" id="accordionExample">
+    <h3>Reportes</h3>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          2023
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <div class="container text-center">
+            <div class="row justify-content-center">
+              <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                  <img src="https://lh5.googleusercontent.com/YEkblwHIX8Qu-hd4BMMeaK2dJaooUhtTvXX7Dfz-JgpRBGlMCDzlH1rHN1Dv0QASGVs=w2400" class="card-img-top" alt="...">
+                  <div class="card-body d-grid gap-2">
+                    <button type="button" class="btn btn-primary" onclick="showReport('enero2023')">Ver</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                  <img src="https://lh6.googleusercontent.com/T-XaLz6dTVHZoh5l7UPYg-dOS3YEeesnAsYHwYk1vrmnygq4fJ-BSjLgInn4zTYD8r4=w2400" class="card-img-top" alt="...">
+                  <div class="card-body d-grid gap-2">
+                    <button type="button" class="btn btn-primary" onclick="showReport('febrero2023')">Ver</button>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                  <img src="..." class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-text">Marzo</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                  <img src="..." class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+            <!-- <div class="row justify-content-center">
+              <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                  <img src="..." class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                  <img src="..." class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                  <img src="..." class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                  <img src="..." class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                  <img src="..." class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                  <img src="..." class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                  <img src="..." class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                  <img src="..." class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  </div>
+                </div>
+              </div>
+            </div> -->
           </div>
         </div>
       </div>
-      <div class="col-4 d-flex justify-content-center">
-        <div class="card" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <a href="#" class="btn btn-primary">Ver el reporte</a>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          2022
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <div class="container text-center">
+            <div class="row justify-content-between">
+              <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                  <img src="https://lh4.googleusercontent.com/iJdTMbSHnaRBwU_j4BHM9xqVhSDCZLVxPeEsq7D5eXSQrhLGLllvEChI2Mz9gT1ef9w=w2400" alt="...">
+                  <div class="card-body d-grid gap-2">
+                    <button type="button" class="btn btn-primary" onclick="showReport('junio2022')">Ver</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                  <img src="https://lh6.googleusercontent.com/B_AuO2VvdiJKGvpiCyl6TyvRdfEdA_rkR_0EnYZq1FiaOZu68d5LyLr3LOnkZk-R3m8=w2400" alt="...">
+                  <div class="card-body d-grid gap-2">
+                    <button type="button" class="btn btn-primary" onclick="showReport('julio2022')">Ver</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                  <img src="https://lh6.googleusercontent.com/duwH7JPWoKqjXNzc2gA_-8dCNSPqiXEtK0BY67bANSpAG9OwEOPBMpjGtrMbs3kOZrM=w2400" class="card-img-top" alt="...">
+                  <div class="card-body d-grid gap-2">
+                    <button type="button" class="btn btn-primary" onclick="showReport('agosto2022')">Ver</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                  <img src="https://lh6.googleusercontent.com/35yIjumXVMs7W5TkFCuheevaQrYSYEU8ANkUrt5bmN95ZtiFlAKthuGavoYrxSU998E=w2400" class="card-img-top" alt="...">
+                  <div class="card-body d-grid gap-2">
+                    <button type="button" class="btn btn-primary" onclick="showReport('septiembre2022')">Ver</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                  <img src="https://lh4.googleusercontent.com/ocpV08cRhyw0C0HeN9OuXQkWQaSxzwqcgNZahl4NExvBjuAIepfrEtQm_Y11CU_7oO0=w2400" class="card-img-top" alt="...">
+                  <div class="card-body d-grid gap-2">
+                    <button type="button" class="btn btn-primary" onclick="showReport('octubre2022')">Ver</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                  <img src="https://lh4.googleusercontent.com/6UwaERvRL-DBp6azH9dIck71k0j1DBgy5rNzP3Fj9troeizj5BNd9qmNEctJUoMm0Y0=w2400" class="card-img-top" alt="...">
+                  <div class="card-body d-grid gap-2">
+                    <button type="button" class="btn btn-primary" onclick="showReport('noviembre2022')">Ver</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                  <img src="https://lh4.googleusercontent.com/6UwaERvRL-DBp6azH9dIck71k0j1DBgy5rNzP3Fj9troeizj5BNd9qmNEctJUoMm0Y0=w2400" class="card-img-top" alt="...">
+                  <div class="card-body d-grid gap-2">
+                    <button type="button" class="btn btn-primary" onclick="showReport('diciembre2022')">Ver</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-4 d-flex justify-content-center">
-        <div class="card" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <a href="#" class="btn btn-primary">Ver el reporte</a>
-          </div>
-        </div>
-      </div>
-      
     </div>
   </div>
 
-  <div class="card text-center fixed-bottom">
+<!-- Footer -->
+  <div class="card text-center fixed-bottom" style="display: none">
     <div class="card-header">
       CEMDI ES APOYADO POR LA ALIANZA ESTRATÉGICA DE LAS SIGUIENTES ORGANIZACIONES Y LOS FONDOS DE NEGOCIOS:
     </div>
