@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -14,67 +14,117 @@
     <script src="main.js"></script>
   </head>
   <body>
-    <div id="carouselExampleSlidesOnly" class="carousel slide position-absolute opacity-75" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="https://lh5.googleusercontent.com/eGfQdZWRmxr-WCvIsj4zAVQi1P0UkSPTXdLeirAkNmCqfRC2CgH0MMI0kRFuy_ONSWM=w2400" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="https://lh5.googleusercontent.com/Td9lpJmhOOtBm6Q1dcsquPmfhRbUFyGTFz8RaWeKpxWSkfqvncsPkUPzfmj7Qm8eU6c=w2400" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="https://lh4.googleusercontent.com/Z6MAupW2be3yLMSP-X6UtsMnvDLIHyNzCAlSWPdZEuk87BZuSvTDdsWdfuT2lYxqCKg=w2400" class="d-block w-100" alt="...">
-          </div>
+    <div class="firstBodyDiv">
+      <div class="fila1">
+        <div class="fila1-col1">
+          <img src="" alt="">
+          <img src="https://lh4.googleusercontent.com/XiS6rTZqrwNpJNDqM0wyhU6cKS5Gum4YwwNEHIM2_dWmnJFZ9G5qjSYnS-PReI6_d3c=w2400" alt="" class=" mx-auto d-block">
+          <img src="" alt="">
         </div>
-    </div>
-    <div class="container h-100 d-flex align-items-center justify-content-center position-relative" id="content">
-      <div class="position-absolute">
-        <div class="row">
-          <div class="col-8 d-flex align-items-center bg-light">
-            <img src="https://lh4.googleusercontent.com/XiS6rTZqrwNpJNDqM0wyhU6cKS5Gum4YwwNEHIM2_dWmnJFZ9G5qjSYnS-PReI6_d3c=w2400" alt="" class=" mx-auto d-block">
-          </div>
-          <!-- <div class="col-2 text-center d-flex align-items-center bg-primary text-white justify-content-center">
-            <h5>Biblioteca Digital</h3>
-          </div> -->
-          <div class="col-2 d-flex align-items-center">
-            <img src="https://lh3.googleusercontent.com/8qZ-3GMZ7v9B2CrjxMKvs-SYYMJaX4mdguVuZSOo2aC2AFrGaOn2m4Kr536Ij1wOVoo=w2400" alt="" class=" mx-auto d-block">
-          </div>
-          <div class="col-2 text-center d-flex align-items-center bg-warning text-white justify-content-center" onclick="loginOrSignup()">
-            <h5>MIEMBROS CEMDI</h5>
-          </div>
+        <div class="fila1-col2" onclick="loginOrSignup()">
+          <img src="" alt="">
+          <img src="https://lh3.googleusercontent.com/8qZ-3GMZ7v9B2CrjxMKvs-SYYMJaX4mdguVuZSOo2aC2AFrGaOn2m4Kr536Ij1wOVoo=w2400" alt="" class=" mx-auto d-block">
+          <img src="" alt="">
         </div>
-        <div class="row">
-          <div class="col-4 text-center d-flex align-items-center bg-danger text-white justify-content-center">
-            <h5>ACERCA DE CEMDI</h5>
-          </div>
-          <div class="col-2 d-flex align-items-center">
-            <img src="https://lh5.googleusercontent.com/MMUc0brpCbgOdPsj0WXyP9LUQAaID2JW03SV_mo_rJWbGZ_FMisUTdCYKRIun2aC6c4=w2400" alt="" class=" mx-auto d-block">
-          </div>
-          <div class="col-2 text-center d-flex align-items-center bg-secondary text-white justify-content-center" onclick="showPosts()">
-            <h5>PUBLICACIONES CEMDI</h5>
-          </div>
-          <div class="col-2 d-flex align-items-center">
-            <img src="https://lh5.googleusercontent.com/WkDlSBG3K0YhJs6VLa0IGB5g49eWjLONMxUTchIgjWLfgbRil8ufGnjfOE2bWFLpjpU=w2400" alt="" class=" mx-auto d-block object-fit-cover">
-          </div>
-          <div class="col-2 text-center d-flex align-items-center bg-dark text-white justify-content-center">
-            <h5>CONTACTO</h5>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-2 d-flex align-items-center">
-            <img src="https://lh6.googleusercontent.com/3jYjpO5SJiC6pgit6kBp9E2c4atYaqsr3hLHgu8w4DKKND2WANyPtV1Ikqp3xa_GN0Y=w2400" alt="" class=" mx-auto d-block">
-          </div>
-          <div class="col-4 text-center d-flex align-items-center bg-dark text-white justify-content-center">
-            <h5>ESTADÍSTICAS POR TEMA</h5>
-          </div>
-          <div class="col-4 text-center d-flex align-items-center bg-info text-white justify-content-center">
-            <h5>QUOTES</h5>
-          </div>
-          <div class="col-2 d-flex align-items-center">
-            <img src="https://lh3.googleusercontent.com/-9S3_RHadRqZ4fYOCqwLwwcjF-xAG0_6Rb5vvhefxuk80z7GWJNZOwE_bbCZ5cYgtro=w2400" alt="" class=" mx-auto d-block">
-          </div>
+        <div class="fila1-col3" onclick="loginOrSignup()">
+          <h5></h5>
+          <h5>MIEMBROS CEMDI</h5>
+          <h5></h5>
         </div>
       </div>
+      <div class="fila2">
+        <div class="fila2-col1">
+          <h5></h5>
+          <h5>ACERCA DE CEMDI</h5>
+          <h5></h5>
+        </div>
+        <div class="fila2-col2">
+          <img src="" alt="">
+          <img src="https://lh5.googleusercontent.com/MMUc0brpCbgOdPsj0WXyP9LUQAaID2JW03SV_mo_rJWbGZ_FMisUTdCYKRIun2aC6c4=w2400" alt="">
+          <img src="" alt="">
+        </div>
+        <div class="fila2-col3" onclick="showPosts()">
+          <h5></h5>
+          <h5>PUBLICACIONES CEMDI</h5>
+          <h5></h5>
+        </div>
+        <div class="fila2-col4" onclick="showPosts()">
+          <img src="" alt="">
+          <img src="https://lh5.googleusercontent.com/WkDlSBG3K0YhJs6VLa0IGB5g49eWjLONMxUTchIgjWLfgbRil8ufGnjfOE2bWFLpjpU=w2400" alt="">
+          <img src="" alt="">
+        </div>
+        <div class="fila2-col5">
+          <h5></h5>
+          <h5 class="fila2-col5-h5">CONTACTO</h5>
+          <h5></h5>
+        </div>
+      </div>
+      <div class="fila3">
+        <div class="fila3-col1">
+          <img src="" alt="">
+          <img src="https://lh6.googleusercontent.com/3jYjpO5SJiC6pgit6kBp9E2c4atYaqsr3hLHgu8w4DKKND2WANyPtV1Ikqp3xa_GN0Y=w2400" alt="">
+          <img src="" alt="">
+        </div>
+        <div class="fila3-col2">
+          <h5></h5>
+          <h5>ESTADÍSTICAS POR TEMA</h5>
+          <h5></h5>
+        </div>
+        <div class="fila3-col3">
+          <h5></h5>
+          <h5>QUOTES</h5>
+          <h5></h5>
+        </div>
+        <div class="fila3-col4">
+          <img src="" alt="">
+          <img src="https://lh3.googleusercontent.com/-9S3_RHadRqZ4fYOCqwLwwcjF-xAG0_6Rb5vvhefxuk80z7GWJNZOwE_bbCZ5cYgtro=w2400" alt="">
+          <img src="" alt="">
+        </div>
+      </div>
+        <!-- <div class="row d-fex flex-wrap">
+        <div class="col-4 text-center align-items-center bg-danger text-white justify-content-center">
+          <h5>ACERCA DE CEMDI</h5>
+        </div>
+        <div class="col-2 align-items-center">
+          <img src="https://lh5.googleusercontent.com/MMUc0brpCbgOdPsj0WXyP9LUQAaID2JW03SV_mo_rJWbGZ_FMisUTdCYKRIun2aC6c4=w2400" alt="" class=" mx-auto d-block">
+        </div>
+        <div class="col-2 text-center d-flex align-items-center bg-secondary text-white justify-content-center" onclick="showPosts()">
+          <h5>PUBLICACIONES CEMDI</h5>
+        </div>
+        <div class="col-2 align-items-center">
+          <img src="https://lh5.googleusercontent.com/WkDlSBG3K0YhJs6VLa0IGB5g49eWjLONMxUTchIgjWLfgbRil8ufGnjfOE2bWFLpjpU=w2400" alt="" class=" mx-auto d-block object-fit-cover">
+        </div>
+        <div class="col-2 text-center d-flex align-items-center bg-dark text-white justify-content-center">
+          <h5>CONTACTO</h5>
+        </div>
+      </div>
+      <div class="row d-fex flex-wrap">
+        <div class="col-2 align-items-center">
+          <img src="https://lh6.googleusercontent.com/3jYjpO5SJiC6pgit6kBp9E2c4atYaqsr3hLHgu8w4DKKND2WANyPtV1Ikqp3xa_GN0Y=w2400" alt="" class=" mx-auto d-block">
+        </div>
+        <div class="col-4 text-center align-items-center bg-dark text-white justify-content-center">
+          <h5>ESTADÍSTICAS POR TEMA</h5>
+        </div>
+        <div class="col-4 text-center align-items-center bg-info text-white justify-content-center">
+          <h5>QUOTES</h5>
+        </div>
+        <div class="col-2 align-items-center">
+          <img src="https://lh3.googleusercontent.com/-9S3_RHadRqZ4fYOCqwLwwcjF-xAG0_6Rb5vvhefxuk80z7GWJNZOwE_bbCZ5cYgtro=w2400" alt="" class=" mx-auto d-block">
+        </div>
+      </div> -->
     </div>
   </body>
+  <!-- <div class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://lh5.googleusercontent.com/eGfQdZWRmxr-WCvIsj4zAVQi1P0UkSPTXdLeirAkNmCqfRC2CgH0MMI0kRFuy_ONSWM=w2400" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="https://lh5.googleusercontent.com/Td9lpJmhOOtBm6Q1dcsquPmfhRbUFyGTFz8RaWeKpxWSkfqvncsPkUPzfmj7Qm8eU6c=w2400" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="https://lh4.googleusercontent.com/Z6MAupW2be3yLMSP-X6UtsMnvDLIHyNzCAlSWPdZEuk87BZuSvTDdsWdfuT2lYxqCKg=w2400" class="d-block w-100" alt="...">
+      </div>
+    </div>
+  </div> -->
 </html>

@@ -1,22 +1,166 @@
-body{
-  height: 100vh;
+*{
+  box-sizing: border-box;
 }
 
-.col,.col-2, .col-3, .col-4, .col-6, .col-8{
-  display: flex;
-  justify-content: center;
+body{
+  height: 100vh;
+  display: grid;
   align-items: center;
-  overflow: hidden;
-  background-size:cover;
-  background-repeat:no-repeat;
+}
+
+
+.firstBodyDiv{
+  display: block;
+}
+
+.fila1{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  align-content:end;
+  justify-content: center;
+}
+
+.fila1-col1{
+  width: 578.58px;
+}
+
+.fila1-col1, .fila1-col2, .fila1-col3{
+  text-align: center;
+  align-content: center;
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.fila1-col1{
+  background-color: rgb(221, 216, 216);
+}
+
+
+.fila1-col3{
+  background-color:rgb(220, 178, 24);
+}
+
+.fila1-col3>h5{
+  margin: 1%;
+  color: white;
+}
+
+.fila2{
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  align-content:baseline;
+  justify-content: center;
+}
+
+.fila2-col1, .fila2-col3, .fila2-col5{
+  text-align: center;
+  align-content: center;
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.fila2-col1{
+  background-color: brown;
+}
+
+.fila2-col1>h5{
+ color: white;
+ margin: 1%
+}
+
+.fila2-col3{
+  background-color: grey;
+}
+
+.fila2-col3>h5{
+  color: white;
+  margin: 1%;
+}
+
+.fila2-col5{
+  background-color: black;
+}
+
+.fila2-col5>h5{
+  margin: 1%;
+  color: white
+}
+
+.fila2-col5{
+  width: 152.62px;
+}
+
+.fila2-col2, .fila2-col4{
+  display: grid;
+}
+
+.fila3{
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  justify-content: center;
+}
+
+.fila3-col2, .fila3-col3{
+  text-align: center;
+  align-content: center;
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.fila3-col2{
+  width: 400px;
+  background-color:rgb(211, 47, 47);
+  color: white;
+}
+
+.fila3-col3{
+  width: 146px;
+  background-color: rgb(0, 102, 255);
+  color: white;
+}
+
+.fila3-col1, .fila3-col4{
+  display: grid;
+}
+
+.fila1-col1, .fila1-col3, .fila2-col1, .fila2-col3, .fila2-col5, .fila3-col2, .fila3-col3
+{
   cursor: pointer;
 }
 
-.carousel{
-  bottom: 0;
-  width: 100%;
+@media (max-width: 1020px) {
+  .fila1{
+    grid-template-columns: auto;
+  }
+  .fila1-col2{
+    display: none;
+  }
+  .fila1-col3{
+    display: block;
+  }
+  .fila2{
+    grid-template-columns: auto;
+  }
+
+  .fila2-col1, .fila2-col3, .fila2-col5{
+    display: block;
+    width: 578.58px;
+  }
+  .fila2-col2, .fila2-col4{
+    display: none;
+  }
+  .fila3{
+    grid-template-columns: auto;
+  }
+  .fila3-col1, .fila3-col4{
+    display: none;
+  }
+  .fila3-col2, .fila3-col3{
+    display: block;
+    width: 578.58px;
+  }
+  .fila1-col3, .fila2-col1, .fila2-col3, .fila2-col5, .fila3-col2, .fila3-col3{
+    height: 70px;
+  }
 }
 
-img:hover{
-  filter: grayscale(100%);
-}
