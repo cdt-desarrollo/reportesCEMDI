@@ -8,7 +8,6 @@ body{
   align-items: center;
 }
 
-
 .firstBodyDiv{
   display: block;
 }
@@ -128,6 +127,11 @@ body{
   cursor: pointer;
 }
 
+.carousel{
+  bottom: 0;
+  z-index: -1;
+}
+
 @media (max-width: 1020px) {
   .fila1{
     grid-template-columns: auto;
@@ -158,6 +162,49 @@ body{
   .fila3-col2, .fila3-col3{
     display: block;
     width: 578.58px;
+  }
+  .fila1-col3, .fila2-col1, .fila2-col3, .fila2-col5, .fila3-col2, .fila3-col3{
+    height: 70px;
+  }
+}
+
+@media (max-width: 620px) {
+  .fila1{
+    grid-template-columns: auto;
+  }
+  .fila1-col1{
+    width: 250px;
+  }
+  .d-block{
+    width: 250px;
+  }
+  .fila1-col2{
+    display: none;
+  }
+  .fila1-col3{
+    display: block;
+    width: 250px;
+  }
+  .fila2{
+    grid-template-columns: auto;
+  }
+
+  .fila2-col1, .fila2-col3, .fila2-col5{
+    display: block;
+    width: 250px;
+  }
+  .fila2-col2, .fila2-col4{
+    display: none;
+  }
+  .fila3{
+    grid-template-columns: auto;
+  }
+  .fila3-col1, .fila3-col4{
+    display: none;
+  }
+  .fila3-col2, .fila3-col3{
+    display: block;
+    width: 250px;
   }
   .fila1-col3, .fila2-col1, .fila2-col3, .fila2-col5, .fila3-col2, .fila3-col3{
     height: 70px;
