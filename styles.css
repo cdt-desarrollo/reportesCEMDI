@@ -5,10 +5,12 @@
 body{
   height: 100vh;
   display: grid;
+  grid-template-columns: auto auto;
   align-items: center;
+  justify-content: center;
 }
 
-.firstBodyDiv{
+.mosaic{
   display: block;
 }
 
@@ -33,7 +35,6 @@ body{
 .fila1-col1{
   background-color: rgb(255, 255, 255);
 }
-
 
 .fila1-col3{
   background-color:rgb(220, 178, 24);
@@ -127,10 +128,13 @@ body{
   cursor: pointer;
 }
 
-.carousel{
-  bottom: 0;
-  z-index: -1;
-}
+/* .carousel{
+  display: grid;
+  background-color: aqua;
+  width: 1000px;
+  height: 1000px;
+  z-index: -99;
+} */
 
 @media (max-width: 1020px) {
   .fila1{
@@ -148,7 +152,7 @@ body{
 
   .fila2-col1, .fila2-col3, .fila2-col5{
     display: grid;
-    width: 578.58px;
+    width: 577.58px;
   }
   .fila2-col2, .fila2-col4{
     display: none;
@@ -161,7 +165,7 @@ body{
   }
   .fila3-col2, .fila3-col3{
     display: grid;
-    width: 578.58px;
+    width: 577.58px;
   }
   .fila1-col3, .fila2-col1, .fila2-col3, .fila2-col5, .fila3-col2, .fila3-col3{
     height: 70px;
@@ -209,5 +213,13 @@ body{
   .fila1-col3, .fila2-col1, .fila2-col3, .fila2-col5, .fila3-col2, .fila3-col3{
     height: 70px;
   }
+}
+
+img:hover{
+  filter: grayscale(100%);
+}
+
+img{
+  transition: 0.5s;
 }
 
