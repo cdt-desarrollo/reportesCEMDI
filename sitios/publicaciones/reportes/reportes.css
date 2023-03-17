@@ -8,10 +8,65 @@
   padding: 1%;
 }
 
-.row{
-  margin-bottom: 1%;
-}
-
 .card{
   cursor: pointer;
+}
+
+.gridCards2023{
+  display: grid;
+  grid-template-columns: auto auto;
+  row-gap: 1.5%;
+  align-items: center;
+  justify-content: space-evenly;
+  overflow: hidden;
+}
+.gridCards2022{
+  height: 800px;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  row-gap: 1.5%;
+  align-items: center;
+  justify-content: space-evenly;
+  overflow: hidden;
+}
+
+.accordion-body{
+  height:min-content;
+}
+
+/* Grid 2023 */
+@media (max-width: 1300px){
+  .gridCards2023{
+    grid-template-columns: auto auto auto;
+  }
+}
+@media (max-width: 1000px){
+  .gridCards2023{
+    grid-template-columns: auto auto;
+  }
+}
+@media (max-width: 710px){
+  .gridCards2023{
+    grid-template-columns: auto;
+  }
+}
+
+/* Grid 2022 */
+@media (max-width: 1300px){
+  .gridCards2022{
+    grid-template-columns: auto auto auto;
+    height: 1200px;
+  }
+}
+@media (max-width: 1000px){
+  .gridCards2022{
+    grid-template-columns: auto auto;
+    height: 1600px;
+  }
+}
+@media (max-width: 710px){
+  .gridCards2022{
+    grid-template-columns: auto;
+    height: 3000px;
+  }
 }
