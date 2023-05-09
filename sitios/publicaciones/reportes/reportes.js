@@ -77,7 +77,7 @@ function showReport(month){
   }
   else if(month == "diciembre2022"){
     Swal.fire({
-      html: '<iframe style="border: 1px solid #777;" src="https://indd.adobe.com/embed/00c9b805-9751-4876-86b5-beffab24f682?startpage=1&allowFullscreen=true" width="450px" height="760px" frameborder="0" allowfullscreen=""></iframe>',
+      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/1cot1KsQLRDXaZZgye6utnasxDAYBVCRY/preview" width="450px" height="760px" frameborder="0" allowfullscreen=""></iframe>',
       imageWidth: width,
       imageHeight: height,
       imageAlt: 'A tall image'
