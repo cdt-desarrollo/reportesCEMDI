@@ -27,6 +27,22 @@ function showReport(month){
       imageAlt: 'A tall image'
     })
   }
+  else if(month == "abril2023"){
+    Swal.fire({
+      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/182K0xpMoEOkcI2gT1vwM1pnU8C_-qq2q/preview" width="450px" height="760px" frameborder="0" allowfullscreen=""></iframe>',
+      imageWidth: width,
+      imageHeight: height,
+      imageAlt: 'A tall image'
+    })
+  }
+  else if(month == "mayo2023"){
+    Swal.fire({
+      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/12-3nCe7B6uU_Gg1NqO9ULmDuDXneUO9u/preview" width="450px" height="760px" frameborder="0" allowfullscreen=""></iframe>',
+      imageWidth: width,
+      imageHeight: height,
+      imageAlt: 'A tall image'
+    })
+  }
   else if(month == "junio2022"){
     Swal.fire({
       html: '<iframe style="border: 1px solid #777;" src="https://indd.adobe.com/embed/b3968f15-1134-4798-9554-00a5e65b944b?startpage=1&allowFullscreen=true" width="450px" height="760px" frameborder="0" allowfullscreen=""></iframe>',
