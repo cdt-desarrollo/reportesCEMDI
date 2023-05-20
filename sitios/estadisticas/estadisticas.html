@@ -12,6 +12,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
   <!-- Google Charts -->
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <!-- Axios -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <!-- Documentos propios -->
   <script src="estadisticas.js"></script>
   <link rel="stylesheet" href="estadisticas.css">
@@ -41,8 +44,28 @@
       <div class="col-4"></div>
       <h2 class="text-center">Indicadores</h2>
     </div>
-    <div>
-      <d id="curve_chart" style="width:900px; height:500px"></d>
+    <div class="d-flex justify-content-around"">
+      <div></div>
+      <div id="IED" class="d-flex" style="flex-direction: column; align-items: center; justify-content: start;width: 30%;">
+        <h5 id="h5IEDBC">IED Baja California</h5>
+        <button class="btn btn-primary btn-lg btn-block" id="buttonIED" onclick="getDataIEDIndicator()" style="width: 70%;">Ver</button>
+        <div id="IEDChart"></div>
+        <button class="btn btn-secondary btn-sm" id="buttonDownloadIEDBC" style="display: none;">Descargar</button>
+      </div>
+      <div id="remittances" class="d-flex" style="flex-direction: column; align-items: center; justify-content: star;width: 30%;">
+        <h5>Remesas Baja California</h5>
+        <button class="btn btn-primary btn-lg btn-block" id="buttonRemesas" onclick="getDataRemittancesIndicator()" style="width: 70%;">Ver</button>
+        <div id="remesasChart"></div>
+        <button class="btn btn-secondary btn-sm" id="buttonDownloadRemittancesBC" style="display: none;">Descargar</button>
+      </div>
+      <div id="inflation" class="d-flex" style="flex-direction: column; align-items: center; justify-content: start;width: 30%;">
+        <h5>Inflación Baja California</h5>
+        <button class="btn btn-primary btn-lg btn-block" id="buttonInflationBC" onclick="getDataInflationBCIndicator()" style="width: 70%;">Ver</button>
+        <div id="inflationBCChart"></div>
+        <div>
+          <button class="btn btn-secondary btn-sm" id="buttonDownloadInflationBC" style="display: none;">Descargar</button>
+        </div>
+      </div>
     </div>
   </div>
   <div class="card text-center fixed-bottom">
@@ -67,4 +90,5 @@
     </div>
   </div>
 </body>
+
 </html>
