@@ -1,4 +1,4 @@
-periods = 40
+periods = 20
 arrayIED = []
 arrayRemittances = []
 arrayInflationBC = []
@@ -65,8 +65,8 @@ async function getDataRemittancesIndicator(){
 async function drawRemittancesIndicator() {
   // Crea un DataTable y agrega los datos
   var data = new google.visualization.DataTable();
-  data.addColumn('string', 'Fecha');
-  data.addColumn('number', 'Indicador');
+  data.addColumn('string', '');
+  data.addColumn('number', '');
   for (var i = 0; i < arrayRemittances.length; i++) {
     data.addRow([arrayRemittances[i].date, parseFloat(arrayRemittances[i].bajaCalifornia)]);
     // data.addRow([arrayRemittances[i].date, parseFloat(arrayRemittances[i].ensenada)]);
@@ -110,8 +110,8 @@ async function getDataInflationBCIndicator(){
 async function drawInflationBCIndicator() {
   // Crea un DataTable y agrega los datos
   var data = new google.visualization.DataTable();
-  data.addColumn('string', 'Fecha');
-  data.addColumn('number', 'Indicador');
+  data.addColumn('string', '');
+  data.addColumn('number', '');
   for (var i = 0; i < arrayInflationBC.length; i++) {
     data.addRow([arrayInflationBC[i].date, parseFloat(arrayInflationBC[i].bajaCalifornia)]);
     // data.addRow([arrayRemittances[i].date, parseFloat(arrayRemittances[i].ensenada)]);
