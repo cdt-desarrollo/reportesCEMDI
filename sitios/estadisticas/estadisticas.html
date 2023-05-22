@@ -49,20 +49,34 @@
         <h5 id="h5IEDBC">IED Baja California</h5>
         <button class="btn btn-primary btn-lg btn-block" id="buttonIED" onclick="getDataIEDIndicator()" style="width: 70%;">Ver</button>
         <div id="IEDChart"></div>
-        <button class="btn btn-secondary btn-sm" id="buttonDownloadIEDBC" style="display: none;">Descargar</button>
+        <button class="btn btn-secondary btn-sm" id="buttonDownloadIED" style="display: none;"  href="https://bit.ly/cemdi-descargable-indicadores"><a href="https://bit.ly/cemdi-descargable-indicadores" target="_blank">Descargar</a></button>
       </div>
       <div id="remittances" class="d-flex" style="flex-direction: column; align-items: center; justify-content: star;width: 30%;">
-        <h5>Remesas Baja California</h5>
+        <h5>Remesas</h5>
+        <h5 style="display: none;" id="remesasBajaCaliforniaTitulo">Baja California</h5>
+        <h5 style="display: none;" id="remesasEnsenadaTitulo">Ensenada</h5>
+        <h5 style="display: none;" id="remesasMexicaliTitulo">Mexicali</h5>
+        <h5 style="display: none;" id="remesasPlayasDeRosaritoTitulo">Playas de Rosarito</h5>
+        <h5 style="display: none;" id="remesasTecateTitulo">Tecate</h5>
+        <h5 style="display: none;" id="remesasTijuanaTitulo">Tijuana</h5>
         <button class="btn btn-primary btn-lg btn-block" id="buttonRemesas" onclick="getDataRemittancesIndicator()" style="width: 70%;">Ver</button>
         <div id="remesasChart"></div>
-        <button class="btn btn-secondary btn-sm" id="buttonDownloadRemittancesBC" style="display: none;">Descargar</button>
+        <div class="d-flex" style="column-gap: 20px;">
+          <button value = "bajaCalifornia" onclick = "drawRemittancesIndicator(this.value)"class="btn btn-primary btn-sm" style="display: none;" id="remesasBajaCaliforniaBoton">Baja California</button>
+          <button value = "ensenada" onclick = "drawRemittancesIndicator(this.value)"class="btn btn-primary btn-sm" style="display: none;" id="renesasEnsenadaBoton">Ensenada</button>
+          <button value = "mexicali" onclick = "drawRemittancesIndicator(this.value)"class="btn btn-primary btn-sm" style="display: none;" id="remesasMexicaliBoton">Mexicali</button>
+          <button value = "rosarito" onclick = "drawRemittancesIndicator(this.value)"class="btn btn-primary btn-sm" style="display: none;" id="remesasPlayasDeRosaritoBoton">Playas de Rosarito</button>
+          <button value = "tecate" onclick = "drawRemittancesIndicator(this.value)"class="btn btn-primary btn-sm" style="display: none;" id="remesasTecateBoton">Tecate</button>
+          <button value = "tijuana" onclick = "drawRemittancesIndicator(this.value)"class="btn btn-primary btn-sm" style="display: none;" id="remesasTijuanaBoton">Tijuana</button>
+        </div>
+        <button class="btn btn-secondary btn-sm" id="buttonDownloadRemittances" style="display: none;"  href="https://bit.ly/cemdi-descargable-indicadores"><a href="https://bit.ly/cemdi-descargable-indicadores" target="_blank">Descargar</a></button>
       </div>
       <div id="inflation" class="d-flex" style="flex-direction: column; align-items: center; justify-content: start;width: 30%;">
         <h5>Inflación Baja California</h5>
         <button class="btn btn-primary btn-lg btn-block" id="buttonInflationBC" onclick="getDataInflationBCIndicator()" style="width: 70%;">Ver</button>
         <div id="inflationBCChart"></div>
         <div>
-          <button class="btn btn-secondary btn-sm" id="buttonDownloadInflationBC" style="display: none;">Descargar</button>
+          <button class="btn btn-secondary btn-sm" id="buttonDownloadInflation" style="display: none;"  href="https://bit.ly/cemdi-descargable-indicadores"><a href="https://bit.ly/cemdi-descargable-indicadores" target="_blank">Descargar</a></button>
         </div>
       </div>
     </div>
