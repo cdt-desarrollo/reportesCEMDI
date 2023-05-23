@@ -1,53 +1,15 @@
-periods = 4
+periods = 20
 arrayIED = []
 arrayRemittances = []
 arrayInflationBC = []
 google.charts.load('current', { 'packages': ['corechart'] });
 let counter = 0
-async function getDataIEDIndicator() {
-  var config = {
-    method: 'get',
-    url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/ied',
-  }
-  await axios(config)
-    .then((res) => {
-      for (let i = res.data.length; i >= res.data.length - periods; i--) {
-        arrayIED.push(res.data[i])
-      }
-      arrayIED.shift()
-      arrayIED.reverse()
-      google.charts.setOnLoadCallback(drawIEDIndicator);
-    })
-    .catch(async (err) => {
-      console.log(err)
-    })
-}
-async function drawIEDIndicator() {
-  // Crea un DataTable y agrega los datos
-  var data = new google.visualization.DataTable();
-  data.addColumn('string', '');
-  data.addColumn('number', '');
-  for (var i = 0; i < arrayIED.length; i++) {
-    data.addRow([arrayIED[i].date, parseFloat(arrayIED[i].bajaCalifornia)]);
-  }
-
-  // Configuración del gráfico
-  var options = {
-    curveType: 'function',
-    legend: 'none',
-  };
-
-  // Crea un gráfico de líneas y lo dibuja en el elemento con el ID "chart_div"
-  var chart = new google.visualization.LineChart(document.getElementById('IEDChart'));
-  chart.draw(data, options);
-  document.getElementById("buttonIED").style.display = "none"
-  document.getElementById("buttonDownloadIED").style.display = "inline-block"
-}
 async function getDataRemittancesIndicator(cityValue) {
   if(counter == 1){
     drawRemittancesIndicator(cityValue)
   }
   else if(counter == 0){
+    document.getElementById("spinnerRemittances").style.display = "inline-block"
     var config = {
       method: 'get',
       url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/remesas',
@@ -61,7 +23,7 @@ async function getDataRemittancesIndicator(cityValue) {
         arrayRemittances.reverse()
         google.charts.setOnLoadCallback(drawRemittancesIndicator);
         document.getElementById("remesasBajaCaliforniaTitulo").style.display = "block";
-        document.getElementById("remesasBajaCaliforniaBoton").style.display = "block"
+        document.getElementById("buttonRemittances").style.display = "block"
         document.getElementById("renesasEnsenadaBoton").style.display = "block"
         document.getElementById("remesasMexicaliBoton").style.display = "block"
         document.getElementById("remesasPlayasDeRosaritoBoton").style.display = "block"
@@ -74,7 +36,6 @@ async function getDataRemittancesIndicator(cityValue) {
   }
 }
 async function drawRemittancesIndicator(cityValue) {
-  document.getElementById("buttonRemesas").style.display = "none"
   document.getElementById("buttonDownloadRemittances").style.display = "inline-block"
   if(cityValue == "bajaCalifornia" || counter == 0){
     counter = 1;
@@ -86,9 +47,10 @@ async function drawRemittancesIndicator(cityValue) {
     }
     var options = {
       curveType: 'function',
-      legend: 'none',
+      legend: 'none'
     };
     var chart = new google.visualization.LineChart(document.getElementById('remesasChart'));
+    document.getElementById("spinnerRemittances").style.display = "none"
     chart.draw(data, options);
     document.getElementById("remesasBajaCaliforniaTitulo").style.display = "block";
     document.getElementById("remesasEnsenadaTitulo").style.display = "none";
@@ -197,10 +159,49 @@ async function drawRemittancesIndicator(cityValue) {
     document.getElementById("remesasTecateTitulo").style.display = "none"
     document.getElementById("remesasTijuanaTitulo").style.display = "block"
   }
-  
+}
+async function getDataIEDIndicator() {
+  document.getElementById("buttonIED").style.display = "none"
+  document.getElementById("spinnerIED").style.display = "inline-block"
+  var config = {
+    method: 'get',
+    url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/ied',
+  }
+  await axios(config)
+    .then((res) => {
+      for (let i = res.data.length; i >= res.data.length - periods; i--) {
+        arrayIED.push(res.data[i])
+      }
+      arrayIED.shift()
+      arrayIED.reverse()
+      google.charts.setOnLoadCallback(drawIEDIndicator);
+    })
+    .catch(async (err) => {
+      console.log(err)
+    })
+}
+async function drawIEDIndicator() {
+  // Crea un DataTable y agrega los datos
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', '');
+  data.addColumn('number', '');
+  for (var i = 0; i < arrayIED.length; i++) {
+    data.addRow([arrayIED[i].date, parseFloat(arrayIED[i].bajaCalifornia)]);
+  }
+
+  // Configuración del gráfico
+  var options = {
+    curveType: 'function',
+    legend: 'none',
+  };
+
+  // Crea un gráfico de líneas y lo dibuja en el elemento con el ID "chart_div"
+  var chart = new google.visualization.LineChart(document.getElementById('IEDChart'));
+  document.getElementById("spinnerIED").style.display = "none"
+  chart.draw(data, options);
+  document.getElementById("buttonDownloadIED").style.display = "inline-block"
 }
 async function getDataInflationBCIndicator() {
-  google.charts.setOnLoadCallback(drawInflationBCIndicator)
   var config = {
     method: 'get',
     url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/inflacionMensualBC',

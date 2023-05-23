@@ -8,3 +8,10 @@ a{
   text-decoration: none;
   color: white;
 }
+button{
+  height: 40px;
+}
+
+.rect{
+  padding-left: 200px;
+}
