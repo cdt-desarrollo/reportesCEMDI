@@ -15,3 +15,7 @@ button{
 .rect{
   padding-left: 200px;
 }
+.chart{
+  width: 100%;
+  min-height: 450px;
+}

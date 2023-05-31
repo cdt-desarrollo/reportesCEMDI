@@ -43,22 +43,22 @@
   </nav>
   <div class="d-flex" style="padding-left: 10px; padding-right: 10px;">
     <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="padding-top: 29px;">
-      <button class="nav-link active" id="v-pills-remesas-tab" data-bs-toggle="pill" data-bs-target="#v-pills-remesas" type="button" role="tab" 
-      aria-controls="v-pills-remesas" aria-selected="false" id="buttonRemittances" onclick="getDataRemittancesIndicator()">Remesas</button>
-      <button class="nav-link " id="v-pills-ied-tab" data-bs-toggle="pill" data-bs-target="#v-pills-ied" type="button" role="tab" aria-controls="v-pills-ied" aria-selected="true">IED</button>
+      <button class="nav-link" id="v-pills-remesas-tab" data-bs-toggle="pill" data-bs-target="#v-pills-remesas" type="button" role="tab" 
+      aria-controls="v-pills-remesas" aria-selected="false" id="buttonRemittances" onclick="getDataRemittancesIndicator()" style="outline: 1px solid; margin-bottom: 5px;">Remesas</button>
+      <!-- <button class="nav-link" id="v-pills-ied-tab" data-bs-toggle="pill" data-bs-target="#v-pills-ied" type="button" role="tab" aria-controls="v-pills-ied" aria-selected="true" style="outline: 1px solid; margin-bottom: 5px;">IED</button> -->
       <button class="nav-link" id="v-pills-inflacion-tab" data-bs-toggle="pill" data-bs-target="#v-pills-inflacion" type="button" role="tab" 
-      aria-controls="v-pills-inflacion" aria-selected="false">Inflación</button>
+      aria-controls="v-pills-inflacion" aria-selected="false" style="outline: 1px solid; margin-bottom: 5px;">Inflación</button>
     </div>
     <div class="tab-content" id="v-pills-tabContent" style="width: 100%;">
-      <div class="tab-pane fade show active" id="v-pills-remesas" role="tabpanel" aria-labelledby="v-pills-remesas-tab" tabindex="0">
+      <div class="tab-pane fade" id="v-pills-remesas" role="tabpanel" aria-labelledby="v-pills-remesas-tab" tabindex="0">
         <h5>Remesas</h5>
         <div style="display: flex; justify-content: space-between;">
-          <button type="button" class="btn btn-primary" onclick="getDataRemittancesIndicator()">Baja California</button>
-          <button value = "ensenada" onclick = "drawRemittancesIndicator(this.value)"class="btn btn-primary btn-sm" id="renesasEnsenadaBoton">Ensenada</button>
-          <button value = "mexicali" onclick = "drawRemittancesIndicator(this.value)"class="btn btn-primary btn-sm" id="remesasMexicaliBoton">Mexicali</button>
-          <button value = "rosarito" onclick = "drawRemittancesIndicator(this.value)"class="btn btn-primary btn-sm" id="remesasPlayasDeRosaritoBoton">Playas de Rosarito</button>
-          <button value = "tecate" onclick = "drawRemittancesIndicator(this.value)"class="btn btn-primary btn-sm" id="remesasTecateBoton">Tecate</button>
-          <button value = "tijuana" onclick = "drawRemittancesIndicator(this.value)"class="btn btn-primary btn-sm" id="remesasTijuanaBoton">Tijuana</button>
+          <button value = "bajaCalifornia" onclick = "drawRemittancesIndicator(this.value)"class="btn btn-primary btn-sm" id="remesasBajaCaliforniaBoton" style="width: 15%;">Baja California</button>
+          <button value = "ensenada" onclick = "drawRemittancesIndicator(this.value)"class="btn btn-success btn-sm" id="remesasEnsenadaBoton" style="width: 15%;">Ensenada</button>
+          <button value = "mexicali" onclick = "drawRemittancesIndicator(this.value)"class="btn btn-info btn-sm" id="remesasMexicaliBoton" style="width: 15%;">Mexicali</button>
+          <button value = "rosarito" onclick = "drawRemittancesIndicator(this.value)"class="btn btn-warning btn-sm" id="remesasPlayasDeRosaritoBoton" style="width: 15%;">Playas de Rosarito</button>
+          <button value = "tecate" onclick = "drawRemittancesIndicator(this.value)"class="btn btn-danger btn-sm" id="remesasTecateBoton" style="width: 15%;">Tecate</button>
+          <button value = "tijuana" onclick = "drawRemittancesIndicator(this.value)"class="btn btn-secondary btn-sm" id="remesasTijuanaBoton" style="width: 15%;">Tijuana</button>
         </div>
         <div id="remittances" class="d-flex" style="flex-direction: column; align-items: center; justify-content: star;width: 100%;">
           <div class="d-flex justify-content-center" >
@@ -71,11 +71,11 @@
           <h5 style="display: none;" id="remesasPlayasDeRosaritoTitulo">Playas de Rosarito</h5>
           <h5 style="display: none;" id="remesasTecateTitulo">Tecate</h5>
           <h5 style="display: none;" id="remesasTijuanaTitulo">Tijuana</h5>
-          <div id="remesasChart"></div>
+          <div id="remesasChart" style="width:100%; max-width:1200px; height:300px;"></div>
           <button class="btn btn-secondary btn-sm" id="buttonDownloadRemittances" style="display: none;"  href="https://bit.ly/cemdi-descargable-indicadores"><a href="https://bit.ly/cemdi-descargable-indicadores" target="_blank">Descargar</a></button>
         </div>
       </div>
-      <div class="tab-pane fade" id="v-pills-ied" role="tabpanel" aria-labelledby="v-pills-ied-tab" tabindex="0">
+      <!-- <div class="tab-pane fade" id="v-pills-ied" role="tabpanel" aria-labelledby="v-pills-ied-tab" tabindex="0">
         <h5>Inversión Extranjera Directa</h5>
         <div id="IED" class="d-flex" style="flex-direction: column; align-items: center; justify-content: start;width: 30%;">
         <h5 id="h5IEDBC">IED Baja California</h5>
@@ -87,29 +87,62 @@
         <div id="IEDChart"></div>
         <button class="btn btn-secondary btn-sm" id="buttonDownloadIED" style="display: none;"  href="https://bit.ly/cemdi-descargable-indicadores"><a href="https://bit.ly/cemdi-descargable-indicadores" target="_blank">Descargar</a></button>
       </div>
-      </div>
+      </div> -->
       <div class="tab-pane fade" id="v-pills-inflacion" role="tabpanel" aria-labelledby="v-pills-inflacion-tab" tabindex="0">
-        <h5>Inflación</h5>
-        <div id="inflation" class="d-flex" style="flex-direction: column; align-items: center; justify-content: start;width: 30%;">
-          <h5>Inflación Baja California</h5>
+        <h5>Tipo de Inflación</h5>
+        <div id="inflation">
+          <!-- <h5>Inflación Baja California</h5>
           <button class="btn btn-primary btn-lg btn-block" id="buttonInflationBC" onclick="getDataInflationBCIndicator()" style="width: 40%;">Ver</button>
           <div id="inflationBCChart"></div>
           <div>
             <button class="btn btn-secondary btn-sm" id="buttonDownloadInflation" style="display: none;"  href="https://bit.ly/cemdi-descargable-indicadores"><a href="https://bit.ly/cemdi-descargable-indicadores" target="_blank">Descargar</a></button>
           </div>
+          <button class="btn btn-primary btn-lg btn-block" id="buttonInflationBC" onclick="getDataInflationBCIndicator()" style="width: 40%;">Ver</button>
+          <div id="inflationBCChart"></div>
+          <div>
+            <button class="btn btn-secondary btn-sm" id="buttonDownloadInflation" style="display: none;"  href="https://bit.ly/cemdi-descargable-indicadores"><a href="https://bit.ly/cemdi-descargable-indicadores" target="_blank">Descargar</a></button>
+          </div> -->
+          <div>
+            <div style="display: flex; justify-content: space-between; width: 100%;">
+              <button class="btn btn-warning btn-sm" style="width: 32%;" value="IPC" onclick="displayTypeOfInflation(this.value)">Indice de Precios al Consumidor</button>
+              <button class="btn btn-success btn-sm" style="width: 32%;" value="inflacionMensual" onclick="displayTypeOfInflation(this.value)">Inflación Mensual</button>
+              <button class="btn btn-danger btn-sm" style="width: 32%;" value="inflacionAnual" onclick="displayTypeOfInflation(this.value)">Inflación Anual</button>
+            </div>
+          </div>
+          <div style="padding-top: 10px;">
+            <div id="indicePreciosConsumidor" style="display: none;">
+              <h5>Indice de Precios al Consumidor</h5>
+              <div style="display: flex; justify-content: space-between; width: 100%;">
+                <button class="btn btn-warning btn-sm" style="width: 32%;" onclick="writeTypeOfInflation(this.value)" value="bajaCaliforniaIPC">Baja California</button>
+                <button class="btn btn-warning btn-sm" style="width: 32%;" onclick="writeTypeOfInflation(this.value)" value="tijuanaIPC">Tijuana</button>
+                <button class="btn btn-warning btn-sm" style="width: 32%;" onclick="writeTypeOfInflation(this.value)" value="mexicaliIPC">Mexicali</button>
+              </div>
+            </div>
+            <div id="inflacionMensual" style="display: none;">
+              <h5>Inflación Mensual</h5>
+              <div style="display: flex; justify-content: space-between; width: 100%;">
+                <button class="btn btn-success btn-sm" style="width: 32%;" onclick="writeTypeOfInflation(this.value)" value="bajaCaliforniaInflacionMensual">Baja California</button>
+                <button class="btn btn-success btn-sm" style="width: 32%;" onclick="writeTypeOfInflation(this.value)" value="tijuanaInflacionMensual">Tijuana</button>
+                <button class="btn btn-success btn-sm" style="width: 32%;" onclick="writeTypeOfInflation(this.value)" value="mexicaliInflacionMensual">Mexicali</button>
+              </div>
+            </div>
+            <div id="inflacionAnual" style="display: none;">
+              <h5>Inflación Anual</h5>
+              <div style="display: flex; justify-content: space-between; width: 100%;">
+                <button class="btn btn-danger btn-sm" style="width: 32%;" onclick="writeTypeOfInflation(this.value)" value="bajaCaliforniaInflacionAnual">Baja California</button>
+                <button class="btn btn-danger btn-sm" style="width: 32%;" onclick="writeTypeOfInflation(this.value)" value="tijuanaInflacionAnual">Tijuana</button>
+                <button class="btn btn-danger btn-sm" style="width: 32%;" onclick="writeTypeOfInflation(this.value)" value="mexicaliInflacionAnual">Mexicali</button>
+              </div>
+            </div>
+            <div style="display: flex; justify-content: center;">
+              <!-- <div class="spinner-border" role="status" id="spinner" style="display: none;">
+                <span class="visually-hidden">Loading...</span>
+              </div> -->
+              <div id="inflacionGrafica" style="width:100%; max-width:1200px; height:300px;"></div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="container-fluid" style="display: none;">
-    <div class="row">
-      <div class="col-4"></div>
-      <h2 class="text-center">Indicadores</h2>
-    </div>
-    <div class="d-flex justify-content-around">
-      
-      
-      
     </div>
   </div>
   <div class="card text-center fixed-bottom">
@@ -120,14 +153,14 @@
       <div class="row align-items-center">
         <div class="col">
           <!-- <img src="https://lh6.googleusercontent.com/Kh-Ees23hgPZXoXkktOhcxFilX0tpaVdRFAhpGUkCpNV5MQQDroxJFkKEOd4DiL_hXo=w2400" alt="" class="logos"> -->
-          <img src="/assets/cdt.png" class="logos" style="width: 45%;">
+          <img src="../../assets/cdt.png" class="logos" style="width: 45%;">
         </div>
         <div class="col">
-          <img src="/assets/logo_fidem (1).png" alt="" class="logos">
+          <img src="../../assets/logo_fidem (1).png" alt="" class="logos">
           <!-- <img src="https://lh5.googleusercontent.com/SVPgsUWDB8Y_ExZSe93Qi4a3gY1dNtNbBPI3Qp4LBumfo7fxJOQwHywCubrZb0XkIvE=w2400" alt="" class="logos"> -->
         </div>
         <div class="col">
-          <img src="/assets/cce (1).png" alt="" class="logos">
+          <img src="../../assets/cce (1).png" alt="" class="logos">
           <!-- <img src="https://lh3.googleusercontent.com/QSikIZAgFHeFg7qD2DjU6Bph23bPXcLuyHkWeUd2JO-3QnhIFvUsoJvWeheud2kuLD4=w2400" alt="" class="logos"> -->
         </div>
       </div>
