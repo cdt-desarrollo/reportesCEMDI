@@ -43,7 +43,7 @@ async function drawRemittancesIndicator(cityValue) {
     var options = {
       title: 'Remesas - Baja California',
       hAxis: {title: 'Periodos'},
-      vAxis: {title: 'Dolares en Miles'},
+      vAxis: {title: 'Dolares en Millones'},
       curveType: 'function',
       legend: 'none',
     };
@@ -61,7 +61,7 @@ async function drawRemittancesIndicator(cityValue) {
     var options = {
       title: 'Remesas - Ensenada',
       hAxis: {title: 'Periodos'},
-      vAxis: {title: 'Dolares en Miles'},
+      vAxis: {title: 'Dolares en Millones'},
       curveType: 'function',
       legend: 'none',
     };
@@ -78,7 +78,7 @@ async function drawRemittancesIndicator(cityValue) {
     var options = {
       title: 'Remesas - Mexicali',
       hAxis: {title: 'Periodos'},
-      vAxis: {title: 'Dolares en Miles'},
+      vAxis: {title: 'Dolares en Millones'},
       curveType: 'function',
       legend: 'none',
     };
@@ -95,7 +95,7 @@ async function drawRemittancesIndicator(cityValue) {
     var options = {
       title: 'Remesas - Rosarito',
       hAxis: {title: 'Periodos'},
-      vAxis: {title: 'Dolares en Miles'},
+      vAxis: {title: 'Dolares en Millones'},
       curveType: 'function',
       legend: 'none',
     };
@@ -112,7 +112,7 @@ async function drawRemittancesIndicator(cityValue) {
     var options = {
       title: 'Remesas - Tecate',
       hAxis: {title: 'Periodos'},
-      vAxis: {title: 'Dolares en Miles'},
+      vAxis: {title: 'Dolares en Millones'},
       curveType: 'function',
       legend: 'none',
     };
@@ -129,7 +129,7 @@ async function drawRemittancesIndicator(cityValue) {
     var options = {
       title: 'Remesas - Tijuana',
       hAxis: {title: 'Periodos'},
-      vAxis: {title: 'Dolares en Miles'},
+      vAxis: {title: 'Dolares en Millones'},
       curveType: 'function',
       legend: 'none',
     };
