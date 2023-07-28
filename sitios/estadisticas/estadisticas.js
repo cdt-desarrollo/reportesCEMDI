@@ -173,6 +173,8 @@ async function drawIEDIndicator() {
     data.addRow([arrayIED[i].date, parseFloat(arrayIED[i].bajaCalifornia)]);
   }
   var options = {
+    hAxis: {title: 'Periodos'},
+    vAxis: {title: 'Dolares en Millones'},
     curveType: 'function',
     legend: 'none',
   };
