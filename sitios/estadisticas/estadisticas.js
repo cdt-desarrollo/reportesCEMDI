@@ -5,12 +5,13 @@ arrayInflacionIPC = []
 arrayInflacionMensual = []
 arrayInflacionAnual = []
 google.charts.load('current', { 'packages': ['corechart'] });
-let counter = 0
+let counterRemittances = 0
+let counterIED = 0
 async function getDataRemittancesIndicator(cityValue) {
-  if(counter == 1){
+  if(counterRemittances == 1){
     drawRemittancesIndicator(cityValue)
   }
-  else if(counter == 0){
+  else if(counterRemittances == 0){
     document.getElementById("spinnerRemittances").style.display = "inline-block"
     var config = {
       method: 'get',
@@ -32,8 +33,8 @@ async function getDataRemittancesIndicator(cityValue) {
 }
 async function drawRemittancesIndicator(cityValue) {
   document.getElementById("buttonDownloadRemittances").style.display = "inline-block"
-  if(cityValue == "bajaCalifornia" || counter == 0){
-    counter = 1;
+  if(cityValue == "bajaCalifornia" || counterRemittances == 0){
+    counterRemittances = 1;
     var data = new google.visualization.DataTable();
     data.addColumn('string', '');
     data.addColumn('number', '');
@@ -137,47 +138,50 @@ async function drawRemittancesIndicator(cityValue) {
     chart.draw(data, options);
   }
 }
+
 async function getDataIEDIndicator() {
-  document.getElementById("buttonIED").style.display = "none"
-  document.getElementById("spinnerIED").style.display = "inline-block"
-  var config = {
-    method: 'get',
-    url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/indicador_IED',
+  if(counterRemittances == 1){
+    drawIEDIndicator()
   }
-  await axios(config)
-    .then((res) => {
-      for (let i = res.data.length; i >= res.data.length - periods; i--) {
-        arrayIED.push(res.data[i])
-      }
-      arrayIED.shift()
-      arrayIED.reverse()
-      google.charts.setOnLoadCallback(drawIEDIndicator);
-    })
-    .catch(async (err) => {
-      console.log(err)
-    })
+  else if(counterRemittances == 0){
+    document.getElementById("spinnerIED").style.display = "inline-block"
+    var config = {
+      method: 'get',
+      url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/indicador_IED',
+    }
+    await axios(config)
+      .then((res) => {
+        for (let i = res.data.length; i >= res.data.length - periods; i--) {
+          arrayIED.push(res.data[i])
+        }
+        arrayIED.shift()
+        arrayIED.reverse()
+        console.log(arrayIED)
+        google.charts.setOnLoadCallback(drawIEDIndicator);
+      })
+      .catch(async (err) => {
+        console.log(err)
+      })
+  }
 }
 async function drawIEDIndicator() {
-  // Crea un DataTable y agrega los datos
+  document.getElementById("buttonDownloadIED").style.display = "inline-block"
   var data = new google.visualization.DataTable();
   data.addColumn('string', '');
   data.addColumn('number', '');
   for (var i = 0; i < arrayIED.length; i++) {
     data.addRow([arrayIED[i].date, parseFloat(arrayIED[i].bajaCalifornia)]);
   }
-
-  // Configuración del gráfico
   var options = {
     curveType: 'function',
     legend: 'none',
   };
-
-  // Crea un gráfico de líneas y lo dibuja en el elemento con el ID "chart_div"
   var chart = new google.visualization.LineChart(document.getElementById('IEDChart'));
   document.getElementById("spinnerIED").style.display = "none"
   chart.draw(data, options);
-  document.getElementById("buttonDownloadIED").style.display = "inline-block"
 }
+
+
 function displayTypeOfInflation(type) {
   if(type == "IPC"){
     document.getElementById("indicePreciosConsumidor").style.display = "block"
