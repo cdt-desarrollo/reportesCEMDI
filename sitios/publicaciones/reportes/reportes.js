@@ -53,7 +53,7 @@ function showReport(month){
   }
   else if(month == "julio2023"){
     Swal.fire({
-      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/13VoEdL0tFcz37Lp7NcDFsA8Q8pwFMWMZ/preview" width="450px" height="760px" frameborder="0" allowfullscreen=""></iframe>',
+      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/1_MHzPt7o3iCqpgX6WIx9CxEK5cu8mt-9/preview" width="450px" height="760px" frameborder="0" allowfullscreen=""></iframe>',
       imageWidth: width,
       imageHeight: height,
       imageAlt: 'A tall image'
