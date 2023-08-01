@@ -33,41 +33,47 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav"">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="../../index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active bg-primary" href="https://bit.ly/cemdi-descargable-indicadores" target="_blank" style="color: white;">Descargar indicadores</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
-
   <div style="display: flex; justify-content: center;">
     <h5>Selecciona el indicador a visualizar</h5>
   </div>
 
-
   <div class="d-flex" style="padding-left: 10px; padding-right: 10px;">
+
+    <!-- Botones de Indicadores -->
     <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="padding-top: 29px;">
-      <!-- Botones de Indicadores -->
       <button class="nav-link" id="v-pills-remesas-tab" data-bs-toggle="pill" data-bs-target="#v-pills-remesas" type="button" role="tab" 
-      aria-controls="v-pills-remesas" aria-selected="false" id="buttonRemittances" onclick="getDataRemittancesIndicator()" style="outline: 1px solid; margin-bottom: 5px;">Remesas</button>
-      <button class="nav-link" id="v-pills-ied-tab" data-bs-toggle="pill" data-bs-target="#v-pills-ied" type="button" role="tab" aria-controls="v-pills-ied" aria-selected="true" style="outline: 1px solid; margin-bottom: 5px;" onclick="getDataIEDIndicator()">IED</button>
+      aria-controls="v-pills-remesas" aria-selected="false" id="buttonRemittances" style="outline: 1px solid; margin-bottom: 5px;">Remesas</button>
       <button class="nav-link" id="v-pills-inflacion-tab" data-bs-toggle="pill" data-bs-target="#v-pills-inflacion" type="button" role="tab" 
       aria-controls="v-pills-inflacion" aria-selected="false" style="outline: 1px solid; margin-bottom: 5px;">Inflación</button>
+      <button class="nav-link" id="v-pills-ied-tab" data-bs-toggle="pill" data-bs-target="#v-pills-ied" type="button" role="tab" aria-controls="v-pills-ied" aria-selected="true" style="outline: 1px solid; margin-bottom: 5px;" onclick="drawIEDIndicator()">IED</button>
+      <button class="nav-link" id="v-pills-cruces-tab" data-bs-toggle="pill" data-bs-target="#v-pills-cruces" type="button" role="tab" 
+      aria-controls="v-pills-cruces" aria-selected="false" style="outline: 1px solid; margin-bottom: 5px;">Cruces</button>
     </div>
+
+    <!-- Gráficas de Indicadores -->
     <div class="tab-content" id="v-pills-tabContent" style="width: 100%;">
       <!-- Remesas -->
       <div class="tab-pane fade" id="v-pills-remesas" role="tabpanel" aria-labelledby="v-pills-remesas-tab" tabindex="0">
         <h5>Remesas</h5>
         <div style="display: flex; justify-content: space-between;">
-          <button value = "bajaCalifornia" onclick = "drawRemittancesIndicator(this.value)"class="btn btn-primary btn-sm" id="remesasBajaCaliforniaBoton" style="width: 15%;">Baja California</button>
-          <button value = "ensenada" onclick = "drawRemittancesIndicator(this.value)"class="btn btn-success btn-sm" id="remesasEnsenadaBoton" style="width: 15%;">Ensenada</button>
-          <button value = "mexicali" onclick = "drawRemittancesIndicator(this.value)"class="btn btn-info btn-sm" id="remesasMexicaliBoton" style="width: 15%;">Mexicali</button>
-          <button value = "rosarito" onclick = "drawRemittancesIndicator(this.value)"class="btn btn-warning btn-sm" id="remesasPlayasDeRosaritoBoton" style="width: 15%;">Playas de Rosarito</button>
-          <button value = "tecate" onclick = "drawRemittancesIndicator(this.value)"class="btn btn-danger btn-sm" id="remesasTecateBoton" style="width: 15%;">Tecate</button>
-          <button value = "tijuana" onclick = "drawRemittancesIndicator(this.value)"class="btn btn-secondary btn-sm" id="remesasTijuanaBoton" style="width: 15%;">Tijuana</button>
+          <button value = "bajaCalifornia" onclick = "getDataRemittancesIndicator(this.value)"class="btn btn-primary btn-sm" id="remesasBajaCaliforniaBoton" style="width: 15%;">Baja California</button>
+          <button value = "ensenada" onclick = "getDataRemittancesIndicator(this.value)"class="btn btn-success btn-sm" id="remesasEnsenadaBoton" style="width: 15%;">Ensenada</button>
+          <button value = "mexicali" onclick = "getDataRemittancesIndicator(this.value)"class="btn btn-info btn-sm" id="remesasMexicaliBoton" style="width: 15%;">Mexicali</button>
+          <button value = "rosarito" onclick = "getDataRemittancesIndicator(this.value)"class="btn btn-warning btn-sm" id="remesasPlayasDeRosaritoBoton" style="width: 15%;">Playas de Rosarito</button>
+          <button value = "tecate" onclick = "getDataRemittancesIndicator(this.value)"class="btn btn-danger btn-sm" id="remesasTecateBoton" style="width: 15%;">Tecate</button>
+          <button value = "tijuana" onclick = "getDataRemittancesIndicator(this.value)"class="btn btn-secondary btn-sm" id="remesasTijuanaBoton" style="width: 15%;">Tijuana</button>
         </div>
         <div style="display: flex; justify-content: center;">
           <div id="remittances" class="d-flex" style="flex-direction: column; align-items: center; justify-content: star;width: 100%;">
@@ -82,7 +88,6 @@
             <h5 style="display: none;" id="remesasTecateTitulo">Tecate</h5>
             <h5 style="display: none;" id="remesasTijuanaTitulo">Tijuana</h5>
             <div id="remesasChart" style="width:100%; max-width:1200px; height:300px;"></div>
-            <button class="btn btn-secondary btn-sm" id="buttonDownloadRemittances" style="display: none;"  href="https://bit.ly/cemdi-descargable-indicadores"><a href="https://bit.ly/cemdi-descargable-indicadores" target="_blank">Descargar</a></button>
           </div>
         </div>
       </div>
@@ -90,42 +95,43 @@
       <div class="tab-pane fade" id="v-pills-inflacion" role="tabpanel" aria-labelledby="v-pills-inflacion-tab" tabindex="0">
         <h5>Tipo de Inflación</h5>
         <div id="inflation">
-          <div>
+          <div id="buttonsTypesInflation">
             <div style="display: flex; justify-content: space-between; width: 100%;">
               <button class="btn btn-warning btn-sm" style="width: 32%;" value="IPC" onclick="displayTypeOfInflation(this.value)">Indice de Precios al Consumidor</button>
               <button class="btn btn-success btn-sm" style="width: 32%;" value="inflacionMensual" onclick="displayTypeOfInflation(this.value)">Inflación Mensual</button>
               <button class="btn btn-danger btn-sm" style="width: 32%;" value="inflacionAnual" onclick="displayTypeOfInflation(this.value)">Inflación Anual</button>
             </div>
           </div>
-          <div style="padding-top: 10px;">
+          <div id="inflationZonas" style="padding-top: 10px;">
             <div id="indicePreciosConsumidor" style="display: none;">
               <h5>Indice de Precios al Consumidor</h5>
               <div style="display: flex; justify-content: space-between; width: 100%;">
-                <button class="btn btn-warning btn-sm" style="width: 32%;" onclick="writeTypeOfInflation(this.value)" value="bajaCaliforniaIPC">Baja California</button>
-                <button class="btn btn-warning btn-sm" style="width: 32%;" onclick="writeTypeOfInflation(this.value)" value="tijuanaIPC">Tijuana</button>
-                <button class="btn btn-warning btn-sm" style="width: 32%;" onclick="writeTypeOfInflation(this.value)" value="mexicaliIPC">Mexicali</button>
+                <button class="btn btn-warning btn-sm" style="width: 32%;" onclick="getDataInflationIndicator(this.value)" value="bajaCaliforniaIPC">Baja California</button>
+                <button class="btn btn-warning btn-sm" style="width: 32%;" onclick="getDataInflationIndicator(this.value)" value="tijuanaIPC">Tijuana</button>
+                <button class="btn btn-warning btn-sm" style="width: 32%;" onclick="getDataInflationIndicator(this.value)" value="mexicaliIPC">Mexicali</button>
               </div>
             </div>
             <div id="inflacionMensual" style="display: none;">
               <h5>Inflación Mensual</h5>
               <div style="display: flex; justify-content: space-between; width: 100%;">
-                <button class="btn btn-success btn-sm" style="width: 32%;" onclick="writeTypeOfInflation(this.value)" value="bajaCaliforniaInflacionMensual">Baja California</button>
-                <button class="btn btn-success btn-sm" style="width: 32%;" onclick="writeTypeOfInflation(this.value)" value="tijuanaInflacionMensual">Tijuana</button>
-                <button class="btn btn-success btn-sm" style="width: 32%;" onclick="writeTypeOfInflation(this.value)" value="mexicaliInflacionMensual">Mexicali</button>
+                <button class="btn btn-success btn-sm" style="width: 32%;" onclick="getDataInflationIndicator(this.value)" value="bajaCaliforniaInflacionMensual">Baja California</button>
+                <button class="btn btn-success btn-sm" style="width: 32%;" onclick="getDataInflationIndicator(this.value)" value="tijuanaInflacionMensual">Tijuana</button>
+                <button class="btn btn-success btn-sm" style="width: 32%;" onclick="getDataInflationIndicator(this.value)" value="mexicaliInflacionMensual">Mexicali</button>
               </div>
             </div>
             <div id="inflacionAnual" style="display: none;">
               <h5>Inflación Anual</h5>
               <div style="display: flex; justify-content: space-between; width: 100%;">
-                <button class="btn btn-danger btn-sm" style="width: 32%;" onclick="writeTypeOfInflation(this.value)" value="bajaCaliforniaInflacionAnual">Baja California</button>
-                <button class="btn btn-danger btn-sm" style="width: 32%;" onclick="writeTypeOfInflation(this.value)" value="tijuanaInflacionAnual">Tijuana</button>
-                <button class="btn btn-danger btn-sm" style="width: 32%;" onclick="writeTypeOfInflation(this.value)" value="mexicaliInflacionAnual">Mexicali</button>
+                <button class="btn btn-danger btn-sm" style="width: 32%;" onclick="getDataInflationIndicator(this.value)" value="bajaCaliforniaInflacionAnual">Baja California</button>
+                <button class="btn btn-danger btn-sm" style="width: 32%;" onclick="getDataInflationIndicator(this.value)" value="tijuanaInflacionAnual">Tijuana</button>
+                <button class="btn btn-danger btn-sm" style="width: 32%;" onclick="getDataInflationIndicator(this.value)" value="mexicaliInflacionAnual">Mexicali</button>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center" >
+              <div class="spinner-border" role="status" id="spinnerInflation" style="display: none;">
               </div>
             </div>
             <div style="display: flex; justify-content: center;">
-              <!-- <div class="spinner-border" role="status" id="spinner" style="display: none;">
-                <span class="visually-hidden">Loading...</span>
-              </div> -->
               <div id="inflacionGrafica" style="width:100%; max-width:1200px; height:300px;"></div>
             </div>
           </div>
@@ -141,16 +147,76 @@
           </div>
             <div id="IEDChart" style="width: 100%; max-width: 1200px; height:300px;">
             </div>
-          <button class="btn btn-secondary btn-sm" id="buttonDownloadIED" style="display: none;" href="https://bit.ly/cemdi-descargable-indicadores">
-            <a href="https://bit.ly/cemdi-descargable-indicadores" target="_blank">Descargar</a>
-          </button>
         </div>
       </div>
-
+      <!-- Cruces Fronterizos Peatones -->
+      <div class="tab-pane fade" id="v-pills-cruces" role="tabpanel" aria-labelledby="v-pills-cruces-tab" tabindex="0">
+        <h5>Cruces Fronterizos</h5>
+        <div id="buttonsTypesCruces" style="display: flex; justify-content: space-between;">
+          <button value = "peatones" onclick = "displayTypeOfCruce(this.value)"class="btn btn-primary btn-sm" id="remesasBajaCaliforniaBoton" style="width: 18%;">Peatones</button>
+          <button value = "vehiculos" onclick = "displayTypeOfCruce(this.value)"class="btn btn-success btn-sm" id="remesasEnsenadaBoton" style="width: 18%;">Vehículos</button>
+          <button value = "camiones" onclick = "displayTypeOfCruce(this.value)"class="btn btn-info btn-sm" id="remesasMexicaliBoton" style="width: 18%;">Camiones</button>
+          <button value = "trenes" onclick = "displayTypeOfCruce(this.value)"class="btn btn-warning btn-sm" id="remesasPlayasDeRosaritoBoton" style="width: 18%;">Trenes</button>
+          <button value = "autobuses" onclick = "displayTypeOfCruce(this.value)"class="btn btn-danger btn-sm" id="remesasTecateBoton" style="width: 18%;">Autobuses</button>
+        </div>
+        <div id="crucesZonas" style="padding-top: 10px;">
+          <div id="peatonesZonas" style="display: none;">
+            <h5>Peatones</h5>
+            <div style="display: flex; justify-content: space-between; width: 100%;">
+              <button onclick="getDataCrucesIndicator(this.value)" value="peatonesBajaCalifornia" class="btn btn-primary btn-sm" style="width: 20%;">Baja California</button>
+              <button onclick="getDataCrucesIndicator(this.value)" value="peatonesTijuana" class="btn btn-primary btn-sm" style="width: 20%;">Tijuana</button>
+              <button onclick="getDataCrucesIndicator(this.value)" value="peatonesMexicali" class="btn btn-primary btn-sm" style="width: 20%;">Mexicali</button>
+              <button onclick="getDataCrucesIndicator(this.value)" value="peatonesTecate" class="btn btn-primary btn-sm" style="width: 20%;">Tecate</button>
+            </div>
+          </div>
+          <div id="vehiculosZonas" style="display: none;">
+            <h5>Vehículos</h5>
+            <div style="display: flex; justify-content: space-between; width: 100%;">
+              <button onclick="getDataCrucesIndicator(this.value)" value="vehiculosBajaCalifornia" class="btn btn-success btn-sm" style="width: 20%;">Baja California</button>
+              <button onclick="getDataCrucesIndicator(this.value)" value="vehiculosTijuana" class="btn btn-success btn-sm" style="width: 20%;">Tijuana</button>
+              <button onclick="getDataCrucesIndicator(this.value)" value="vehiculosMexicali" class="btn btn-success btn-sm" style="width: 20%;">Mexicali</button>
+              <button onclick="getDataCrucesIndicator(this.value)" value="vehiculosTecate" class="btn btn-success btn-sm" style="width: 20%;">Tecate</button>
+            </div>
+          </div>
+          <div id="camionesZonas" style="display: none;">
+            <h5>Camiones</h5>
+            <div style="display: flex; justify-content: space-between; width: 100%;">
+              <button onclick="getDataCrucesIndicator(this.value)" value="camionesBajaCalifornia" class="btn btn-info btn-sm" style="width: 20%;">Baja California</button>
+              <button onclick="getDataCrucesIndicator(this.value)" value="camionesTijuana" class="btn btn-info btn-sm" style="width: 20%;">Tijuana</button>
+              <button onclick="getDataCrucesIndicator(this.value)" value="camionesMexicali" class="btn btn-info btn-sm" style="width: 20%;">Mexicali</button>
+              <button onclick="getDataCrucesIndicator(this.value)" value="camionesTecate" class="btn btn-info btn-sm" style="width: 20%;">Tecate</button>
+            </div>
+          </div>
+          <div id="trenesZonas" style="display: none;">
+            <h5>Trenes</h5>
+            <div style="display: flex; justify-content: space-between; width: 100%;">
+              <button onclick="getDataCrucesIndicator(this.value)" value="trenesBajaCalifornia" class="btn btn-warning btn-sm" style="width: 20%;">Baja California</button>
+              <button onclick="getDataCrucesIndicator(this.value)" value="trenesTijuana" class="btn btn-warning btn-sm" style="width: 20%;">Tijuana</button>
+              <button onclick="getDataCrucesIndicator(this.value)" value="trenesMexicali" class="btn btn-warning btn-sm" style="width: 20%;">Mexicali</button>
+              <button onclick="getDataCrucesIndicator(this.value)" value="trenesTecate" class="btn btn-warning btn-sm" style="width: 20%;">Tecate</button>
+            </div>
+          </div>
+          <div id="autobusesZonas" style="display: none;">
+            <h5>Autobuses</h5>
+            <div style="display: flex; justify-content: space-between; width: 100%;">
+              <button onclick="getDataCrucesIndicator(this.value)" value="autobusesBajaCalifornia" class="btn btn-danger btn-sm" style="width: 20%;">Baja California</button>
+              <button onclick="getDataCrucesIndicator(this.value)" value="autobusesTijuana" class="btn btn-danger btn-sm" style="width: 20%;">Tijuana</button>
+              <button onclick="getDataCrucesIndicator(this.value)" value="autobusesMexicali" class="btn btn-danger btn-sm" style="width: 20%;">Mexicali</button>
+              <button onclick="getDataCrucesIndicator(this.value)" value="autobusesTecate" class="btn btn-danger btn-sm" style="width: 20%;">Tecate</button>
+            </div>
+          </div>
+        </div>
+        <div id="cruces" class="d-flex" style="flex-direction: column; align-items: center; justify-content: start; width: 100%;">
+          <div class="d-flex justify-content-center" >
+            <div class="spinner-border" role="status" id="spinnerCruces" style="display: none;">
+            </div>
+          </div>
+          <div id="crucesChart" style="width: 100%; max-width: 1200px; height:300px;">
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
-
   <div class="card text-center fixed-bottom">
     <div class="card-header">
       CEMDI ES APOYADO POR LA ALIANZA ESTRATÉGICA DE LAS SIGUIENTES ORGANIZACIONES Y LOS FONDOS DE NEGOCIOS:
@@ -176,4 +242,7 @@
     </div>
   </div>
 </body>
+<script>
+  getDataIEDIndicator()
+</script>
 </html>

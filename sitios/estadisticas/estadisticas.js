@@ -4,9 +4,16 @@ arrayRemittances = []
 arrayInflacionIPC = []
 arrayInflacionMensual = []
 arrayInflacionAnual = []
+arrayPeatones = []
+arrayVehiculos = []
+arrayCamiones = []
+arrayTrenes = []
+arrayAutobuses = []
 google.charts.load('current', { 'packages': ['corechart'] });
 let counterRemittances = 0
 let counterIED = 0
+let counterInflation = 0
+let counterCruces = 0
 async function getDataRemittancesIndicator(cityValue) {
   if(counterRemittances == 1){
     drawRemittancesIndicator(cityValue)
@@ -32,7 +39,6 @@ async function getDataRemittancesIndicator(cityValue) {
   }
 }
 async function drawRemittancesIndicator(cityValue) {
-  document.getElementById("buttonDownloadRemittances").style.display = "inline-block"
   if(cityValue == "bajaCalifornia" || counterRemittances == 0){
     counterRemittances = 1;
     var data = new google.visualization.DataTable();
@@ -139,51 +145,6 @@ async function drawRemittancesIndicator(cityValue) {
   }
 }
 
-async function getDataIEDIndicator() {
-  if(counterRemittances == 1){
-    drawIEDIndicator()
-  }
-  else if(counterRemittances == 0){
-    document.getElementById("spinnerIED").style.display = "inline-block"
-    var config = {
-      method: 'get',
-      url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/indicador_IED',
-    }
-    await axios(config)
-      .then((res) => {
-        for (let i = res.data.length; i >= res.data.length - periods; i--) {
-          arrayIED.push(res.data[i])
-        }
-        arrayIED.shift()
-        arrayIED.reverse()
-        console.log(arrayIED)
-        google.charts.setOnLoadCallback(drawIEDIndicator);
-      })
-      .catch(async (err) => {
-        console.log(err)
-      })
-  }
-}
-async function drawIEDIndicator() {
-  document.getElementById("buttonDownloadIED").style.display = "inline-block"
-  var data = new google.visualization.DataTable();
-  data.addColumn('string', '');
-  data.addColumn('number', '');
-  for (var i = 0; i < arrayIED.length; i++) {
-    data.addRow([arrayIED[i].date, parseFloat(arrayIED[i].bajaCalifornia)]);
-  }
-  var options = {
-    hAxis: {title: 'Periodos'},
-    vAxis: {title: 'Dolares en Millones'},
-    curveType: 'function',
-    legend: 'none',
-  };
-  var chart = new google.visualization.LineChart(document.getElementById('IEDChart'));
-  document.getElementById("spinnerIED").style.display = "none"
-  chart.draw(data, options);
-}
-
-
 function displayTypeOfInflation(type) {
   if(type == "IPC"){
     document.getElementById("indicePreciosConsumidor").style.display = "block"
@@ -201,21 +162,10 @@ function displayTypeOfInflation(type) {
     document.getElementById("inflacionAnual").style.display = "block"
   }
 }
-function writeTypeOfInflation(typeInflation) {
-  // document.getElementById("spinner").style.display = "block"
-  if(typeInflation.includes("IPC")){
-    getDataInflationIndicator(typeInflation)
-  }
-  else if(typeInflation.includes("InflacionMensual")){
-    getDataInflationIndicator(typeInflation)
-  }
-  else if(typeInflation.includes("InflacionAnual")){
-    getDataInflationIndicator(typeInflation)
-  }
-}
 async function getDataInflationIndicator(typeInflation) {
-  if(typeInflation.includes("IPC")){
-    arrayInflacionIPC = []
+  document.getElementById("inflacionGrafica").style.display = "none"
+  document.getElementById("spinnerInflation").style.display = "block"
+  if(typeInflation.includes("IPC") && arrayInflacionIPC.length == 0){
     var config = {
       method: 'get',
       url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/indicador_inflacionIndice',
@@ -233,8 +183,10 @@ async function getDataInflationIndicator(typeInflation) {
       console.log(err)
     })
   }
-  else if(typeInflation.includes("InflacionMensual")){
-    arrayInflacionMensual = []
+  else if(typeInflation.includes("IPC") && arrayInflacionIPC.length > 0){
+    drawInflationIndicator(arrayInflacionIPC, typeInflation)
+  }
+  else if(typeInflation.includes("InflacionMensual") && arrayInflacionMensual.length == 0){
     var config = {
       method: 'get',
       url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/indicador_inflacionMensual',
@@ -252,8 +204,10 @@ async function getDataInflationIndicator(typeInflation) {
       console.log(err)
     })
   }
-  else if(typeInflation.includes("InflacionAnual")){
-    arrayInflacionAnual = []
+  else if(typeInflation.includes("InflacionMensual") && arrayInflacionMensual.length > 0){
+    drawInflationIndicator(arrayInflacionMensual, typeInflation)
+  }
+  else if(typeInflation.includes("InflacionAnual") && arrayInflacionAnual.length == 0){
     var config = {
       method: 'get',
       url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/indicador_inflacionAnual',
@@ -270,11 +224,13 @@ async function getDataInflationIndicator(typeInflation) {
     .catch(async (err) => {
       console.log(err)
     })
-  } 
+  }
+  else if(typeInflation.includes("InflacionAnual") && arrayInflacionAnual.length > 0){
+    drawInflationIndicator(arrayInflacionAnual, typeInflation)
+  }
 }
 async function drawInflationIndicator(array, value) {
-  console.log(value)
-  // document.getElementById("spinner").style.display = "none"
+  document.getElementById("spinnerInflation").style.display = "inline-block"
   if(value == "bajaCaliforniaIPC"){
     var data = new google.visualization.DataTable();
     data.addColumn('string', '');
@@ -290,6 +246,8 @@ async function drawInflationIndicator(array, value) {
       legend: 'none',
     };
     var chart = new google.visualization.LineChart(document.getElementById('inflacionGrafica'));
+    document.getElementById("spinnerInflation").style.display = "none"
+    document.getElementById("inflacionGrafica").style.display = "block"
     chart.draw(data, options);
   }
   else if(value == "tijuanaIPC"){
@@ -307,6 +265,8 @@ async function drawInflationIndicator(array, value) {
       legend: 'none',
     };
     var chart = new google.visualization.LineChart(document.getElementById('inflacionGrafica'));
+    document.getElementById("spinnerInflation").style.display = "none"
+    document.getElementById("inflacionGrafica").style.display = "block"
     chart.draw(data, options);
   }
   else if(value == "mexicaliIPC"){
@@ -324,6 +284,8 @@ async function drawInflationIndicator(array, value) {
       legend: 'none',
     };
     var chart = new google.visualization.LineChart(document.getElementById('inflacionGrafica'));
+    document.getElementById("spinnerInflation").style.display = "none"
+    document.getElementById("inflacionGrafica").style.display = "block"
     chart.draw(data, options);
   }
   else if(value == "bajaCaliforniaInflacionMensual"){
@@ -341,6 +303,8 @@ async function drawInflationIndicator(array, value) {
       legend: 'none',
     };
     var chart = new google.visualization.LineChart(document.getElementById('inflacionGrafica'));
+    document.getElementById("spinnerInflation").style.display = "none"
+    document.getElementById("inflacionGrafica").style.display = "block"
     chart.draw(data, options);
   }
   else if(value == "tijuanaInflacionMensual"){
@@ -358,6 +322,8 @@ async function drawInflationIndicator(array, value) {
       legend: 'none',
     };
     var chart = new google.visualization.LineChart(document.getElementById('inflacionGrafica'));
+    document.getElementById("spinnerInflation").style.display = "none"
+    document.getElementById("inflacionGrafica").style.display = "block"
     chart.draw(data, options);
   }
   else if(value == "mexicaliInflacionMensual"){
@@ -375,6 +341,8 @@ async function drawInflationIndicator(array, value) {
       legend: 'none',
     };
     var chart = new google.visualization.LineChart(document.getElementById('inflacionGrafica'));
+    document.getElementById("spinnerInflation").style.display = "none"
+    document.getElementById("inflacionGrafica").style.display = "block"
     chart.draw(data, options);
   }
   else if(value == "bajaCaliforniaInflacionAnual"){
@@ -392,6 +360,8 @@ async function drawInflationIndicator(array, value) {
       legend: 'none',
     };
     var chart = new google.visualization.LineChart(document.getElementById('inflacionGrafica'));
+    document.getElementById("spinnerInflation").style.display = "none"
+    document.getElementById("inflacionGrafica").style.display = "block"
     chart.draw(data, options);
   }
   else if(value == "tijuanaInflacionAnual"){
@@ -409,6 +379,8 @@ async function drawInflationIndicator(array, value) {
       legend: 'none',
     };
     var chart = new google.visualization.LineChart(document.getElementById('inflacionGrafica'));
+    document.getElementById("spinnerInflation").style.display = "none"
+    document.getElementById("inflacionGrafica").style.display = "block"
     chart.draw(data, options);
   }
   else if(value == "mexicaliInflacionAnual"){
@@ -426,7 +398,589 @@ async function drawInflationIndicator(array, value) {
       legend: 'none',
     };
     var chart = new google.visualization.LineChart(document.getElementById('inflacionGrafica'));
+    document.getElementById("spinnerInflation").style.display = "none"
+    document.getElementById("inflacionGrafica").style.display = "block"
     chart.draw(data, options);
+  } 
+}
+
+async function getDataIEDIndicator() {
+  if(counterRemittances == 1){
+    drawIEDIndicator()
   }
-  
+  else if(counterRemittances == 0){
+    document.getElementById("spinnerIED").style.display = "inline-block"
+    var config = {
+      method: 'get',
+      url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/indicador_IED',
+    }
+    await axios(config)
+      .then((res) => {
+        for (let i = res.data.length; i >= res.data.length - periods; i--) {
+          arrayIED.push(res.data[i])
+        }
+        arrayIED.shift()
+        arrayIED.reverse()
+        google.charts.setOnLoadCallback(drawIEDIndicator);
+      })
+      .catch(async (err) => {
+        console.log(err)
+      })
+  }
+}
+async function drawIEDIndicator() {
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', '');
+  data.addColumn('number', '');
+  for (var i = 0; i < arrayIED.length; i++) {
+    data.addRow([arrayIED[i].date, parseFloat(arrayIED[i].bajaCalifornia)]);
+  }
+  var options = {
+    hAxis: {title: 'Periodos'},
+    vAxis: {title: 'Dolares en Millones'},
+    curveType: 'function',
+    legend: 'none',
+  };
+  var chart = new google.visualization.LineChart(document.getElementById('IEDChart'));
+  document.getElementById("spinnerIED").style.display = "none"
+  chart.draw(data, options);
+}
+
+function displayTypeOfCruce(type){
+  if(type === "peatones"){
+    document.getElementById("peatonesZonas").style.display = "block"
+    document.getElementById("vehiculosZonas").style.display = "none"
+    document.getElementById("camionesZonas").style.display = "none"
+    document.getElementById("trenesZonas").style.display = "none"
+    document.getElementById("autobusesZonas").style.display = "none"
+  }
+  else if(type === "vehiculos"){
+    document.getElementById("peatonesZonas").style.display = "none"
+    document.getElementById("vehiculosZonas").style.display = "block"
+    document.getElementById("camionesZonas").style.display = "none"
+    document.getElementById("trenesZonas").style.display = "none"
+    document.getElementById("autobusesZonas").style.display = "none"
+  }
+  else if(type === "camiones"){
+    document.getElementById("peatonesZonas").style.display = "none"
+    document.getElementById("vehiculosZonas").style.display = "none"
+    document.getElementById("camionesZonas").style.display = "block"
+    document.getElementById("trenesZonas").style.display = "none"
+    document.getElementById("autobusesZonas").style.display = "none"
+  }
+  else if(type === "trenes"){
+    document.getElementById("peatonesZonas").style.display = "none"
+    document.getElementById("vehiculosZonas").style.display = "none"
+    document.getElementById("camionesZonas").style.display = "none"
+    document.getElementById("trenesZonas").style.display = "block"
+    document.getElementById("autobusesZonas").style.display = "none"
+  }
+  else if(type === "autobuses"){
+    document.getElementById("peatonesZonas").style.display = "none"
+    document.getElementById("vehiculosZonas").style.display = "none"
+    document.getElementById("camionesZonas").style.display = "none"
+    document.getElementById("trenesZonas").style.display = "none"
+    document.getElementById("autobusesZonas").style.display = "block"
+  }
+}
+async function getDataCrucesIndicator(type){
+  document.getElementById("crucesChart").style.display = "none"
+  document.getElementById("spinnerCruces").style.display = "inline-block"
+  if(type.includes("peatones") && arrayPeatones.length == 0){
+    var config = {
+      method: 'get',
+      url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/indicador_crucesFronterizosPeatones'
+    }
+    await axios(config)
+    .then((res) => {
+      for (let i = res.data.length; i >= res.data.length - periods; i--) {
+        arrayPeatones.push(res.data[i])
+      }
+      arrayPeatones.shift()
+      arrayPeatones.reverse()
+      google.charts.setOnLoadCallback(drawCrucesIndicator(type));
+    })
+    .catch(async (err) => {
+      console.log(err)
+    })
+  }
+  else if(type.includes("peatones") && arrayPeatones.length > 0){
+    drawCrucesIndicator(type)
+  }
+  else if(type.includes("vehiculos") && arrayVehiculos.length == 0){
+    var config = {
+      method: 'get',
+      url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/indicador_crucesFronterizosVehiculos'
+    }
+    await axios(config)
+    .then((res) => {
+      for (let i = res.data.length; i >= res.data.length - periods; i--) {
+        arrayVehiculos.push(res.data[i])
+      }
+      arrayVehiculos.shift()
+      arrayVehiculos.reverse()
+      google.charts.setOnLoadCallback(drawCrucesIndicator(type));
+    })
+    .catch(async (err) => {
+      console.log(err)
+    })
+  }
+  else if(type.includes("vehiculo") && arrayVehiculos.length > 0){
+    drawCrucesIndicator(type)
+  }
+  else if(type.includes("camiones") && arrayCamiones.length == 0){
+    var config = {
+      method: 'get',
+      url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/indicador_crucesFronterizosCamiones'
+    }
+    await axios(config)
+    .then((res) => {
+      for (let i = res.data.length; i >= res.data.length - periods; i--) {
+        arrayCamiones.push(res.data[i])
+      }
+      arrayCamiones.shift()
+      arrayCamiones.reverse()
+      google.charts.setOnLoadCallback(drawCrucesIndicator(type));
+    })
+    .catch(async (err) => {
+      console.log(err)
+    })
+  }
+  else if(type.includes("camiones") && arrayCamiones.length > 0){
+    drawCrucesIndicator(type)
+  }
+  else if(type.includes("trenes") && arrayTrenes.length == 0){
+    var config = {
+      method: 'get',
+      url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/indicador_crucesFronterizosTrenes'
+    }
+    await axios(config)
+    .then((res) => {
+      for (let i = res.data.length; i >= res.data.length - periods; i--) {
+        arrayTrenes.push(res.data[i])
+      }
+      arrayTrenes.shift()
+      arrayTrenes.reverse()
+      google.charts.setOnLoadCallback(drawCrucesIndicator(type));
+    })
+    .catch(async (err) => {
+      console.log(err)
+    })
+  }
+  else if(type.includes("trenes") && arrayTrenes.length > 0){
+    drawCrucesIndicator(type)
+  }
+  else if(type.includes("autobuses") && arrayAutobuses.length == 0){
+    var config = {
+      method: 'get',
+      url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/indicador_crucesFronterizosAutobuses'
+    }
+    await axios(config)
+    .then((res) => {
+      for (let i = res.data.length; i >= res.data.length - periods; i--) {
+        arrayAutobuses.push(res.data[i])
+      }
+      arrayAutobuses.shift()
+      arrayAutobuses.reverse()
+      google.charts.setOnLoadCallback(drawCrucesIndicator(type));
+    })
+    .catch(async (err) => {
+      console.log(err)
+    })
+  }
+  else if(type.includes("autobuses") && arrayAutobuses.length > 0){
+    drawCrucesIndicator(type)
+  }
+}
+async function drawCrucesIndicator(type){
+  if(type.includes("peatones")){
+    if(type.includes("BajaCalifornia")){
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', '');
+      data.addColumn('number', '');
+      for (var i = 0; i < arrayPeatones.length; i++) {
+        data.addRow([arrayPeatones[i].date, (parseFloat(arrayPeatones[i].bajaCalifornia))]);
+      }
+      var options = {
+        title: 'Cruce - Peatones Baja California',
+        hAxis: {title: 'Periodos'},
+        vAxis: {title: 'Cantidad en miles'},
+        curveType: 'function',
+        legend: 'none',
+      };
+      document.getElementById("spinnerCruces").style.display = "none"
+      var chart = new google.visualization.LineChart(document.getElementById('crucesChart'));
+      document.getElementById("crucesChart").style.display = "block"
+      chart.draw(data, options);
+    }
+    else if(type.includes("Tijuana")){
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', '');
+      data.addColumn('number', '');
+      for (var i = 0; i < arrayPeatones.length; i++) {
+        data.addRow([arrayPeatones[i].date, (parseFloat(arrayPeatones[i].tijuana))]);
+      }
+      var options = {
+        title: 'Cruce - Peatones Tijuana',
+        hAxis: {title: 'Periodos'},
+        vAxis: {title: 'Cantidad en miles'},
+        curveType: 'function',
+        legend: 'none',
+      };
+      document.getElementById("spinnerCruces").style.display = "none"
+      var chart = new google.visualization.LineChart(document.getElementById('crucesChart'));
+      document.getElementById("crucesChart").style.display = "block"
+      chart.draw(data, options);
+    }
+    else if(type.includes("Mexicali")){
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', '');
+      data.addColumn('number', '');
+      for (var i = 0; i < arrayPeatones.length; i++) {
+        data.addRow([arrayPeatones[i].date, (parseFloat(arrayPeatones[i].mexicali))]);
+      }
+      var options = {
+        title: 'Cruce - Peatones Mexicali',
+        hAxis: {title: 'Periodos'},
+        vAxis: {title: 'Cantidad en miles'},
+        curveType: 'function',
+        legend: 'none',
+      };
+      document.getElementById("spinnerCruces").style.display = "none"
+      var chart = new google.visualization.LineChart(document.getElementById('crucesChart'));
+      document.getElementById("crucesChart").style.display = "block"
+      chart.draw(data, options);
+    }
+    else if(type.includes("Tecate")){
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', '');
+      data.addColumn('number', '');
+      for (var i = 0; i < arrayPeatones.length; i++) {
+        data.addRow([arrayPeatones[i].date, (parseFloat(arrayPeatones[i].tecate))]);
+      }
+      var options = {
+        title: 'Cruce - Peatones Tecate',
+        hAxis: {title: 'Periodos'},
+        vAxis: {title: 'Cantidad en miles'},
+        curveType: 'function',
+        legend: 'none',
+      };
+      document.getElementById("spinnerCruces").style.display = "none"
+      var chart = new google.visualization.LineChart(document.getElementById('crucesChart'));
+      document.getElementById("crucesChart").style.display = "block"
+      chart.draw(data, options);
+    }
+  }
+  else if(type.includes("vehiculos")){
+    if(type.includes("BajaCalifornia")){
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', '');
+      data.addColumn('number', '');
+      for (var i = 0; i < arrayVehiculos.length; i++) {
+        data.addRow([arrayVehiculos[i].date, (parseFloat(arrayVehiculos[i].bajaCalifornia))]);
+      }
+      var options = {
+        title: 'Cruce - Vehículos Baja California',
+        hAxis: {title: 'Periodos'},
+        vAxis: {title: 'Cantidad en miles'},
+        curveType: 'function',
+        legend: 'none',
+      };
+      document.getElementById("spinnerCruces").style.display = "none"
+      var chart = new google.visualization.LineChart(document.getElementById('crucesChart'));
+      document.getElementById("crucesChart").style.display = "block"
+      chart.draw(data, options);
+    }
+    else if(type.includes("Tijuana")){
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', '');
+      data.addColumn('number', '');
+      for (var i = 0; i < arrayVehiculos.length; i++) {
+        data.addRow([arrayVehiculos[i].date, (parseFloat(arrayVehiculos[i].tijuana))]);
+      }
+      var options = {
+        title: 'Cruce - Vehículos Tijuana',
+        hAxis: {title: 'Periodos'},
+        vAxis: {title: 'Cantidad en miles'},
+        curveType: 'function',
+        legend: 'none',
+      };
+      document.getElementById("spinnerCruces").style.display = "none"
+      var chart = new google.visualization.LineChart(document.getElementById('crucesChart'));
+      document.getElementById("crucesChart").style.display = "block"
+      chart.draw(data, options);
+    }
+    else if(type.includes("Mexicali")){
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', '');
+      data.addColumn('number', '');
+      for (var i = 0; i < arrayVehiculos.length; i++) {
+        data.addRow([arrayVehiculos[i].date, (parseFloat(arrayVehiculos[i].mexicali))]);
+      }
+      var options = {
+        title: 'Cruce - Vehículos Mexicali',
+        hAxis: {title: 'Periodos'},
+        vAxis: {title: 'Cantidad en miles'},
+        curveType: 'function',
+        legend: 'none',
+      };
+      document.getElementById("spinnerCruces").style.display = "none"
+      var chart = new google.visualization.LineChart(document.getElementById('crucesChart'));
+      document.getElementById("crucesChart").style.display = "block"
+      chart.draw(data, options);
+    }
+    else if(type.includes("Tecate")){
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', '');
+      data.addColumn('number', '');
+      for (var i = 0; i < arrayVehiculos.length; i++) {
+        data.addRow([arrayVehiculos[i].date, (parseFloat(arrayVehiculos[i].tecate))]);
+      }
+      var options = {
+        title: 'Cruce - Vehículos Tecate',
+        hAxis: {title: 'Periodos'},
+        vAxis: {title: 'Cantidad en miles'},
+        curveType: 'function',
+        legend: 'none',
+      };
+      document.getElementById("spinnerCruces").style.display = "none"
+      var chart = new google.visualization.LineChart(document.getElementById('crucesChart'));
+      document.getElementById("crucesChart").style.display = "block"
+      chart.draw(data, options);
+    }
+  }
+  else if(type.includes("camiones")){
+    if(type.includes("BajaCalifornia")){
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', '');
+      data.addColumn('number', '');
+      for (var i = 0; i < arrayCamiones.length; i++) {
+        data.addRow([arrayCamiones[i].date, (parseFloat(arrayCamiones[i].bajaCalifornia))]);
+      }
+      var options = {
+        title: 'Cruce - Camiones Baja California',
+        hAxis: {title: 'Periodos'},
+        vAxis: {title: 'Cantidad en miles'},
+        curveType: 'function',
+        legend: 'none',
+      };
+      document.getElementById("spinnerCruces").style.display = "none"
+      var chart = new google.visualization.LineChart(document.getElementById('crucesChart'));
+      document.getElementById("crucesChart").style.display = "block"
+      chart.draw(data, options);
+    }
+    else if(type.includes("Tijuana")){
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', '');
+      data.addColumn('number', '');
+      for (var i = 0; i < arrayCamiones.length; i++) {
+        data.addRow([arrayCamiones[i].date, (parseFloat(arrayCamiones[i].tijuana))]);
+      }
+      var options = {
+        title: 'Cruce - Camiones Tijuana',
+        hAxis: {title: 'Periodos'},
+        vAxis: {title: 'Cantidad en miles'},
+        curveType: 'function',
+        legend: 'none',
+      };
+      document.getElementById("spinnerCruces").style.display = "none"
+      var chart = new google.visualization.LineChart(document.getElementById('crucesChart'));
+      document.getElementById("crucesChart").style.display = "block"
+      chart.draw(data, options);
+    }
+    else if(type.includes("Mexicali")){
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', '');
+      data.addColumn('number', '');
+      for (var i = 0; i < arrayCamiones.length; i++) {
+        data.addRow([arrayCamiones[i].date, (parseFloat(arrayCamiones[i].mexicali))]);
+      }
+      var options = {
+        title: 'Cruce - Camiones Mexicali',
+        hAxis: {title: 'Periodos'},
+        vAxis: {title: 'Cantidad en miles'},
+        curveType: 'function',
+        legend: 'none',
+      };
+      document.getElementById("spinnerCruces").style.display = "none"
+      var chart = new google.visualization.LineChart(document.getElementById('crucesChart'));
+      document.getElementById("crucesChart").style.display = "block"
+      chart.draw(data, options);
+    }
+    else if(type.includes("Tecate")){
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', '');
+      data.addColumn('number', '');
+      for (var i = 0; i < arrayCamiones.length; i++) {
+        data.addRow([arrayCamiones[i].date, (parseFloat(arrayCamiones[i].tecate))]);
+      }
+      var options = {
+        title: 'Cruce - Camiones Tecate',
+        hAxis: {title: 'Periodos'},
+        vAxis: {title: 'Cantidad en miles'},
+        curveType: 'function',
+        legend: 'none',
+      };
+      document.getElementById("spinnerCruces").style.display = "none"
+      var chart = new google.visualization.LineChart(document.getElementById('crucesChart'));
+      document.getElementById("crucesChart").style.display = "block"
+      chart.draw(data, options);
+    }
+  }
+  else if(type.includes("trenes")){
+    if(type.includes("BajaCalifornia")){
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', '');
+      data.addColumn('number', '');
+      for (var i = 0; i < arrayTrenes.length; i++) {
+        data.addRow([arrayTrenes[i].date, (parseFloat(arrayTrenes[i].bajaCalifornia))]);
+      }
+      var options = {
+        title: 'Cruce - Trenes Baja California',
+        hAxis: {title: 'Periodos'},
+        vAxis: {title: 'Cantidad en miles'},
+        curveType: 'function',
+        legend: 'none',
+      };
+      document.getElementById("spinnerCruces").style.display = "none"
+      var chart = new google.visualization.LineChart(document.getElementById('crucesChart'));
+      document.getElementById("crucesChart").style.display = "block"
+      chart.draw(data, options);
+    }
+    else if(type.includes("Tijuana")){
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', '');
+      data.addColumn('number', '');
+      for (var i = 0; i < arrayTrenes.length; i++) {
+        data.addRow([arrayTrenes[i].date, (parseFloat(arrayTrenes[i].tijuana))]);
+      }
+      var options = {
+        title: 'Cruce - Trenes Tijuana',
+        hAxis: {title: 'Periodos'},
+        vAxis: {title: 'Cantidad en miles'},
+        curveType: 'function',
+        legend: 'none',
+      };
+      document.getElementById("spinnerCruces").style.display = "none"
+      var chart = new google.visualization.LineChart(document.getElementById('crucesChart'));
+      document.getElementById("crucesChart").style.display = "block"
+      chart.draw(data, options);
+    }
+    else if(type.includes("Mexicali")){
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', '');
+      data.addColumn('number', '');
+      for (var i = 0; i < arrayTrenes.length; i++) {
+        data.addRow([arrayTrenes[i].date, (parseFloat(arrayTrenes[i].mexicali))]);
+      }
+      var options = {
+        title: 'Cruce - Trenes Mexicali',
+        hAxis: {title: 'Periodos'},
+        vAxis: {title: 'Cantidad en miles'},
+        curveType: 'function',
+        legend: 'none',
+      };
+      document.getElementById("spinnerCruces").style.display = "none"
+      var chart = new google.visualization.LineChart(document.getElementById('crucesChart'));
+      document.getElementById("crucesChart").style.display = "block"
+      chart.draw(data, options);
+    }
+    else if(type.includes("Tecate")){
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', '');
+      data.addColumn('number', '');
+      for (var i = 0; i < arrayTrenes.length; i++) {
+        data.addRow([arrayTrenes[i].date, (parseFloat(arrayTrenes[i].tecate))]);
+      }
+      var options = {
+        title: 'Cruce - Trenes Tecate',
+        hAxis: {title: 'Periodos'},
+        vAxis: {title: 'Cantidad en miles'},
+        curveType: 'function',
+        legend: 'none',
+      };
+      document.getElementById("spinnerCruces").style.display = "none"
+      var chart = new google.visualization.LineChart(document.getElementById('crucesChart'));
+      document.getElementById("crucesChart").style.display = "block"
+      chart.draw(data, options);
+    }
+  }
+  else if(type.includes("autobuses")){
+    if(type.includes("BajaCalifornia")){
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', '');
+      data.addColumn('number', '');
+      for (var i = 0; i < arrayAutobuses.length; i++) {
+        data.addRow([arrayAutobuses[i].date, (parseFloat(arrayAutobuses[i].bajaCalifornia))]);
+      }
+      var options = {
+        title: 'Cruce - Autobuses Baja California',
+        hAxis: {title: 'Periodos'},
+        vAxis: {title: 'Cantidad en miles'},
+        curveType: 'function',
+        legend: 'none',
+      };
+      document.getElementById("spinnerCruces").style.display = "none"
+      var chart = new google.visualization.LineChart(document.getElementById('crucesChart'));
+      document.getElementById("crucesChart").style.display = "block"
+      chart.draw(data, options);
+    }
+    else if(type.includes("Tijuana")){
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', '');
+      data.addColumn('number', '');
+      for (var i = 0; i < arrayAutobuses.length; i++) {
+        data.addRow([arrayAutobuses[i].date, (parseFloat(arrayAutobuses[i].tijuana))]);
+      }
+      var options = {
+        title: 'Cruce - Autobuses Tijuana',
+        hAxis: {title: 'Periodos'},
+        vAxis: {title: 'Cantidad en miles'},
+        curveType: 'function',
+        legend: 'none',
+      };
+      document.getElementById("spinnerCruces").style.display = "none"
+      var chart = new google.visualization.LineChart(document.getElementById('crucesChart'));
+      document.getElementById("crucesChart").style.display = "block"
+      chart.draw(data, options);
+    }
+    else if(type.includes("Mexicali")){
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', '');
+      data.addColumn('number', '');
+      for (var i = 0; i < arrayAutobuses.length; i++) {
+        data.addRow([arrayAutobuses[i].date, (parseFloat(arrayAutobuses[i].mexicali))]);
+      }
+      var options = {
+        title: 'Cruce - Autobuses Mexicali',
+        hAxis: {title: 'Periodos'},
+        vAxis: {title: 'Cantidad en miles'},
+        curveType: 'function',
+        legend: 'none',
+      };
+      document.getElementById("spinnerCruces").style.display = "none"
+      var chart = new google.visualization.LineChart(document.getElementById('crucesChart'));
+      document.getElementById("crucesChart").style.display = "block"
+      chart.draw(data, options);
+    }
+    else if(type.includes("Tecate")){
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', '');
+      data.addColumn('number', '');
+      for (var i = 0; i < arrayAutobuses.length; i++) {
+        data.addRow([arrayAutobuses[i].date, (parseFloat(arrayAutobuses[i].tecate))]);
+      }
+      var options = {
+        title: 'Cruce - Autobuses Tecate',
+        hAxis: {title: 'Periodos'},
+        vAxis: {title: 'Cantidad en miles'},
+        curveType: 'function',
+        legend: 'none',
+      };
+      document.getElementById("spinnerCruces").style.display = "none"
+      var chart = new google.visualization.LineChart(document.getElementById('crucesChart'));
+      document.getElementById("crucesChart").style.display = "block"
+      chart.draw(data, options);
+    }
+  }
 }
