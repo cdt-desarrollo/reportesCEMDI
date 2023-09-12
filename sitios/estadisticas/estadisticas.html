@@ -60,6 +60,8 @@
       <button class="nav-link" id="v-pills-ied-tab" data-bs-toggle="pill" data-bs-target="#v-pills-ied" type="button" role="tab" aria-controls="v-pills-ied" aria-selected="true" style="outline: 1px solid; margin-bottom: 5px;" onclick="drawIEDIndicator()">IED</button>
       <button class="nav-link" id="v-pills-cruces-tab" data-bs-toggle="pill" data-bs-target="#v-pills-cruces" type="button" role="tab" 
       aria-controls="v-pills-cruces" aria-selected="false" style="outline: 1px solid; margin-bottom: 5px;">Cruces</button>
+      <button class="nav-link" id="v-pills-itae-tab" data-bs-toggle="pill" data-bs-target="#v-pills-itae" type="button" role="tab" 
+      aria-controls="v-pills-itae" aria-selected="false" style="outline: 1px solid; margin-bottom: 5px;">ITAE</button>
     </div>
 
     <!-- Gráficas de Indicadores -->
@@ -212,6 +214,25 @@
             </div>
           </div>
           <div id="crucesChart" style="width: 100%; max-width: 1200px; height:300px;">
+          </div>
+        </div>
+      </div>
+      <!-- Indicador Trimestral de la Actividad Económica Estatal-->
+      <div class="tab-pane fade" id="v-pills-itae" role="tabpanel" aria-labelledby="v-pills-itae-tab" tabindex="0">
+        <h5>Indicador Trimestral de la Actividad Económica Estatal</h5>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+          <button value = "trimestral" onclick = "getDataITAEIndicator(this.value)" class="btn btn-primary btn-sm" id="trimestralBoton" style="width: 49.5%;">Trimestral</button>
+          <button value = "anual" onclick = "getDataITAEIndicator(this.value)" class="btn btn-success btn-sm" id="anualBoton" style="width: 49.5%;">Anual</button>
+        </div>
+        <div style="display: flex; justify-content: center;">
+          <div id="itae" class="d-flex" style="flex-direction: column; align-items: center; justify-content: start; width: 100%;">
+            <div class="d-flex justify-content-center" >
+              <div class="spinner-border" role="status" id="spinnerITAE" style="display: none;"></div>
+            </div>
+            <h5 style="display: none;" id="itaeTrimestralTitulo">Trimestral</h5>
+            <h5 style="display: none;" id="itaeAnualTitulo">Anual</h5>
+            <div id="itaeChart" style="width: 100%; max-width: 1200px; height:300px;">
+            </div>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-periods = 15
+periods = 10
 arrayIED = []
 arrayRemittances = []
 arrayInflacionIPC = []
@@ -9,11 +9,15 @@ arrayVehiculos = []
 arrayCamiones = []
 arrayTrenes = []
 arrayAutobuses = []
+arrayITAETrimestral = []
+arrayITAEAnual = []
 google.charts.load('current', { 'packages': ['corechart'] });
 let counterRemittances = 0
 let counterIED = 0
 let counterInflation = 0
 let counterCruces = 0
+let counterITAE = 0
+
 async function getDataRemittancesIndicator(cityValue) {
   if(counterRemittances == 1){
     drawRemittancesIndicator(cityValue)
@@ -983,4 +987,95 @@ async function drawCrucesIndicator(type){
       chart.draw(data, options);
     }
   }
+}
+
+async function getDataITAEIndicator(type){
+  document.getElementById("itaeChart").style.display = "none"
+  document.getElementById("spinnerITAE").style.display = "block"
+  if(type.includes("trimestral") && arrayITAETrimestral.length == 0){
+    var config = {
+      method: 'get',
+      url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/indicador_itaeTrimestral',
+    }
+    await axios(config)
+    .then((res) => {
+      for (let i = res.data.length; i >= res.data.length - periods; i--) {
+        arrayITAETrimestral.push(res.data[i])
+      }
+      arrayITAETrimestral.shift()
+      arrayITAETrimestral.reverse()
+      google.charts.setOnLoadCallback(drawITAEIndicator(arrayITAETrimestral, type));
+    })
+    .catch(async (err) => {
+      console.log(err)
+    })
+  }
+  else if(type.includes("trimestral") && arrayITAETrimestral.length != 0){
+    google.charts.setOnLoadCallback(drawITAEIndicator(arrayITAETrimestral, type));
+  }
+  else if(type.includes("anual") && arrayITAEAnual.length == 0){
+    var config = {
+      method: 'get',
+      url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/indicador_itaeAnual',
+    }
+    await axios(config)
+    .then((res) => {
+      for (let i = res.data.length; i >= res.data.length - periods; i--) {
+        arrayITAEAnual.push(res.data[i])
+      }
+      arrayITAEAnual.shift()
+      arrayITAEAnual.reverse()
+      google.charts.setOnLoadCallback(drawITAEIndicator(arrayITAEAnual, type));
+    })
+    .catch(async (err) => {
+      console.log(err)
+    })
+  }
+  else if(type.includes("anual") && arrayITAEAnual.length != 0){
+    google.charts.setOnLoadCallback(drawITAEIndicator(arrayITAEAnual, type));
+  }
+}
+async function drawITAEIndicator(array, value){
+  console.log(array, value)
+  document.getElementById("spinnerITAE").style.display = "none"
+
+  if(value == "trimestral"){
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', '');
+    data.addColumn('number', '');
+    for (var i = 0; i < array.length; i++) {
+      data.addRow([array[i].date, (parseFloat(array[i].bajaCalifornia))]);
+    }
+    var options = {
+      title: 'Indicador Trimestral de la Actividad Económica Estatal - Baja California',
+      hAxis: {title: 'Periodos'},
+      vAxis: {title: 'Porcentaje'},
+      curveType: 'function',
+      legend: 'none',
+    };
+    var chart = new google.visualization.LineChart(document.getElementById('itaeChart'));
+    document.getElementById("spinnerITAE").style.display = "none"
+    document.getElementById("itaeChart").style.display = "block"
+    chart.draw(data, options);
+  }
+  else if(value == "anual"){
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', '');
+    data.addColumn('number', '');
+    for (var i = 0; i < array.length; i++) {
+      data.addRow([array[i].date, (parseFloat(array[i].bajaCalifornia))]);
+    }
+    var options = {
+      title: 'Indicador Trimestral de la Actividad Económica Estatal - Baja California',
+      hAxis: {title: 'Periodos'},
+      vAxis: {title: 'Porcentaje'},
+      curveType: 'function',
+      legend: 'none',
+    };
+    var chart = new google.visualization.LineChart(document.getElementById('itaeChart'));
+    document.getElementById("spinnerITAE").style.display = "none"
+    document.getElementById("itaeChart").style.display = "block"
+    chart.draw(data, options);
+  }
+
 }
