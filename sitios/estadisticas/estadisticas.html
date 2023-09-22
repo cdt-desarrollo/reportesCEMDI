@@ -61,7 +61,9 @@
       <button class="nav-link" id="v-pills-cruces-tab" data-bs-toggle="pill" data-bs-target="#v-pills-cruces" type="button" role="tab" 
       aria-controls="v-pills-cruces" aria-selected="false" style="outline: 1px solid; margin-bottom: 5px;">Cruces</button>
       <button class="nav-link" id="v-pills-itae-tab" data-bs-toggle="pill" data-bs-target="#v-pills-itae" type="button" role="tab" 
-      aria-controls="v-pills-itae" aria-selected="false" style="outline: 1px solid; margin-bottom: 5px;">ITAE</button>
+      aria-controls="v-pills-itae" aria-selected="false" style="outline: 1px solid; margin-bottom: 5px;">ITAEE</button>
+      <button class="nav-link" id="v-pills-delitos-tab" data-bs-toggle="pill" data-bs-target="#v-pills-delitos" type="button" role="tab" 
+      aria-controls="v-pills-delitos" aria-selected="false" id="buttonDelitos" style="outline: 1px solid; margin-bottom: 5px;">Delitos</button>
     </div>
 
     <!-- Gráficas de Indicadores -->
@@ -233,6 +235,50 @@
             <h5 style="display: none;" id="itaeAnualTitulo">Anual</h5>
             <div id="itaeChart" style="width: 100%; max-width: 1200px; height:300px;">
             </div>
+          </div>
+        </div>
+      </div>
+      <!-- Delitos -->
+      <div class="tab-pane fade" id="v-pills-delitos" role="tabpanel" aria-labelledby="v-pills-delitos-tab" tabindex="0">
+        <h5>Delitos</h5>
+        <div style="display: flex; justify-content: space-between;">
+          <button value = "delitosTotales" onclick = "getDataDelitosIndicator(this.value)"class="btn btn-primary btn-sm" id="delitosTotales" style="width: 10%; background-color: black; border: none;">Totales</button>
+          <button value = "delitosRobos" onclick = "getDataDelitosIndicator(this.value)"class="btn btn-primary btn-sm" id="delitosTotales" style="width: 10%; background-color: red; border: none;">Robos</button>
+          <button value = "delitosLesiones" onclick = "getDataDelitosIndicator(this.value)"class="btn btn-primary btn-sm" id="delitosTotales" style="width: 10%; background-color: blue; border: none;">Lesiones</button>
+          <button value = "delitosHomicidios" onclick = "getDataDelitosIndicator(this.value)"class="btn btn-primary btn-sm" id="delitosTotales" style="width: 10%; background-color: cornflowerblue; border: none;">Homicidios</button>
+          <button value = "delitosPatrimoniales" onclick = "getDataDelitosIndicator(this.value)"class="btn btn-primary btn-sm" id="delitosTotales" style="width: 10%; background-color: tomato; border: none;">Patrimoniales</button>
+          <button value = "delitosSecuestros" onclick = "getDataDelitosIndicator(this.value)"class="btn btn-primary btn-sm" id="delitosTotales" style="width: 10%; background-color: blueviolet; border: none;">Secuestros</button>
+          <button value = "delitosViolaciones" onclick = "getDataDelitosIndicator(this.value)"class="btn btn-primary btn-sm" id="delitosTotales" style="width: 10%; background-color: darkblue; border: none;">Violaciones</button>
+          <button value = "delitosFeminicidios" onclick = "getDataDelitosIndicator(this.value)"class="btn btn-primary btn-sm" id="delitosTotales" style="width: 10%; background-color:darkgreen; border: none;">Feminicidios</button>
+          <button value = "delitosOtros" onclick = "getDataDelitosIndicator(this.value)"class="btn btn-primary btn-sm" id="delitosTotales" style="width: 10%; background-color: deeppink; border: none;">Otros</button>
+        </div>
+        <div id="delitosZonas" style="display: none; padding-top: 10px; ">
+          <button id="bajaCaliforniaDelitos" onclick="drawDelitosIndicator(this.value)" class="btn btn-primary btn-sm" style="border: none; width: 10%;">Baja California</button>
+          <button id="zonaMetropolitanaDelitos" onclick="drawDelitosIndicator(this.value)" class="btn btn-primary btn-sm" style="border: none; width: 10%;">Zona Metropolitana</button>
+          <button id="tijuanaDelitos" onclick="drawDelitosIndicator(this.value)" class="btn btn-primary btn-sm" style="border: none; width: 10%;">Tijuana</button>
+          <button id="tecateDelitos" onclick="drawDelitosIndicator(this.value)" class="btn btn-primary btn-sm" style="border: none; width: 10%;">Tecate</button>
+          <button id="rosaritoDelitos" onclick="drawDelitosIndicator(this.value)" class="btn btn-primary btn-sm" style="border: none; width: 10%;">Rosarito</button>
+          <button id="ensenadaDelitos" onclick="drawDelitosIndicator(this.value)" class="btn btn-primary btn-sm" style="border: none; width: 10%;">Ensenada</button>
+          <button id="mexicaliDelitos" onclick="drawDelitosIndicator(this.value)" class="btn btn-primary btn-sm" style="border: none; width: 10%;">Mexicali</button>
+          <button id="sanQuintinDelitos" onclick="drawDelitosIndicator(this.value)" class="btn btn-primary btn-sm" style="border: none; width: 10%;">San Quitín</button>
+          <button id="sanFelipeDelitos" onclick="drawDelitosIndicator(this.value)" class="btn btn-primary btn-sm" style="border: none; width: 10%;">San Felipe</button>
+        </div>
+        <div style="display: flex; justify-content: center;">
+          <div id="delitos" class="d-flex" style="flex-direction: column; align-items: center; justify-content: star;width: 100%;">
+            <div class="d-flex justify-content-center" style="padding-top: 10px;">
+              <div class="spinner-border" role="status" id="spinnerDelitos" style="display: none;">
+              </div>
+            </div>
+            <!-- <h5 style="display: none;" id="delitosTotales">Delitos Totales</h5>
+            <h5 style="display: none;" id="delitosTotales">Delitos Totales</h5>
+            <h5 style="display: none;" id="delitosTotales">Delitos Totales</h5>
+            <h5 style="display: none;" id="delitosTotales">Delitos Totales</h5>
+            <h5 style="display: none;" id="delitosTotales">Delitos Totales</h5>
+            <h5 style="display: none;" id="delitosTotales">Delitos Totales</h5>
+            <h5 style="display: none;" id="delitosTotales">Delitos Totales</h5>
+            <h5 style="display: none;" id="delitosTotales">Delitos Totales</h5>
+            <h5 style="display: none;" id="delitosTotales">Delitos Totales</h5> -->
+            <div id="delitosChart" style="width:100%; max-width:1200px; height:300px;"></div>
           </div>
         </div>
       </div>
