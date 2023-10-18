@@ -64,6 +64,8 @@
       aria-controls="v-pills-itae" aria-selected="false" style="outline: 1px solid; margin-bottom: 5px;">ITAEE</button>
       <button class="nav-link" id="v-pills-delitos-tab" data-bs-toggle="pill" data-bs-target="#v-pills-delitos" type="button" role="tab" 
       aria-controls="v-pills-delitos" aria-selected="false" id="buttonDelitos" style="outline: 1px solid; margin-bottom: 5px;">Delitos</button>
+      <button class="nav-link" id="v-pills-empleo-tab" data-bs-toggle="pill" data-bs-target="#v-pills-empleo" type="button" role="tab" 
+      aria-controls="v-pills-empleo" aria-selected="false" id="buttonEmpleo" style="outline: 1px solid; margin-bottom: 5px;">Empleo</button>
     </div>
 
     <!-- Gráficas de Indicadores -->
@@ -279,6 +281,29 @@
             <h5 style="display: none;" id="delitosTotales">Delitos Totales</h5>
             <h5 style="display: none;" id="delitosTotales">Delitos Totales</h5> -->
             <div id="delitosChart" style="width:100%; max-width:1200px; height:300px;"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Empleos -->
+      <div class="tab-pane fade" id="v-pills-empleo" role="tabpanel" aria-labelledby="v-pills-empleo-tab" tabindex="0">
+        <h5>Empleo</h5>
+        <div style="display: flex; justify-content: space-between;">
+          <button value = "bajaCalifornia" onclick = "getDataEmpleoIndicator(this.value)"class="btn btn-primary btn-sm" id="empleoBajaCaliforniaBoton" style="width: 12%;">Baja California</button>
+          <button value = "zonaMetropolitana" onclick = "getDataEmpleoIndicator(this.value)"class="btn btn-secondary btn-sm" id="empleoZonaMetropolitanaBoton" style="width: 12%;">Zona Metropolitana</button>
+          <button value = "tijuana" onclick = "getDataEmpleoIndicator(this.value)"class="btn btn-success btn-sm" id="empleoTijuanaBoton" style="width: 12%;">Tijuana</button>
+          <button value = "tecate" onclick = "getDataEmpleoIndicator(this.value)"class="btn btn-danger btn-sm" id="empleoTecateBoton" style="width: 12%;">Tecate</button>
+          <button value = "rosarito" onclick = "getDataEmpleoIndicator(this.value)"class="btn btn-warning btn-sm" id="empleoPlayasDeRosaritoBoton" style="width: 12%;">Rosarito</button>
+          <button value = "ensenada" onclick = "getDataEmpleoIndicator(this.value)"class="btn btn-info btn-sm" id="empleoEnsenadaBoton" style="width: 12%;">Ensenada</button>
+          <button value = "mexicali" onclick = "getDataEmpleoIndicator(this.value)"class="btn btn-primary btn-sm" id="empleoMexicaliBoton" style="width: 12%;">Mexicali</button>
+          <button value = "sanQuintin" onclick = "getDataEmpleoIndicator(this.value)"class="btn btn-dark btn-sm" id="empleoSanQuintinBoton" style="width: 12%;">San Quintin</button>
+        </div>
+        <div style="display: flex; justify-content: center;">
+          <div id="empleo" class="d-flex" style="flex-direction: column; align-items: center; justify-content: star;width: 100%;">
+            <div class="d-flex justify-content-center" >
+              <div class="spinner-border" role="status" id="spinnerEmpleo" style="display: none;">
+              </div>
+            </div>
+            <div id="empleoChart" style="width:100%; max-width:1200px; height:300px;"></div>
           </div>
         </div>
       </div>

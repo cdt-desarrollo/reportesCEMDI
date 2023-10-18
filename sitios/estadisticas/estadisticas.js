@@ -20,6 +20,14 @@ arrayDelitosSecuestros = []
 arrayDelitosViolaciones = []
 arrayDelitosFeminicidios = []
 arrayDelitosOtros = []
+arrayEmpleoBajaCalifornia = []
+arrayEmpleoZonaMetropolitana = []
+arrayEmpleoTijuana = []
+arrayEmpleoTecate = []
+arrayEmpleoRosarito = []
+arrayEmpleoEnsenada = []
+arrayEmpleoMexicali = []
+arrayEmpleoSanQuintin = []
 google.charts.load('current', { 'packages': ['corechart'] });
 let counterRemittances = 0
 let counterIED = 0
@@ -1047,7 +1055,6 @@ async function getDataITAEIndicator(type){
 async function drawITAEIndicator(array, value){
   console.log(array, value)
   document.getElementById("spinnerITAE").style.display = "none"
-
   if(value == "trimestral"){
     var data = new google.visualization.DataTable();
     data.addColumn('string', '');
@@ -1086,7 +1093,6 @@ async function drawITAEIndicator(array, value){
     document.getElementById("itaeChart").style.display = "block"
     chart.draw(data, options);
   }
-
 }
 
 async function getDataDelitosIndicator(type){
@@ -2984,5 +2990,355 @@ async function drawDelitosIndicator(type){
       document.getElementById("delitosChart").style.display = "block"
       chart.draw(data, options);
     }
+  }
+}
+
+async function getDataEmpleoIndicator(zone){
+  document.getElementById('empleoChart').style.display = "none"
+  if(zone == "bajaCalifornia"){
+    if (arrayEmpleoBajaCalifornia.length == 0){
+      document.getElementById("spinnerEmpleo").style.display = "inline-block"
+      var config = {
+        method: 'get',
+        url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/empleoTotalBajaCalifornia',
+      }
+      await axios(config)
+        .then((res) => {
+          for (let i = res.data.length; i >= res.data.length - periods; i--) {
+            arrayEmpleoBajaCalifornia.push(res.data[i])
+          }
+          arrayEmpleoBajaCalifornia.shift()
+          arrayEmpleoBajaCalifornia.reverse()
+          google.charts.setOnLoadCallback(drawEmpleoIndicator(zone, arrayEmpleoBajaCalifornia));
+        })
+        .catch(async (err) => {
+          console.log(err)
+        })
+    }
+    else if (arrayEmpleoBajaCalifornia.length > 0){
+      drawEmpleoIndicator(zone, arrayEmpleoBajaCalifornia)
+    }
+  }
+  else if(zone == "zonaMetropolitana"){
+    if (arrayEmpleoZonaMetropolitana.length == 0){
+      document.getElementById("spinnerEmpleo").style.display = "inline-block"
+      var config = {
+        method: 'get',
+        url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/empleoTotalZonaMetropolitana',
+      }
+      await axios(config)
+        .then((res) => {
+          for (let i = res.data.length; i >= res.data.length - periods; i--) {
+            arrayEmpleoZonaMetropolitana.push(res.data[i])
+          }
+          arrayEmpleoZonaMetropolitana.shift()
+          arrayEmpleoZonaMetropolitana.reverse()
+          google.charts.setOnLoadCallback(drawEmpleoIndicator(zone, arrayEmpleoZonaMetropolitana));
+        })
+        .catch(async (err) => {
+          console.log(err)
+        })
+    }
+    else if (arrayEmpleoZonaMetropolitana.length > 0){
+      drawEmpleoIndicator(zone, arrayEmpleoZonaMetropolitana)
+    }
+  }
+  else if(zone == "tijuana"){
+    if (arrayEmpleoTijuana.length == 0){
+      document.getElementById("spinnerEmpleo").style.display = "inline-block"
+      var config = {
+        method: 'get',
+        url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/empleoTotalTijuana',
+      }
+      await axios(config)
+        .then((res) => {
+          for (let i = res.data.length; i >= res.data.length - periods; i--) {
+            arrayEmpleoTijuana.push(res.data[i])
+          }
+          arrayEmpleoTijuana.shift()
+          arrayEmpleoTijuana.reverse()
+          google.charts.setOnLoadCallback(drawEmpleoIndicator(zone, arrayEmpleoTijuana));
+        })
+        .catch(async (err) => {
+          console.log(err)
+        })
+    }
+    else if (arrayEmpleoTijuana.length > 0){
+      drawEmpleoIndicator(zone, arrayEmpleoTijuana)
+    }
+  }
+  else if(zone == "tecate"){
+    if (arrayEmpleoTecate.length == 0){
+      document.getElementById("spinnerEmpleo").style.display = "inline-block"
+      var config = {
+        method: 'get',
+        url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/empleoTotalTecate',
+      }
+      await axios(config)
+        .then((res) => {
+          for (let i = res.data.length; i >= res.data.length - periods; i--) {
+            arrayEmpleoTecate.push(res.data[i])
+          }
+          arrayEmpleoTecate.shift()
+          arrayEmpleoTecate.reverse()
+          google.charts.setOnLoadCallback(drawEmpleoIndicator(zone, arrayEmpleoTecate));
+        })
+        .catch(async (err) => {
+          console.log(err)
+        })
+    }
+    else if (arrayEmpleoTecate.length > 0){
+      drawEmpleoIndicator(zone, arrayEmpleoTecate)
+    }
+  }
+  else if(zone == "rosarito"){
+    if (arrayEmpleoRosarito.length == 0){
+      document.getElementById("spinnerEmpleo").style.display = "inline-block"
+      var config = {
+        method: 'get',
+        url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/empleoTotalRosarito',
+      }
+      await axios(config)
+        .then((res) => {
+          for (let i = res.data.length; i >= res.data.length - periods; i--) {
+            arrayEmpleoRosarito.push(res.data[i])
+          }
+          arrayEmpleoRosarito.shift()
+          arrayEmpleoRosarito.reverse()
+          google.charts.setOnLoadCallback(drawEmpleoIndicator(zone, arrayEmpleoRosarito));
+        })
+        .catch(async (err) => {
+          console.log(err)
+        })
+    }
+    else if (arrayEmpleoRosarito.length > 0){
+      drawEmpleoIndicator(zone, arrayEmpleoRosarito)
+    }
+  }
+  else if(zone == "ensenada"){
+    if (arrayEmpleoEnsenada.length == 0){
+      document.getElementById("spinnerEmpleo").style.display = "inline-block"
+      var config = {
+        method: 'get',
+        url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/empleoTotalEnsenada',
+      }
+      await axios(config)
+        .then((res) => {
+          for (let i = res.data.length; i >= res.data.length - periods; i--) {
+            arrayEmpleoEnsenada.push(res.data[i])
+          }
+          arrayEmpleoEnsenada.shift()
+          arrayEmpleoEnsenada.reverse()
+          google.charts.setOnLoadCallback(drawEmpleoIndicator(zone, arrayEmpleoEnsenada));
+        })
+        .catch(async (err) => {
+          console.log(err)
+        })
+    }
+    else if (arrayEmpleoEnsenada.length > 0){
+      drawEmpleoIndicator(zone, arrayEmpleoEnsenada)
+    }
+  }
+  else if(zone == "mexicali"){
+    if (arrayEmpleoMexicali.length == 0){
+      document.getElementById("spinnerEmpleo").style.display = "inline-block"
+      var config = {
+        method: 'get',
+        url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/empleoTotalMexicali',
+      }
+      await axios(config)
+        .then((res) => {
+          for (let i = res.data.length; i >= res.data.length - periods; i--) {
+            arrayEmpleoMexicali.push(res.data[i])
+          }
+          arrayEmpleoMexicali.shift()
+          arrayEmpleoMexicali.reverse()
+          google.charts.setOnLoadCallback(drawEmpleoIndicator(zone, arrayEmpleoMexicali));
+        })
+        .catch(async (err) => {
+          console.log(err)
+        })
+    }
+    else if (arrayEmpleoMexicali.length > 0){
+      drawEmpleoIndicator(zone, arrayEmpleoMexicali)
+    }
+  }
+  else if(zone == "sanQuintin"){
+    if (arrayEmpleoSanQuintin.length == 0){
+      document.getElementById("spinnerEmpleo").style.display = "inline-block"
+      var config = {
+        method: 'get',
+        url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/empleoTotalSanQuintin',
+      }
+      await axios(config)
+        .then((res) => {
+          for (let i = res.data.length; i >= res.data.length - periods; i--) {
+            arrayEmpleoSanQuintin.push(res.data[i])
+          }
+          arrayEmpleoSanQuintin.shift()
+          arrayEmpleoSanQuintin.reverse()
+          google.charts.setOnLoadCallback(drawEmpleoIndicator(zone, arrayEmpleoSanQuintin));
+        })
+        .catch(async (err) => {
+          console.log(err)
+        })
+    }
+    else if (arrayEmpleoSanQuintin.length > 0){
+      drawEmpleoIndicator(zone, arrayEmpleoSanQuintin)
+    }
+  }
+}
+async function drawEmpleoIndicator(zone, array){
+  if(zone == "bajaCalifornia"){
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', '');
+    data.addColumn('number', '');
+    for (var i = 0; i < array.length; i++) {
+      data.addRow([array[i].date, (parseInt(array[i].bajaCalifornia))]);
+    }
+    var options = {
+      title: 'Empleo Total - Baja California',
+      hAxis: {title: 'Periodos'},
+      vAxis: {title: 'Empleos'},
+      curveType: 'function',
+      legend: 'none',
+    };
+    var chart = new google.visualization.LineChart(document.getElementById('empleoChart'));
+    document.getElementById("spinnerEmpleo").style.display = "none"
+    document.getElementById("empleoChart").style.display = "block"
+    chart.draw(data, options);
+  }
+  else if(zone == "zonaMetropolitana"){
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', '');
+    data.addColumn('number', '');
+    for (var i = 0; i < array.length; i++) {
+      data.addRow([array[i].date, (parseInt(array[i].zonaMetropolitana))]);
+    }
+    var options = {
+      title: 'Empleo Total - Zona Metropolitana',
+      hAxis: {title: 'Periodos'},
+      vAxis: {title: 'Empleos'},
+      curveType: 'function',
+      legend: 'none',
+    };
+    var chart = new google.visualization.LineChart(document.getElementById('empleoChart'));
+    document.getElementById("spinnerEmpleo").style.display = "none"
+    document.getElementById("empleoChart").style.display = "block"
+    chart.draw(data, options);
+  }
+  else if(zone == "tijuana"){
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', '');
+    data.addColumn('number', '');
+    for (var i = 0; i < array.length; i++) {
+      data.addRow([array[i].date, (parseInt(array[i].tijuana))]);
+    }
+    var options = {
+      title: 'Empleo Total - Tijuana',
+      hAxis: {title: 'Periodos'},
+      vAxis: {title: 'Empleos'},
+      curveType: 'function',
+      legend: 'none',
+    };
+    var chart = new google.visualization.LineChart(document.getElementById('empleoChart'));
+    document.getElementById("spinnerEmpleo").style.display = "none"
+    document.getElementById("empleoChart").style.display = "block"
+    chart.draw(data, options);
+  }
+  else if(zone == "tecate"){
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', '');
+    data.addColumn('number', '');
+    for (var i = 0; i < array.length; i++) {
+      data.addRow([array[i].date, (parseInt(array[i].tecate))]);
+    }
+    var options = {
+      title: 'Empleo Total - Tecate',
+      hAxis: {title: 'Periodos'},
+      vAxis: {title: 'Empleos'},
+      curveType: 'function',
+      legend: 'none',
+    };
+    var chart = new google.visualization.LineChart(document.getElementById('empleoChart'));
+    document.getElementById("spinnerEmpleo").style.display = "none"
+    document.getElementById("empleoChart").style.display = "block"
+    chart.draw(data, options);
+  }
+  else if(zone == "rosarito"){
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', '');
+    data.addColumn('number', '');
+    for (var i = 0; i < array.length; i++) {
+      data.addRow([array[i].date, (parseInt(array[i].rosarito))]);
+    }
+    var options = {
+      title: 'Empleo Total - Rosarito',
+      hAxis: {title: 'Periodos'},
+      vAxis: {title: 'Empleos'},
+      curveType: 'function',
+      legend: 'none',
+    };
+    var chart = new google.visualization.LineChart(document.getElementById('empleoChart'));
+    document.getElementById("spinnerEmpleo").style.display = "none"
+    document.getElementById("empleoChart").style.display = "block"
+    chart.draw(data, options);
+  }
+  else if(zone == "ensenada"){
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', '');
+    data.addColumn('number', '');
+    for (var i = 0; i < array.length; i++) {
+      data.addRow([array[i].date, (parseInt(array[i].ensenada))]);
+    }
+    var options = {
+      title: 'Empleo Total - Ensenada',
+      hAxis: {title: 'Periodos'},
+      vAxis: {title: 'Empleos'},
+      curveType: 'function',
+      legend: 'none',
+    };
+    var chart = new google.visualization.LineChart(document.getElementById('empleoChart'));
+    document.getElementById("spinnerEmpleo").style.display = "none"
+    document.getElementById("empleoChart").style.display = "block"
+    chart.draw(data, options);
+  }
+  else if(zone == "mexicali"){
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', '');
+    data.addColumn('number', '');
+    for (var i = 0; i < array.length; i++) {
+      data.addRow([array[i].date, (parseInt(array[i].mexicali))]);
+    }
+    var options = {
+      title: 'Empleo Total - Mexicali',
+      hAxis: {title: 'Periodos'},
+      vAxis: {title: 'Empleos'},
+      curveType: 'function',
+      legend: 'none',
+    };
+    var chart = new google.visualization.LineChart(document.getElementById('empleoChart'));
+    document.getElementById("spinnerEmpleo").style.display = "none"
+    document.getElementById("empleoChart").style.display = "block"
+    chart.draw(data, options);
+  }
+  else if(zone == "sanQuintin"){
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', '');
+    data.addColumn('number', '');
+    for (var i = 0; i < array.length; i++) {
+      data.addRow([array[i].date, (parseInt(array[i].sanQuintin))]);
+    }
+    var options = {
+      title: 'Empleo Total - San Quintín',
+      hAxis: {title: 'Periodos'},
+      vAxis: {title: 'Empleos'},
+      curveType: 'function',
+      legend: 'none',
+    };
+    var chart = new google.visualization.LineChart(document.getElementById('empleoChart'));
+    document.getElementById("spinnerEmpleo").style.display = "none"
+    document.getElementById("empleoChart").style.display = "block"
+    chart.draw(data, options);
   }
 }
