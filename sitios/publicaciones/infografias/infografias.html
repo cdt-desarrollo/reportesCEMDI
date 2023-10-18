@@ -17,7 +17,7 @@
   <link rel="shortcut icon" href="https://lh3.googleusercontent.com/_spZUs8i8UbOnYAqaYbPRKAp2lTjWbnQT9oIBtDZ21bSd4HeDcz5ZGle4yQ2Lz3WusA=w2400" type="image/x-icon">
   <script src="infografias.js"></script>
   </body>
-  <title>Reportes | CEMDI</title>
+  <title>Infografías | CEMDI</title>
 </head>
 <body>
   <!-- Header -->
@@ -52,29 +52,111 @@
   </nav>
 
 <!-- Contenido -->
-  <div class="accordion" id="accordionExample">
-    <h3>Infografías</h3>
-<!-- 2023 -->
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingOne">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          2023
-        </button>
-      </h2>
-      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-        <div class="accordion-body gridCards2023">
-          <div class="card text-center" style="width: 18rem;">
-            <div class="card-body d-grid gap-2">
-              <h2>Enero</h4>
-              <button type="button" class="btn btn-primary" onclick="showReport('enero2023')">Ver</button>
-            </div>
-          </div>
-        </div>
+<div class="accordion" id="accordionExample">
+  <!-- Remesas -->
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <strong>Remesas</strong>
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <button type="button" class="btn btn-outline-primary" onclick="showReport('bajaCaliforniaTrimestreII2022')">Baja California Trimestre II 2022</button>
       </div>
     </div>
   </div>
+  <!-- Comercio -->
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        <strong>Comercio</strong>
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <button type="button" class="btn btn-outline-primary" onclick="showReport('denue2023')">DENUE 2023</button>
+      </div>
+    </div>
+  </div>
+  <!-- Seguridad -->
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        <Strong>Seguridad</Strong>
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <button type="button" class="btn btn-outline-primary" onclick="showReport('incidenciasDelictivasEnsenada2022')">Incidencias delictivas Ensenada 2022</button>
+      </div>
+      <div class="accordion-body">
+        <button type="button" class="btn btn-outline-primary" onclick="showReport('incidenciasDelictivasMexicali2022')">Incidencias delictivas Mexicali 2022</button>
+      </div>
+      <div class="accordion-body">
+        <button type="button" class="btn btn-outline-primary" onclick="showReport('incidenciasDelictivasRosarito2022')">Incidencias delictivas Rosarito 2022</button>
+      </div>
+      <div class="accordion-body">
+        <button type="button" class="btn btn-outline-primary" onclick="showReport('incidenciasDelictivasSanQuintin2022')">Incidencias delictivas San Quintín 2022</button>
+      </div>
+      <div class="accordion-body">
+        <button type="button" class="btn btn-outline-primary" onclick="showReport('incidenciasDelictivasTecate2022')">Incidencias delictivas Tecate 2022</button>
+      </div>
+      <div class="accordion-body">
+        <button type="button" class="btn btn-outline-primary" onclick="showReport('incidenciasDelictivasTijuana2022')">Incidencias delictivas Tijuana 2022</button>
+      </div>
+    </div>
+  </div>
+  <!-- Educación -->
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingFour">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+        <Strong>Educación</Strong>
+      </button>
+    </h2>
+    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <button type="button" class="btn btn-outline-primary" onclick="showReport('cifrasDeEducacion2021BajaCalifornia')">Cifras de educación 2021 Baja California</button>
+      </div>
+      <div class="accordion-body">
+        <button type="button" class="btn btn-outline-primary" onclick="showReport('cifrasDeEducacion2021Ensenada')">Cifras de educación 2021 Ensenada</button>
+      </div>
+      <div class="accordion-body">
+        <button type="button" class="btn btn-outline-primary" onclick="showReport('cifrasDeEducacion2021Rosarito')">Cifras de educación 2021 Rosarito</button>
+      </div>
+      <div class="accordion-body">
+        <button type="button" class="btn btn-outline-primary" onclick="showReport('cifrasDeEducacion2021SanQuintin')">Cifras de educación 2021 San Quintín</button>
+      </div>
+      <div class="accordion-body">
+        <button type="button" class="btn btn-outline-primary" onclick="showReport('cifrasDeEducacion2021Tecate')">Cifras de educación 2021 Tecate</button>
+      </div>
+      <div class="accordion-body">
+        <button type="button" class="btn btn-outline-primary" onclick="showReport('cifrasDeEducacion2021Tijuana')">Cifras de educación 2021 Tijuana</button>
+      </div>
+    </div>
+  </div>
+  <!-- Empresas Constructoras -->
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingFive">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+        <Strong>Empresas Constructoras</Strong>
+      </button>
+    </h2>
+    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <button type="button" class="btn btn-outline-primary" onclick="showReport('empresasConstructorasCifras2022')">Cifras 2022</button>
+      </div>
+      <div class="accordion-body">
+        <button type="button" class="btn btn-outline-primary" onclick="showReport('empresasConstructorasCifrasAbril2022')">Cifras Abril 2022</button>
+      </div>
+      <div class="accordion-body">
+        <button type="button" class="btn btn-outline-primary" onclick="showReport('empresasConstructorasCifrasSeptiembre2022')">Cifras Septiembre 2022</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- Footer -->
-  <div class="card text-center">
+<div class="card text-center fixed-bottom">
     <div class="card-header">
       CEMDI ES APOYADO POR LA ALIANZA ESTRATÉGICA DE LAS SIGUIENTES ORGANIZACIONES Y LOS FONDOS DE NEGOCIOS:
     </div>
@@ -97,6 +179,6 @@
     <div class="card-footer text-muted">
       © COPYRIGHT CEMDI 2014. TODOS LOS DERECHOS RESERVADOS
     </div>
-  </div>
+</div>
 </body>
 </html>

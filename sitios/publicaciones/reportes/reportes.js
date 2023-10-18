@@ -59,6 +59,22 @@ function showReport(month){
       imageAlt: 'A tall image'
     })
   }
+  else if(month == "agosto2023"){
+    Swal.fire({
+      html: '<iframe style="border: 1px solid #777;" src="https://indd.adobe.com/embed/c2612a9b-69b0-4da9-91d4-94d96f416851?startpage=1&allowFullscreen=true" width="450px" height="760px" frameborder="0" allowfullscreen=""></iframe>',
+      imageWidth: width,
+      imageHeight: height,
+      imageAlt: 'A tall image'
+    })
+  }
+  else if(month == "septiembre2023"){
+    Swal.fire({
+      html: '<iframe style="border: 1px solid #777;" src="https://indd.adobe.com/embed/6c19c35b-3a1f-438b-93d8-7676cf6ef43d?startpage=1&allowFullscreen=true" width="450px" height="760px" frameborder="0" allowfullscreen=""></iframe>',
+      imageWidth: width,
+      imageHeight: height,
+      imageAlt: 'A tall image'
+    })
+  }
   else if(month == "junio2022"){
     Swal.fire({
       html: '<iframe style="border: 1px solid #777;" src="https://indd.adobe.com/embed/b3968f15-1134-4798-9554-00a5e65b944b?startpage=1&allowFullscreen=true" width="450px" height="760px" frameborder="0" allowfullscreen=""></iframe>',

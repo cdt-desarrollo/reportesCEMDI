@@ -1,115 +1,138 @@
 var width = 450;
-var height = 760;
+var height = 600;
 
-function showReport(month){
-  console.log(month)
-  if(month == "enero2023"){
+function showReport(info){
+  if(info == "bajaCaliforniaTrimestreII2022"){
     Swal.fire({
-      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/1UnshWaYbGvexEZRIqHJJPQs6ob52OhMm/preview" width="450px" height="760px" frameborder="0" allowfullscreen=""></iframe>',
+      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/1XsS-3B5VAaKuKFQ0NxiAdOP3WCid5Fxa/preview" width="450px" height="600px" frameborder="0" allowfullscreen=""></iframe>',
       imageWidth: width,
       imageHeight: height,
       imageAlt: 'A tall image'
     })
   }
-  else if(month == "febrero2023"){
+  else if(info == "denue2023"){
     Swal.fire({
-      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/1UnssGqR38glN2FnyicErd5YSMip4AILw/preview" width="450px" height="760px" frameborder="0" allowfullscreen=""></iframe>',
+      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/1P2r7LbcKYwAsYZXuUIpFBMEfW8wH5Qc2/preview" width="450px" height="600px" frameborder="0" allowfullscreen=""></iframe>',
       imageWidth: width,
       imageHeight: height,
       imageAlt: 'A tall image'
     })
   }
-  else if(month == "marzo2023"){
+  else if(info == "incidenciasDelictivasEnsenada2022"){
     Swal.fire({
-      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/1UoYd61VveCiloQJ2X2L0bVFYpxUNsZi7/preview" width="450px" height="760px" frameborder="0" allowfullscreen=""></iframe>',
+      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/1PANq4ZwDypJkT2CoNH-FfuqpR-PLq2rh/preview" width="450px" height="600px" frameborder="0" allowfullscreen=""></iframe>',
       imageWidth: width,
       imageHeight: height,
       imageAlt: 'A tall image'
     })
   }
-  else if(month == "abril2023"){
+  else if(info == "incidenciasDelictivasMexicali2022"){
     Swal.fire({
-      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/182K0xpMoEOkcI2gT1vwM1pnU8C_-qq2q/preview" width="450px" height="760px" frameborder="0" allowfullscreen=""></iframe>',
+      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/1PPNcfOWzi_Ik3juSs6yfxrXj9tas2Xcb/preview" width="450px" height="600px" frameborder="0" allowfullscreen=""></iframe>',
       imageWidth: width,
       imageHeight: height,
       imageAlt: 'A tall image'
     })
   }
-  else if(month == "mayo2023"){
+  else if(info == "incidenciasDelictivasRosarito2022"){
     Swal.fire({
-      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/12-3nCe7B6uU_Gg1NqO9ULmDuDXneUO9u/preview" width="450px" height="760px" frameborder="0" allowfullscreen=""></iframe>',
+      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/1PMaon77v6CkHBzbo7oYEIETpfG8B830w/preview" width="450px" height="600px" frameborder="0" allowfullscreen=""></iframe>',
       imageWidth: width,
       imageHeight: height,
       imageAlt: 'A tall image'
     })
   }
-  else if(month == "junio2023"){
+  else if(info == "incidenciasDelictivasSanQuintin2022"){
     Swal.fire({
-      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/1EchAyWRonfkCs8c_ryMZlwQUbiKrK7mB/preview" width="450px" height="760px" frameborder="0" allowfullscreen=""></iframe>',
+      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/1PGOHWNHrO_Hc1S9qjqx99wYc0GvcABYe/preview" width="450px" height="600px" frameborder="0" allowfullscreen=""></iframe>',
       imageWidth: width,
       imageHeight: height,
       imageAlt: 'A tall image'
     })
   }
-  else if(month == "julio2023"){
+  else if(info == "incidenciasDelictivasTecate2022"){
     Swal.fire({
-      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/1_MHzPt7o3iCqpgX6WIx9CxEK5cu8mt-9/preview" width="450px" height="760px" frameborder="0" allowfullscreen=""></iframe>',
+      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/1PJI_k2LP2HcCUX0oBblpdtedG4OsNlSf/preview" width="450px" height="600px" frameborder="0" allowfullscreen=""></iframe>',
       imageWidth: width,
       imageHeight: height,
       imageAlt: 'A tall image'
     })
   }
-  else if(month == "junio2022"){
+  else if(info == "incidenciasDelictivasTijuana2022"){
     Swal.fire({
-      html: '<iframe style="border: 1px solid #777;" src="https://indd.adobe.com/embed/b3968f15-1134-4798-9554-00a5e65b944b?startpage=1&allowFullscreen=true" width="450px" height="760px" frameborder="0" allowfullscreen=""></iframe>',
+      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/1PCXoGwM0uQXnkb_VuyZAiXcFriaJfnAt/preview" width="450px" height="600px" frameborder="0" allowfullscreen=""></iframe>',
       imageWidth: width,
       imageHeight: height,
       imageAlt: 'A tall image'
     })
   }
-  else if(month == "julio2022"){
+  else if(info == "cifrasDeEducacion2021BajaCalifornia"){
     Swal.fire({
-      html: '<iframe style="border: 1px solid #777;" src="https://indd.adobe.com/embed/80136f12-a6e8-4b5b-93ba-e906ccf7e602?startpage=1&allowFullscreen=true" width="450px" height="760px" frameborder="0" allowfullscreen=""></iframe>',
+      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/1rQ-Qf8rWTMSo8qd7fHiCnZWWCp0eRo3_/preview" width="450px" height="600px" frameborder="0" allowfullscreen=""></iframe>',
       imageWidth: width,
       imageHeight: height,
       imageAlt: 'A tall image'
     })
   }
-  else if(month == "agosto2022"){
+  else if(info == "cifrasDeEducacion2021Ensenada"){
     Swal.fire({
-      html: '<iframe style="border: 1px solid #777;" src="https://indd.adobe.com/embed/1451e471-19e5-46de-a36e-01349425c0aa?startpage=1&allowFullscreen=true" width="450px" height="760px" frameborder="0" allowfullscreen=""></iframe>',
+      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/1uStcHSTCz12zAPJkFqQg23WaabASbHWb/preview" width="450px" height="600px" frameborder="0" allowfullscreen=""></iframe>',
       imageWidth: width,
       imageHeight: height,
       imageAlt: 'A tall image'
     })
   }
-  else if(month == "septiembre2022"){
+  else if(info == "cifrasDeEducacion2021Rosarito"){
     Swal.fire({
-      html: '<iframe style="border: 1px solid #777;" src="https://indd.adobe.com/embed/f2462565-52db-40fd-b605-875abe4c7d3a?startpage=1&allowFullscreen=true" width="450px" height="760px" frameborder="0" allowfullscreen=""></iframe>',
+      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/1EA1oK2zpWy9EoxjR5pW1Lx_g87OVtgPs/preview" width="450px" height="600px" frameborder="0" allowfullscreen=""></iframe>',
       imageWidth: width,
       imageHeight: height,
       imageAlt: 'A tall image'
     })
   }
-  else if(month == "octubre2022"){
+  else if(info == "cifrasDeEducacion2021SanQuintin"){
     Swal.fire({
-      html: '<iframe style="border: 1px solid #777;" src="https://indd.adobe.com/embed/167c0345-b2e9-48c8-8eca-5128d05f5f31?startpage=1&allowFullscreen=true" width="450px" height="760px" frameborder="0" allowfullscreen=""></iframe>',
+      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/1gzfnt8j6VbnRAE7rjR4KmMGAG95lIAJP/preview" width="450px" height="600px" frameborder="0" allowfullscreen=""></iframe>',
       imageWidth: width,
       imageHeight: height,
       imageAlt: 'A tall image'
     })
   }
-  else if(month == "noviembre2022"){
+  else if(info == "cifrasDeEducacion2021Tecate"){
     Swal.fire({
-      html: '<iframe style="border: 1px solid #777;" src="https://indd.adobe.com/embed/9b95b3b2-163b-48b6-beac-0c2d67f0b26e?startpage=1&allowFullscreen=true" width="450px" height="760px" frameborder="0" allowfullscreen=""></iframe>',
+      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/1l0PkHWRzLx7PqD_vKHMeJRsnBRfZClbb/preview" width="450px" height="600px" frameborder="0" allowfullscreen=""></iframe>',
       imageWidth: width,
       imageHeight: height,
       imageAlt: 'A tall image'
     })
   }
-  else if(month == "diciembre2022"){
+  else if(info == "cifrasDeEducacion2021Tijuana"){
     Swal.fire({
-      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/1cot1KsQLRDXaZZgye6utnasxDAYBVCRY/preview" width="450px" height="760px" frameborder="0" allowfullscreen=""></iframe>',
+      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/1EvrUZJT7taQGZf2zz2QPf1aRoW4SQTo5/preview" width="450px" height="600px" frameborder="0" allowfullscreen=""></iframe>',
+      imageWidth: width,
+      imageHeight: height,
+      imageAlt: 'A tall image'
+    })
+  }
+  else if(info == "empresasConstructorasCifras2022"){
+    Swal.fire({
+      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/1PfFXd8n6gsEPkJ6bmfIJNUSJtCgSsmt2/preview" width="450px" height="600px" frameborder="0" allowfullscreen=""></iframe>',
+      imageWidth: width,
+      imageHeight: height,
+      imageAlt: 'A tall image'
+    })
+  }
+  else if(info == "empresasConstructorasCifrasAbril2022"){
+    Swal.fire({
+      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/1Ph43VdL_cL2zAZF2gXnznUeP8i9aKocn/preview" width="450px" height="600px" frameborder="0" allowfullscreen=""></iframe>',
+      imageWidth: width,
+      imageHeight: height,
+      imageAlt: 'A tall image'
+    })
+  }
+  else if(info == "empresasConstructorasCifrasSeptiembre2022"){
+    Swal.fire({
+      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/1Pcf4dNEGzxILCF04dqnBAjIERPFRdMEz/preview" width="450px" height="600px" frameborder="0" allowfullscreen=""></iframe>',
       imageWidth: width,
       imageHeight: height,
       imageAlt: 'A tall image'
