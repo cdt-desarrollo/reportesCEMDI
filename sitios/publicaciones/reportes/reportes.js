@@ -75,6 +75,14 @@ function showReport(month){
       imageAlt: 'A tall image'
     })
   }
+  else if(month == "octubre2023"){
+    Swal.fire({
+      html: '<iframe style="border: 1px solid #777;" src="https://indd.adobe.com/embed/fb62bb2f-baa9-4f05-abf0-80c1c21145c4?startpage=1&allowFullscreen=true" width="450px" height="760px" frameborder="0" allowfullscreen=""></iframe>',
+      imageWidth: width,
+      imageHeight: height,
+      imageAlt: 'A tall image'
+    })
+  }
   else if(month == "junio2022"){
     Swal.fire({
       html: '<iframe style="border: 1px solid #777;" src="https://indd.adobe.com/embed/b3968f15-1134-4798-9554-00a5e65b944b?startpage=1&allowFullscreen=true" width="450px" height="760px" frameborder="0" allowfullscreen=""></iframe>',
