@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon">
+  <!-- SweetAlert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+  <!-- Documentos propios -->
+  <link rel="stylesheet" href="boletines.css">
+  <link rel="shortcut icon" href="https://lh3.googleusercontent.com/_spZUs8i8UbOnYAqaYbPRKAp2lTjWbnQT9oIBtDZ21bSd4HeDcz5ZGle4yQ2Lz3WusA=w2400" type="image/x-icon">
+  <script src="boletines.js"></script>
+  </body>
+  <title>Boletines | CEMDI</title>
+</head>
+<body>
+  <!-- Header -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary shadow p-3 mb-5 bg-body-tertiary rounded sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="../../../index.html">
+        <img src="https://lh4.googleusercontent.com/XiS6rTZqrwNpJNDqM0wyhU6cKS5Gum4YwwNEHIM2_dWmnJFZ9G5qjSYnS-PReI6_d3c=w2400" alt="Bootstrap" width="240" height="75">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="../../../index.html">Inicio</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link active" aria-current="page" href="../../publicaciones/reportes/reportes.html">Reportes</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link active" href="../../publicaciones/infografias/infografias.html">Infografías</a>
+          </li>
+          <li class="nav-item active bg-dark">
+            <a class="nav-link text-light" href="#">Boletines</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link disabled" href="#">Posts</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<!-- Contenido -->
+<div class="accordion" id="accordionExample">
+  <!-- Accidentes de Tránsito -->
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <strong>Accidentes de Tránsito</strong>
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <button type="button" class="btn btn-outline-primary" onclick="showReport('accidentesDeTransitoBajaCalifornia2020')">Accidentes de Tránsito de Baja California 2020</button>
+      </div>
+    </div>
+  </div>
+  <!-- Disponibilidad y uso de las tecnologías de la información -->
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        <strong>Disponibilidad y uso de las tecnologías de información</strong>
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <button type="button" class="btn btn-outline-primary" onclick="showReport('disponibilidadYUsoDeLasTecnologiasBajaCalifornia2021')">Disponibilidad y uso de las Tecnologías de Información Baja California 2020</button>
+      </div>
+    </div>
+  </div>
+  <!-- Cruces en la frontera norte -->
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingThre">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThre" aria-expanded="false" aria-controls="collapseThre">
+        <strong>Cruces en la frontera norte</strong>
+      </button>
+    </h2>
+    <div id="collapseThre" class="accordion-collapse collapse" aria-labelledby="headingThre" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <button type="button" class="btn btn-outline-primary" onclick="showReport('crucesEnLaFronteraNorteBajaCalifornia2021')">Cruces en la frontera norte Baja California 2021</button>
+      </div>
+    </div>
+  </div>
+  <!-- Medio Ambiente -->
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingFour">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+        <strong>Medio Ambiente</strong>
+      </button>
+    </h2>
+    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <button type="button" class="btn btn-outline-primary" onclick="showReport('medioAmbienteBajaCalifornia2022')">Medio Ambiente Baja California 2022</button>
+      </div>
+    </div>
+  </div>
+  <!-- Operaciones Aeropuertuarias -->
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingFive">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+        <strong>Operaciones Aeropuertuarias</strong>
+      </button>
+    </h2>
+    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <button type="button" class="btn btn-outline-primary" onclick="showReport('operacionesAeropuertariasBajaCalifornia2019-2022')">Operaciones Aeropuertuarias Baja California 2019 - 2022</button>
+      </div>
+    </div>
+  </div>
+  <!-- Establecimientos y Emprendimiento -->
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingSix">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+        <strong>Establecimientos y Emprendimiento</strong>
+      </button>
+    </h2>
+    <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <button type="button" class="btn btn-outline-primary" onclick="showReport('establecimientoYEmprendimientoBajaCalifornia2022')">Establecimientos y Emprendimiento Baja California 2022</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="card text-center">
+    <div class="card-header">
+      CEMDI ES APOYADO POR LA ALIANZA ESTRATÉGICA DE LAS SIGUIENTES ORGANIZACIONES Y LOS FONDOS DE NEGOCIOS:
+    </div>
+    <div class="card-body container">
+      <div class="row align-items-center">
+        <div class="col">
+          <!-- <img src="https://lh6.googleusercontent.com/Kh-Ees23hgPZXoXkktOhcxFilX0tpaVdRFAhpGUkCpNV5MQQDroxJFkKEOd4DiL_hXo=w2400" alt="" class="logos"> -->
+          <img src="../../../assets/cdt.png" class="logos" style="width: 45%;">
+        </div>
+        <div class="col">
+          <img src="../../../assets/logo_fidem (1).png" alt="" class="logos">
+          <!-- <img src="https://lh5.googleusercontent.com/SVPgsUWDB8Y_ExZSe93Qi4a3gY1dNtNbBPI3Qp4LBumfo7fxJOQwHywCubrZb0XkIvE=w2400" alt="" class="logos"> -->
+        </div>
+        <div class="col">
+          <img src="../../../assets/cce (1).png" alt="" class="logos">
+          <!-- <img src="https://lh3.googleusercontent.com/QSikIZAgFHeFg7qD2DjU6Bph23bPXcLuyHkWeUd2JO-3QnhIFvUsoJvWeheud2kuLD4=w2400" alt="" class="logos"> -->
+        </div>
+      </div>
+    </div>
+    <div class="card-footer text-muted">
+      © COPYRIGHT CEMDI 2014. TODOS LOS DERECHOS RESERVADOS
+    </div>
+</div>
+</body>
+</html>

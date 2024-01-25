@@ -138,4 +138,36 @@ function showReport(info){
       imageAlt: 'A tall image'
     })
   }
+  else if(info == "accidentesDeTransitoBajaCalifornia2020"){
+    Swal.fire({
+      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/1pkf5bi__yXy59NAOVIayVOq2BtAAQYHW/preview" width="450px" height="600px" frameborder="0" allowfullscreen=""></iframe>',
+      imageWidth: width,
+      imageHeight: height,
+      imageAlt: 'A tall image'
+    })
+  }
+  else if(info == "crucesDeLaFronteraNorte2021"){
+    Swal.fire({
+      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/1qLUyErdI0FmdmWQnoNJa79E-FRu1lhSk/preview" width="450px" height="600px" frameborder="0" allowfullscreen=""></iframe>',
+      imageWidth: width,
+      imageHeight: height,
+      imageAlt: 'A tall image'
+    })
+  }
+  else if(info == "sectorPrimarioTijuana2022"){
+    Swal.fire({
+      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/1r7KxSRN4Ev3GoCYQw4DIY4yon6VmmZKq/preview" width="450px" height="600px" frameborder="0" allowfullscreen=""></iframe>',
+      imageWidth: width,
+      imageHeight: height,
+      imageAlt: 'A tall image'
+    })
+  }
+  else if(info == "indicadoresDePoblacionDel2022"){
+    Swal.fire({
+      html: '<iframe style="border: 1px solid #777;" src="https://drive.google.com/file/d/1r9YmXNs1mYVP5-SZh1mu66aJ494oH3wT/preview" width="450px" height="600px" frameborder="0" allowfullscreen=""></iframe>',
+      imageWidth: width,
+      imageHeight: height,
+      imageAlt: 'A tall image'
+    })
+  }
 }

@@ -5,3 +5,7 @@ function reportes(){
 function infografias(){
   window.location.assign("infografias/infografias.html")
 }
+
+function boletines(){
+  window.location.assign("boletines/boletines.html")
+}
