@@ -50,18 +50,39 @@
       </div>
     </div>
   </nav>
-
 <!-- Contenido -->
   <div class="accordion" id="accordionExample">
     <h3>Reportes</h3>
-<!-- 2023 -->
+
+<!-- 2022 -->
     <div class="accordion-item">
       <h2 class="accordion-header" id="headingOne">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+          <strong>2022</strong>
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div class="accordion-body" style="display: flex; justify-content:space-evenly;">
+          <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('junio2022')">Junio</button>
+          <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('julio2022')">Julio</button>
+          <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('agosto2022')">Agosto</button>
+          <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('septiembre2022')">Septiembre</button>
+        </div>
+        <div class="accordion-body" style="display: flex; justify-content:space-evenly;">
+          <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('octubre2022')">Octubre</button>
+          <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('noviembre2022')">Noviembre</button>
+          <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('diciembre2022')">Diciembre</button>
+        </div>
+      </div>
+    </div>
+<!-- 2023 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTwo">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <strong>2023</strong>
         </button>
       </h2>
-      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
         <div class="accordion-body" style="display: flex; justify-content:space-evenly;">
           <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('enero2023')">Enero</button>
           <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('febrero2023')">Febrero</button>
@@ -77,31 +98,39 @@
         <div class="accordion-body" style="display: flex; justify-content:space-evenly;">
           <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('septiembre2023')">Septiembre</button>
           <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('octubre2023')">Octubre</button>
+          <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('noviembre2023')">Noviembre</button>
+          <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('anual2023')">Anual</button>
         </div>
       </div>
     </div>
-<!-- 2022 -->
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingTwo">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          <strong>2022</strong>
-        </button>
-      </h2>
-      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-        <div class="accordion-body" style="display: flex; justify-content:space-evenly;">
-          <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('junio2022')">Junio</button>
-          <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('julio2022')">Julio</button>
-          <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('agosto2022')">Agosto</button>
-          <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('septiembre2022')">Septiembre</button>
-        </div>
-        <div class="accordion-body" style="display: flex; justify-content:space-evenly;">
-          <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('octubre2022')">Octubre</button>
-          <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('noviembre2022')">Noviembre</button>
-          <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('diciembre2022')">Diciembre</button>
-        </div>
-      </div>
+<!-- 2024 -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="headingThre">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThre" aria-expanded="true" aria-controls="collapseThre">
+      <strong>2024</strong>
+    </button>
+  </h2>
+  <div id="collapseThre" class="accordion-collapse collapse show" aria-labelledby="headingThre" data-bs-parent="#accordionExample">
+    <div class="accordion-body" style="display: flex; justify-content:space-evenly;">
+      <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('enero2024')">Enero</button>
+      <!-- <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('febrero2023')">Febrero</button>
+      <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('marzo2023')">Marzo</button>
+      <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('abril2023')">Abril</button> -->
     </div>
-    
+    <!-- <div class="accordion-body" style="display: flex; justify-content:space-evenly;">
+      <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('mayo2023')">Mayo</button>
+      <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('junio2023')">Junio</button>
+      <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('julio2023')">Julio</button>
+      <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('agosto2023')">Agosto</button>
+    </div>
+    <div class="accordion-body" style="display: flex; justify-content:space-evenly;">
+      <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('septiembre2023')">Septiembre</button>
+      <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('octubre2023')">Octubre</button>
+      <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('noviembre2023')">Noviembre</button>
+      <button style="width: 20%;" type="button" class="btn btn-outline-primary" onclick="showReport('anual2023')">Anual</button>
+    </div> -->
+  </div>
+</div>
   </div>
 <!-- Footer -->
   <div class="card text-center">
