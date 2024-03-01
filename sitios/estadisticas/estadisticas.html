@@ -53,19 +53,27 @@
 
     <!-- Botones de Indicadores -->
     <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="padding-top: 29px;">
-      <button class="nav-link" id="v-pills-remesas-tab" data-bs-toggle="pill" data-bs-target="#v-pills-remesas" type="button" role="tab" 
+      <button class="nav-link btn-lg" id="v-pills-remesas-tab" data-bs-toggle="pill" data-bs-target="#v-pills-remesas" type="button" role="tab" 
       aria-controls="v-pills-remesas" aria-selected="false" id="buttonRemittances" style="outline: 1px solid; margin-bottom: 5px;">Remesas</button>
-      <button class="nav-link" id="v-pills-inflacion-tab" data-bs-toggle="pill" data-bs-target="#v-pills-inflacion" type="button" role="tab" 
+      <button class="nav-link btn-lg" id="v-pills-inflacion-tab" data-bs-toggle="pill" data-bs-target="#v-pills-inflacion" type="button" role="tab" 
       aria-controls="v-pills-inflacion" aria-selected="false" style="outline: 1px solid; margin-bottom: 5px;">Inflación</button>
-      <button class="nav-link" id="v-pills-ied-tab" data-bs-toggle="pill" data-bs-target="#v-pills-ied" type="button" role="tab" aria-controls="v-pills-ied" aria-selected="true" style="outline: 1px solid; margin-bottom: 5px;" onclick="drawIEDIndicator()">IED</button>
-      <button class="nav-link" id="v-pills-cruces-tab" data-bs-toggle="pill" data-bs-target="#v-pills-cruces" type="button" role="tab" 
+      <button class="nav-link btn-lg" id="v-pills-ied-tab" data-bs-toggle="pill" data-bs-target="#v-pills-ied" type="button" role="tab" aria-controls="v-pills-ied" aria-selected="true" style="outline: 1px solid; margin-bottom: 5px;" onclick="drawIEDIndicator()">IED</button>
+      <button class="nav-link btn-lg" id="v-pills-cruces-tab" data-bs-toggle="pill" data-bs-target="#v-pills-cruces" type="button" role="tab" 
       aria-controls="v-pills-cruces" aria-selected="false" style="outline: 1px solid; margin-bottom: 5px;">Cruces</button>
-      <button class="nav-link" id="v-pills-itae-tab" data-bs-toggle="pill" data-bs-target="#v-pills-itae" type="button" role="tab" 
+      <button class="nav-link btn-lg" id="v-pills-itae-tab" data-bs-toggle="pill" data-bs-target="#v-pills-itae" type="button" role="tab" 
       aria-controls="v-pills-itae" aria-selected="false" style="outline: 1px solid; margin-bottom: 5px;">ITAEE</button>
-      <button class="nav-link" id="v-pills-delitos-tab" data-bs-toggle="pill" data-bs-target="#v-pills-delitos" type="button" role="tab" 
+      <button class="nav-link btn-lg" id="v-pills-delitos-tab" data-bs-toggle="pill" data-bs-target="#v-pills-delitos" type="button" role="tab" 
       aria-controls="v-pills-delitos" aria-selected="false" id="buttonDelitos" style="outline: 1px solid; margin-bottom: 5px;">Delitos</button>
-      <button class="nav-link" id="v-pills-empleo-tab" data-bs-toggle="pill" data-bs-target="#v-pills-empleo" type="button" role="tab" 
+      <button class="nav-link btn-lg" id="v-pills-empleo-tab" data-bs-toggle="pill" data-bs-target="#v-pills-empleo" type="button" role="tab" 
       aria-controls="v-pills-empleo" aria-selected="false" id="buttonEmpleo" style="outline: 1px solid; margin-bottom: 5px;">Empleo</button>
+      <button class="nav-link btn-lg" id="v-pills-tipoCambio-tab" data-bs-toggle="pill" data-bs-target="#v-pills-tipoCambio" type="button" role="tab" 
+      aria-controls="v-pills-tipoCambio" aria-selected="false" id="buttonTipoCambio" style="outline: 1px solid; margin-bottom: 5px;" onclick="drawTipoCambioIndicator()">Cambio</button>
+      <button class="nav-link btn-lg" id="v-pills-cruceros-tab" data-bs-toggle="pill" data-bs-target="#v-pills-cruceros" type="button" role="tab" 
+      aria-controls="v-pills-cruceros" aria-selected="false" id="buttonCruceros" style="outline: 1px solid; margin-bottom: 5px;">Cruceros</button>
+      <button class="nav-link btn-lg" id="v-pills-immex-tab" data-bs-toggle="pill" data-bs-target="#v-pills-immex" type="button" role="tab" 
+      aria-controls="v-pills-immex" aria-selected="false" id="buttonImmex" style="outline: 1px solid; margin-bottom: 5px;">IMMEX</button>
+      <button class="nav-link btn-lg" id="v-pills-vehiculos-tab" data-bs-toggle="pill" data-bs-target="#v-pills-vehiculos" type="button" role="tab" 
+      aria-controls="v-pills-vehiculos" aria-selected="false" id="buttonVehiculos" style="outline: 1px solid; margin-bottom: 5px;">Vehículos</button>
     </div>
 
     <!-- Gráficas de Indicadores -->
@@ -309,6 +317,78 @@
           </div>
         </div>
       </div>
+      <!-- Tipo de Cambio Interbancario -->
+      <div class="tab-pane fade" id="v-pills-tipoCambio" role="tabpanel" aria-labelledby="v-pills-tipoCambio-tab" tabindex="0">
+        <h5>Tipo de Cambio Interbancario</h5>
+        <div id="tipoCambio" class="d-flex" style="flex-direction: column; align-items: center; justify-content: start; width: 100%;">
+          <div class="d-flex justify-content-center" >
+            <div class="spinner-border" role="status" id="spinnerTipoCambio" style="display: none;">
+            </div>
+          </div>
+            <div id="tipoDeCambioChart" style="width: 100%; max-width: 1200px; height:300px;">
+            </div>
+        </div>
+      </div>
+      <!-- Cruceros -->
+      <div class="tab-pane fade" id="v-pills-cruceros" role="tabpanel" aria-labelledby="v-pills-cruceros-tab" tabindex="0">
+        <h5>Cruceros</h5>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+          <button value = "arribosTuristicos" onclick = "getDataCrucerosIndicator(this.value)" class="btn btn-primary btn-sm" id="arribosTuristicosBoton" style="width: 49.5%;">Arribos Turísticos - Ensenada</button>
+          <button value = "pasajeros" onclick = "getDataCrucerosIndicator(this.value)" class="btn btn-success btn-sm" id="pasajerosCrucerosBoton" style="width: 49.5%;">Pasajeros Cruceros -  Ensenada</button>
+        </div>
+        <div style="display: flex; justify-content: center;">
+          <div id="cruceros" class="d-flex" style="flex-direction: column; align-items: center; justify-content: start; width: 100%;">
+            <div class="d-flex justify-content-center" >
+              <div class="spinner-border" role="status" id="spinnerCruceros" style="display: none;"></div>
+            </div>
+            <h5 style="display: none;" id="crucerosArribosTuristicosTitulo">Arribos Turísticos</h5>
+            <h5 style="display: none;" id="crucerosPasajerosCruceros">Pasajeros Cruceros</h5>
+            <div id="crucerosChart" style="width: 100%; max-width: 1200px; height:300px;">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- IMMEX -->
+      <div class="tab-pane fade" id="v-pills-immex" role="tabpanel" aria-labelledby="v-pills-immex-tab" tabindex="0">
+        <h5>Establecimientos IMMEX</h5>
+        <div style="display: flex; justify-content: space-evenly; width: 100%;">
+          <button value = "bajaCalifornia" onclick = "getDataImmexIndicator(this.value)"class="btn btn-primary btn-sm" id="immexBajaCaliforniaBoton" style="width: 12%;">Baja California</button>
+          <button value = "tijuana" onclick = "getDataImmexIndicator(this.value)"class="btn btn-secondary btn-sm" id="immexTijuanaBoton" style="width: 12%;">Tijuana</button>
+          <button value = "tecate" onclick = "getDataImmexIndicator(this.value)"class="btn btn-success btn-sm" id="immexTecateBoton" style="width: 12%;">Tecate</button>
+          <button value = "ensenada" onclick = "getDataImmexIndicator(this.value)"class="btn btn-danger btn-sm" id="immexEnsenadaBoton" style="width: 12%;">Ensenada</button>
+          <button value = "mexicali" onclick = "getDataImmexIndicator(this.value)"class="btn btn-warning btn-sm" id="immexMexicaliBoton" style="width: 12%;">Mexicali</button>
+        </div>
+        <div style="display: flex; justify-content: center;">
+          <div id="immex" class="d-flex" style="flex-direction: column; align-items: center; justify-content: star;width: 100%;">
+            <div class="d-flex justify-content-center" >
+              <div class="spinner-border" role="status" id="spinnerImmex" style="display: none;">
+              </div>
+            </div>
+            <div id="immexChart" style="width:100%; max-width:1200px; height:300px;"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Vehículos -->
+      <div class="tab-pane fade" id="v-pills-vehiculos" role="tabpanel" aria-labelledby="v-pills-vehiculos-tab" tabindex="0">
+        <h5>Vehículos Totales</h5>
+        <div style="display: flex; justify-content: space-evenly; width: 100%;">
+          <button value = "bajaCalifornia" onclick = "getDataVehiculosIndicator(this.value)"class="btn btn-primary btn-sm" id="vehiculosTotalesBajaCalifornia" style="width: 12%;">Baja California</button>
+          <button value = "tijuana" onclick = "getDataVehiculosIndicator(this.value)"class="btn btn-secondary btn-sm" id="vehiculosTotalesTijuana" style="width: 12%;">Tijuana</button>
+          <button value = "rosarito" onclick = "getDataVehiculosIndicator(this.value)"class="btn btn-secondary btn-sm" id="vehiculosTotalesRosarito" style="width: 12%;">Rosarito</button>
+          <button value = "tecate" onclick = "getDataVehiculosIndicator(this.value)"class="btn btn-success btn-sm" id="vehiculosTotalesTecate" style="width: 12%;">Tecate</button>
+          <button value = "ensenada" onclick = "getDataVehiculosIndicator(this.value)"class="btn btn-danger btn-sm" id="vehiculosTotalesEnsenada" style="width: 12%;">Ensenada</button>
+          <button value = "mexicali" onclick = "getDataVehiculosIndicator(this.value)"class="btn btn-warning btn-sm" id="vehiculosTotalesMexicali" style="width: 12%;">Mexicali</button>
+        </div>
+        <div style="display: flex; justify-content: center;">
+          <div id="vehiculos" class="d-flex" style="flex-direction: column; align-items: center; justify-content: star;width: 100%;">
+            <div class="d-flex justify-content-center" >
+              <div class="spinner-border" role="status" id="spinnerVehiculos" style="display: none;">
+              </div>
+            </div>
+            <div id="vehiculosChart" style="width:100%; max-width:1200px; height:300px;"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   
@@ -339,5 +419,6 @@
 </body>
 <script>
   getDataIEDIndicator()
+  getDataTipoCambioIndicator()
 </script>
 </html>

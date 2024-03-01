@@ -28,12 +28,28 @@ arrayEmpleoRosarito = []
 arrayEmpleoEnsenada = []
 arrayEmpleoMexicali = []
 arrayEmpleoSanQuintin = []
+arrayTipoDeCambio = []
+arrayCrucerosArriboTuristicos = []
+arrayCrucerosPasajerosCruceros = []
+arrayImmexBajaCalifornia = []
+arrayImmexTijuana = []
+arrayImmexTecate = []
+arrayImmexEnsenada = []
+arrayImmexMexicali = []
+arrayVehiculosBajaCalifornia = []
+arrayVehiculosTijuana = []
+arrayVehiculosRosarito = []
+arrayVehiculosTecate = []
+arrayVehiculosEnsenada = []
+arrayVehiculosMexicali = []
 google.charts.load('current', { 'packages': ['corechart'] });
 let counterRemittances = 0
 let counterIED = 0
 let counterInflation = 0
 let counterCruces = 0
 let counterITAE = 0
+let counterTipoDeCambio = 0
+
 
 async function getDataRemittancesIndicator(cityValue) {
   if(counterRemittances == 1){
@@ -3010,6 +3026,7 @@ async function getDataEmpleoIndicator(zone){
           arrayEmpleoBajaCalifornia.shift()
           arrayEmpleoBajaCalifornia.reverse()
           google.charts.setOnLoadCallback(drawEmpleoIndicator(zone, arrayEmpleoBajaCalifornia));
+          console.log(arrayEmpleoBajaCalifornia)
         })
         .catch(async (err) => {
           console.log(err)
@@ -3190,6 +3207,7 @@ async function getDataEmpleoIndicator(zone){
 }
 async function drawEmpleoIndicator(zone, array){
   if(zone == "bajaCalifornia"){
+    console.log(arrayEmpleoBajaCalifornia)
     var data = new google.visualization.DataTable();
     data.addColumn('string', '');
     data.addColumn('number', '');
@@ -3339,6 +3357,622 @@ async function drawEmpleoIndicator(zone, array){
     var chart = new google.visualization.LineChart(document.getElementById('empleoChart'));
     document.getElementById("spinnerEmpleo").style.display = "none"
     document.getElementById("empleoChart").style.display = "block"
+    chart.draw(data, options);
+  }
+}
+
+async function getDataTipoCambioIndicator() {
+  if(counterTipoDeCambio == 1){
+    drawTipoCambioIndicator()
+  }
+  else if(counterTipoDeCambio == 0){
+    document.getElementById("spinnerTipoCambio").style.display = "inline-block"
+    var config = {
+      method: 'get',
+      url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/Tipo_de_Cambio_Interbancario',
+    }
+    await axios(config)
+      .then((res) => {
+        for (let i = res.data.length; i >= res.data.length - periods; i--) {
+          arrayTipoDeCambio.push(res.data[i])
+        }
+        arrayTipoDeCambio.shift()
+        arrayTipoDeCambio.reverse()
+        google.charts.setOnLoadCallback(drawTipoCambioIndicator);
+      })
+      .catch(async (err) => {
+        console.log(err)
+      })
+  }
+}
+async function drawTipoCambioIndicator() {
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', '');
+  data.addColumn('number', '');
+  for (var i = 0; i < arrayTipoDeCambio.length; i++) {
+    data.addRow([arrayTipoDeCambio[i].date, parseFloat(arrayTipoDeCambio[i].bajaCalifornia)]);
+  }
+  var options = {
+    hAxis: {title: 'Periodos'},
+    vAxis: {title: 'Dolares en Millones'},
+    curveType: 'function',
+    legend: 'none',
+  };
+  var chart = new google.visualization.LineChart(document.getElementById('tipoDeCambioChart'));
+  document.getElementById("spinnerTipoCambio").style.display = "none"
+  chart.draw(data, options);
+}
+
+async function getDataCrucerosIndicator(type){
+  document.getElementById("crucerosChart").style.display = "none"
+  document.getElementById("spinnerCruceros").style.display = "block"
+  if(type.includes("arribosTuristicos") && arrayCrucerosArriboTuristicos.length == 0){
+    var config = {
+      method: 'get',
+      url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/Cruceros_Arribo_Turisticos',
+    }
+    await axios(config)
+    .then((res) => {
+      for (let i = res.data.length; i >= res.data.length - periods; i--) {
+        arrayCrucerosArriboTuristicos.push(res.data[i])
+      }
+      arrayCrucerosArriboTuristicos.shift()
+      arrayCrucerosArriboTuristicos.reverse()
+      google.charts.setOnLoadCallback(drawCrucerosIndicator(arrayCrucerosArriboTuristicos, type));
+    })
+    .catch(async (err) => {
+      console.log(err)
+    })
+  }
+  else if(type.includes("arribosTuristicos") && arrayCrucerosArriboTuristicos.length != 0){
+    google.charts.setOnLoadCallback(drawCrucerosIndicator(arrayCrucerosArriboTuristicos, type));
+  }
+  else if(type.includes("pasajeros") && arrayCrucerosPasajerosCruceros.length == 0){
+    var config = {
+      method: 'get',
+      url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/Cruceros_Pasajeros_Cruceros',
+    }
+    await axios(config)
+    .then((res) => {
+      for (let i = res.data.length; i >= res.data.length - periods; i--) {
+        arrayCrucerosPasajerosCruceros.push(res.data[i])
+      }
+      arrayCrucerosPasajerosCruceros.shift()
+      arrayCrucerosPasajerosCruceros.reverse()
+      google.charts.setOnLoadCallback(drawCrucerosIndicator(arrayCrucerosPasajerosCruceros, type));
+    })
+    .catch(async (err) => {
+      console.log(err)
+    })
+  }
+  else if(type.includes("pasajeros") && arrayCrucerosPasajerosCruceros.length != 0){
+    google.charts.setOnLoadCallback(drawCrucerosIndicator(arrayCrucerosPasajerosCruceros, type));
+  }
+}
+async function drawCrucerosIndicator(array, value){
+  console.log(array, value)
+  document.getElementById("spinnerCruceros").style.display = "none"
+  if(value == "arribosTuristicos"){
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', '');
+    data.addColumn('number', '');
+    for (var i = 0; i < array.length; i++) {
+      data.addRow([array[i].date, (parseFloat(array[i].ensenada))]);
+    }
+    var options = {
+      title: 'Arribos Turísticos - Ensenada',
+      hAxis: {title: 'Periodos'},
+      vAxis: {title: 'Cantidad'},
+      curveType: 'function',
+      legend: 'none',
+    };
+    var chart = new google.visualization.LineChart(document.getElementById('crucerosChart'));
+    document.getElementById("spinnerCruceros").style.display = "none"
+    document.getElementById("crucerosChart").style.display = "block"
+    chart.draw(data, options);
+  }
+  else if(value == "pasajeros"){
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', '');
+    data.addColumn('number', '');
+    for (var i = 0; i < array.length; i++) {
+      data.addRow([array[i].date, (parseFloat(array[i].ensenada))]);
+    }
+    var options = {
+      title: 'Pasajeros Cruceros - Ensenada',
+      hAxis: {title: 'Periodos'},
+      vAxis: {title: 'Cantidad en Miles'},
+      curveType: 'function',
+      legend: 'none',
+    };
+    var chart = new google.visualization.LineChart(document.getElementById('crucerosChart'));
+    document.getElementById("spinnerCruceros").style.display = "none"
+    document.getElementById("crucerosChart").style.display = "block"
+    chart.draw(data, options);
+  }
+}
+
+async function getDataImmexIndicator(zone){
+  document.getElementById('immexChart').style.display = "none"
+  if(zone == "bajaCalifornia"){
+    if (arrayImmexBajaCalifornia.length == 0){
+      document.getElementById("spinnerImmex").style.display = "inline-block"
+      var config = {
+        method: 'get',
+        url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/Establecimientos_IMMEX_BC',
+      }
+      await axios(config)
+        .then((res) => {
+          for (let i = res.data.length; i >= res.data.length - periods; i--) {
+            arrayImmexBajaCalifornia.push(res.data[i])
+          }
+          arrayImmexBajaCalifornia.shift()
+          arrayImmexBajaCalifornia.reverse()
+          google.charts.setOnLoadCallback(drawImmexIndicator(zone, arrayImmexBajaCalifornia));
+        })
+        .catch(async (err) => {
+          console.log(err)
+        })
+    }
+    else if (arrayImmexBajaCalifornia.length > 0){
+      drawImmexIndicator(zone, arrayImmexBajaCalifornia)
+    }
+  }
+  else if(zone == "tijuana"){
+    if (arrayImmexTijuana.length == 0){
+      document.getElementById("spinnerImmex").style.display = "inline-block"
+      var config = {
+        method: 'get',
+        url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/Establecimientos_IMMEX_Tij',
+      }
+      await axios(config)
+        .then((res) => {
+          for (let i = res.data.length; i >= res.data.length - periods; i--) {
+            arrayImmexTijuana.push(res.data[i])
+          }
+          arrayImmexTijuana.shift()
+          arrayImmexTijuana.reverse()
+          google.charts.setOnLoadCallback(drawImmexIndicator(zone, arrayImmexTijuana));
+        })
+        .catch(async (err) => {
+          console.log(err)
+        })
+    }
+    else if (arrayImmexTijuana.length > 0){
+      drawImmexIndicator(zone, arrayImmexTijuana)
+    }
+  }
+  else if(zone == "tecate"){
+    if (arrayImmexTecate.length == 0){
+      document.getElementById("spinnerImmex").style.display = "inline-block"
+      var config = {
+        method: 'get',
+        url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/Establecimientos_IMMEX_Tec',
+      }
+      await axios(config)
+        .then((res) => {
+          for (let i = res.data.length; i >= res.data.length - periods; i--) {
+            arrayImmexTecate.push(res.data[i])
+          }
+          arrayImmexTecate.shift()
+          arrayImmexTecate.reverse()
+          google.charts.setOnLoadCallback(drawImmexIndicator(zone, arrayImmexTecate));
+        })
+        .catch(async (err) => {
+          console.log(err)
+        })
+    }
+    else if (arrayImmexTecate.length > 0){
+      drawImmexIndicator(zone, arrayImmexTecate)
+    }
+  }
+  else if(zone == "ensenada"){
+    if (arrayImmexEnsenada.length == 0){
+      document.getElementById("spinnerImmex").style.display = "inline-block"
+      var config = {
+        method: 'get',
+        url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/Establecimientos_IMMEX_Ens',
+      }
+      await axios(config)
+        .then((res) => {
+          for (let i = res.data.length; i >= res.data.length - periods; i--) {
+            arrayImmexEnsenada.push(res.data[i])
+          }
+          arrayImmexEnsenada.shift()
+          arrayImmexEnsenada.reverse()
+          google.charts.setOnLoadCallback(drawImmexIndicator(zone, arrayImmexEnsenada));
+        })
+        .catch(async (err) => {
+          console.log(err)
+        })
+    }
+    else if (arrayImmexEnsenada.length > 0){
+      drawImmexIndicator(zone, arrayImmexEnsenada)
+    }
+  }
+  else if(zone == "mexicali"){
+    if (arrayImmexMexicali.length == 0){
+      document.getElementById("spinnerImmex").style.display = "inline-block"
+      var config = {
+        method: 'get',
+        url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/Establecimientos_IMMEX_Mex',
+      }
+      await axios(config)
+        .then((res) => {
+          for (let i = res.data.length; i >= res.data.length - periods; i--) {
+            arrayImmexMexicali.push(res.data[i])
+          }
+          arrayImmexMexicali.shift()
+          arrayImmexMexicali.reverse()
+          google.charts.setOnLoadCallback(drawImmexIndicator(zone, arrayImmexMexicali));
+        })
+        .catch(async (err) => {
+          console.log(err)
+        })
+    }
+    else if (arrayImmexMexicali.length > 0){
+      drawImmexIndicator(zone, arrayImmexMexicali)
+    }
+  }
+}
+async function drawImmexIndicator(zone, array){
+  if(zone == "bajaCalifornia"){
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', '');
+    data.addColumn('number', '');
+    for (var i = 0; i < array.length; i++) {
+      data.addRow([array[i].date, (parseInt(array[i].bajaCalifornia))]);
+    }
+    var options = {
+      title: 'Establecimientos IMMEX - Baja California',
+      hAxis: {title: 'Periodos'},
+      vAxis: {title: 'Cantidad'},
+      curveType: 'function',
+      legend: 'none',
+    };
+    var chart = new google.visualization.LineChart(document.getElementById('immexChart'));
+    document.getElementById("spinnerImmex").style.display = "none"
+    document.getElementById("immexChart").style.display = "block"
+    chart.draw(data, options);
+  }
+  else if(zone == "tijuana"){
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', '');
+    data.addColumn('number', '');
+    for (var i = 0; i < array.length; i++) {
+      data.addRow([array[i].date, (parseInt(array[i].tijuana))]);
+    }
+    var options = {
+      title: 'Establecimientos IMMEX - Tijuana',
+      hAxis: {title: 'Periodos'},
+      vAxis: {title: 'Cantidad'},
+      curveType: 'function',
+      legend: 'none',
+    };
+    var chart = new google.visualization.LineChart(document.getElementById('immexChart'));
+    document.getElementById("spinnerImmex").style.display = "none"
+    document.getElementById("immexChart").style.display = "block"
+    chart.draw(data, options);
+  }
+  else if(zone == "tecate"){
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', '');
+    data.addColumn('number', '');
+    for (var i = 0; i < array.length; i++) {
+      data.addRow([array[i].date, (parseInt(array[i].tecate))]);
+    }
+    var options = {
+      title: 'Establecimientos IMMEX - Tecate',
+      hAxis: {title: 'Periodos'},
+      vAxis: {title: 'Cantidad'},
+      curveType: 'function',
+      legend: 'none',
+    };
+    var chart = new google.visualization.LineChart(document.getElementById('immexChart'));
+    document.getElementById("spinnerImmex").style.display = "none"
+    document.getElementById("immexChart").style.display = "block"
+    chart.draw(data, options);
+  }
+  else if(zone == "ensenada"){
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', '');
+    data.addColumn('number', '');
+    for (var i = 0; i < array.length; i++) {
+      data.addRow([array[i].date, (parseInt(array[i].ensenada))]);
+    }
+    var options = {
+      title: 'Establecimientos IMMEX - Ensenada',
+      hAxis: {title: 'Periodos'},
+      vAxis: {title: 'Cantidad'},
+      curveType: 'function',
+      legend: 'none',
+    };
+    var chart = new google.visualization.LineChart(document.getElementById('immexChart'));
+    document.getElementById("spinnerImmex").style.display = "none"
+    document.getElementById("immexChart").style.display = "block"
+    chart.draw(data, options);
+  }
+  else if(zone == "mexicali"){
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', '');
+    data.addColumn('number', '');
+    for (var i = 0; i < array.length; i++) {
+      data.addRow([array[i].date, (parseInt(array[i].mexicali))]);
+    }
+    var options = {
+      title: 'Establecimientos IMMEX - Mexicali',
+      hAxis: {title: 'Periodos'},
+      vAxis: {title: 'Cantidad'},
+      curveType: 'function',
+      legend: 'none',
+    };
+    var chart = new google.visualization.LineChart(document.getElementById('immexChart'));
+    document.getElementById("spinnerImmex").style.display = "none"
+    document.getElementById("immexChart").style.display = "block"
+    chart.draw(data, options);
+  }
+}
+
+async function getDataVehiculosIndicator(zone){
+  document.getElementById('vehiculosChart').style.display = "none"
+  if(zone == "bajaCalifornia"){
+    if (arrayVehiculosBajaCalifornia.length == 0){
+      document.getElementById("spinnerVehiculos").style.display = "inline-block"
+      var config = {
+        method: 'get',
+        url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/VehículosTotales_BC',
+      }
+      await axios(config)
+        .then((res) => {
+          for (let i = res.data.length; i >= res.data.length - periods; i--) {
+            arrayVehiculosBajaCalifornia.push(res.data[i])
+          }
+          arrayVehiculosBajaCalifornia.shift()
+          arrayVehiculosBajaCalifornia.reverse()
+          google.charts.setOnLoadCallback(drawVehiculosIndicator(zone, arrayVehiculosBajaCalifornia));
+        })
+        .catch(async (err) => {
+          console.log(err)
+        })
+    }
+    else if (arrayVehiculosBajaCalifornia.length > 0){
+      drawVehiculosIndicator(zone, arrayVehiculosBajaCalifornia)
+    }
+  }
+  else if(zone == "tijuana"){
+    if (arrayVehiculosTijuana.length == 0){
+      document.getElementById("spinnerVehiculos").style.display = "inline-block"
+      var config = {
+        method: 'get',
+        url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/VehículosTotales_Tij',
+      }
+      await axios(config)
+        .then((res) => {
+          for (let i = res.data.length; i >= res.data.length - periods; i--) {
+            arrayVehiculosTijuana.push(res.data[i])
+          }
+          arrayVehiculosTijuana.shift()
+          arrayVehiculosTijuana.reverse()
+          google.charts.setOnLoadCallback(drawVehiculosIndicator(zone, arrayVehiculosTijuana));
+        })
+        .catch(async (err) => {
+          console.log(err)
+        })
+    }
+    else if (arrayVehiculosTijuana.length > 0){
+      drawVehiculosIndicator(zone, arrayVehiculosTijuana)
+    }
+  }
+  else if(zone == "rosarito"){
+    if (arrayVehiculosRosarito.length == 0){
+      document.getElementById("spinnerVehiculos").style.display = "inline-block"
+      var config = {
+        method: 'get',
+        url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/VehículosTotales_Ros',
+      }
+      await axios(config)
+        .then((res) => {
+          for (let i = res.data.length; i >= res.data.length - periods; i--) {
+            arrayVehiculosRosarito.push(res.data[i])
+          }
+          arrayVehiculosRosarito.shift()
+          arrayVehiculosRosarito.reverse()
+          google.charts.setOnLoadCallback(drawVehiculosIndicator(zone, arrayVehiculosRosarito));
+        })
+        .catch(async (err) => {
+          console.log(err)
+        })
+    }
+    else if (arrayVehiculosRosarito.length > 0){
+      drawVehiculosIndicator(zone, arrayVehiculosRosarito)
+    }
+  }
+  else if(zone == "tecate"){
+    if (arrayVehiculosTecate.length == 0){
+      document.getElementById("spinnerVehiculos").style.display = "inline-block"
+      var config = {
+        method: 'get',
+        url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/VehículosTotales_Tec',
+      }
+      await axios(config)
+        .then((res) => {
+          for (let i = res.data.length; i >= res.data.length - periods; i--) {
+            arrayVehiculosTecate.push(res.data[i])
+          }
+          arrayVehiculosTecate.shift()
+          arrayVehiculosTecate.reverse()
+          google.charts.setOnLoadCallback(drawVehiculosIndicator(zone, arrayVehiculosTecate));
+        })
+        .catch(async (err) => {
+          console.log(err)
+        })
+    }
+    else if (arrayVehiculosTecate.length > 0){
+      drawVehiculosIndicator(zone, arrayVehiculosTecate)
+    }
+  }
+  else if(zone == "ensenada"){
+    if (arrayVehiculosEnsenada.length == 0){
+      document.getElementById("spinnerVehiculos").style.display = "inline-block"
+      var config = {
+        method: 'get',
+        url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/VehículosTotales_Ens',
+      }
+      await axios(config)
+        .then((res) => {
+          for (let i = res.data.length; i >= res.data.length - periods; i--) {
+            arrayVehiculosEnsenada.push(res.data[i])
+          }
+          arrayVehiculosEnsenada.shift()
+          arrayVehiculosEnsenada.reverse()
+          google.charts.setOnLoadCallback(drawVehiculosIndicator(zone, arrayVehiculosEnsenada));
+        })
+        .catch(async (err) => {
+          console.log(err)
+        })
+    }
+    else if (arrayVehiculosEnsenada.length > 0){
+      drawVehiculosIndicator(zone, arrayVehiculosEnsenada)
+    }
+  }
+  else if(zone == "mexicali"){
+    if (arrayVehiculosMexicali.length == 0){
+      document.getElementById("spinnerVehiculos").style.display = "inline-block"
+      var config = {
+        method: 'get',
+        url: 'https://sheet.best/api/sheets/25cab98b-daa2-4cd3-9c62-74308a0853ca/tabs/VehículosTotales_Mex',
+      }
+      await axios(config)
+        .then((res) => {
+          for (let i = res.data.length; i >= res.data.length - periods; i--) {
+            arrayVehiculosMexicali.push(res.data[i])
+          }
+          arrayVehiculosMexicali.shift()
+          arrayVehiculosMexicali.reverse()
+          google.charts.setOnLoadCallback(drawVehiculosIndicator(zone, arrayVehiculosMexicali));
+        })
+        .catch(async (err) => {
+          console.log(err)
+        })
+    }
+    else if (arrayVehiculosMexicali.length > 0){
+      drawVehiculosIndicator(zone, arrayVehiculosMexicali)
+    }
+  }
+}
+async function drawVehiculosIndicator(zone, array){
+  if(zone == "bajaCalifornia"){
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', '');
+    data.addColumn('number', '');
+    for (var i = 0; i < array.length; i++) {
+      data.addRow([array[i].date, (parseInt(array[i].bajaCalifornia))]);
+    }
+    var options = {
+      title: 'Vehiculos Totales - Baja California',
+      hAxis: {title: 'Periodos'},
+      vAxis: {title: 'Cantidad'},
+      curveType: 'function',
+      legend: 'none',
+    };
+    var chart = new google.visualization.LineChart(document.getElementById('vehiculosChart'));
+    document.getElementById("spinnerVehiculos").style.display = "none"
+    document.getElementById("vehiculosChart").style.display = "block"
+    chart.draw(data, options);
+  }
+  else if(zone == "tijuana"){
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', '');
+    data.addColumn('number', '');
+    for (var i = 0; i < array.length; i++) {
+      data.addRow([array[i].date, (parseInt(array[i].tijuana))]);
+    }
+    var options = {
+      title: 'Vehículos Totales - Tijuana',
+      hAxis: {title: 'Periodos'},
+      vAxis: {title: 'Cantidad'},
+      curveType: 'function',
+      legend: 'none',
+    };
+    var chart = new google.visualization.LineChart(document.getElementById('vehiculosChart'));
+    document.getElementById("spinnerVehiculos").style.display = "none"
+    document.getElementById("vehiculosChart").style.display = "block"
+    chart.draw(data, options);
+  }
+  else if(zone == "rosarito"){
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', '');
+    data.addColumn('number', '');
+    for (var i = 0; i < array.length; i++) {
+      data.addRow([array[i].date, (parseInt(array[i].rosarito))]);
+    }
+    var options = {
+      title: 'Vehículos Totales - Rosarito',
+      hAxis: {title: 'Periodos'},
+      vAxis: {title: 'Cantidad'},
+      curveType: 'function',
+      legend: 'none',
+    };
+    var chart = new google.visualization.LineChart(document.getElementById('vehiculosChart'));
+    document.getElementById("spinnerVehiculos").style.display = "none"
+    document.getElementById("vehiculosChart").style.display = "block"
+    chart.draw(data, options);
+  }
+  else if(zone == "tecate"){
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', '');
+    data.addColumn('number', '');
+    for (var i = 0; i < array.length; i++) {
+      data.addRow([array[i].date, (parseInt(array[i].tecate))]);
+    }
+    var options = {
+      title: 'Vehículos Totales - Tecate',
+      hAxis: {title: 'Periodos'},
+      vAxis: {title: 'Cantidad'},
+      curveType: 'function',
+      legend: 'none',
+    };
+    var chart = new google.visualization.LineChart(document.getElementById('vehiculosChart'));
+    document.getElementById("spinnerVehiculos").style.display = "none"
+    document.getElementById("vehiculosChart").style.display = "block"
+    chart.draw(data, options);
+  }
+  else if(zone == "ensenada"){
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', '');
+    data.addColumn('number', '');
+    for (var i = 0; i < array.length; i++) {
+      data.addRow([array[i].date, (parseInt(array[i].ensenada))]);
+    }
+    var options = {
+      title: 'Vehículos Totales - Ensenada',
+      hAxis: {title: 'Periodos'},
+      vAxis: {title: 'Cantidad'},
+      curveType: 'function',
+      legend: 'none',
+    };
+    var chart = new google.visualization.LineChart(document.getElementById('vehiculosChart'));
+    document.getElementById("spinnerVehiculos").style.display = "none"
+    document.getElementById("vehiculosChart").style.display = "block"
+    chart.draw(data, options);
+  }
+  else if(zone == "mexicali"){
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', '');
+    data.addColumn('number', '');
+    for (var i = 0; i < array.length; i++) {
+      data.addRow([array[i].date, (parseInt(array[i].mexicali))]);
+    }
+    var options = {
+      title: 'Vehículos Totales - Mexicali',
+      hAxis: {title: 'Periodos'},
+      vAxis: {title: 'Cantidad'},
+      curveType: 'function',
+      legend: 'none',
+    };
+    var chart = new google.visualization.LineChart(document.getElementById('vehiculosChart'));
+    document.getElementById("spinnerVehiculos").style.display = "none"
+    document.getElementById("vehiculosChart").style.display = "block"
     chart.draw(data, options);
   }
 }
